@@ -1,0 +1,322 @@
+{
+  "completedtasks": [
+    {
+      "task": "On Bugs page:  Completed removes the item and adds it to the completed database",
+      "priority": "5",
+      "id": 26,
+      "completed": true,
+      "category": "bugs"
+    },
+    {
+      "task": "Part 0: GitHub this ",
+      "priority": "1",
+      "id": 20,
+      "completed": true,
+      "category": "features"
+    },
+    {
+      "task": "Part 1:  Create Data folder to store DB files.  Get things to work and add completed section \n",
+      "priority": "1",
+      "id": 19,
+      "completed": true,
+      "category": "sprints"
+    },
+    {
+      "task": "Week 1 goals.: Complettion page: completed sprints bugs and Featurtes alll diffrent pages ",
+      "priority": "7",
+      "id": 13,
+      "completed": true,
+      "category": "sprints"
+    },
+    {
+      "task": "Urgency/priortiy does not work if the user  keeps default value",
+      "priority": "3",
+      "id": 31,
+      "completed": true,
+      "category": "bugs"
+    },
+    {
+      "task": "Date just diplays current time and not the date posted",
+      "priority": "1",
+      "id": 33,
+      "completed": true,
+      "category": "bugs"
+    },
+    {
+      "task": "Get form to be fully Updatable",
+      "priority": "3",
+      "id": 3,
+      "completed": true,
+      "category": "features"
+    },
+    {
+      "task": "Add a completed page where we can see all completed tasks and who completed them. \nI'd also like to maybe post them to a new JSON?????\nEitherway the key feature would be to display all the completed tasks and no longer show on the uncompleted \n\n\nWe'll add a form where I can post completion notes. \n",
+      "priority": "9",
+      "id": 17,
+      "completed": true,
+      "category": "features"
+    },
+    {
+      "task": "Display time and date as well as Urgency",
+      "priority": "2",
+      "id": 30,
+      "completed": true,
+      "category": "features"
+    },
+    {
+      "task": "two",
+      "priority": "1",
+      "id": 25,
+      "urgency": "2",
+      "completed": true,
+      "category": "bugs",
+      "completedDate": 1635702561478
+    },
+    {
+      "task": "Testing feature that adds date and user to completed json ",
+      "priority": "1",
+      "id": 37,
+      "urgency": "1",
+      "date": 1635702680086,
+      "completed": true,
+      "category": "bugs",
+      "completedDate": 1635702715876,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "Form: Implement Dates: in the Json file. \nMove to individual components possible?",
+      "priority": "2",
+      "id": 28,
+      "completed": true,
+      "category": "sprints",
+      "completedDate": 1635705765388,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "Test4",
+      "priority": "1",
+      "id": 40,
+      "urgency": "1",
+      "date": 1635712349304,
+      "completed": true,
+      "category": "bugs",
+      "completedDate": 1635713337353,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "Test3",
+      "priority": "1",
+      "id": 39,
+      "urgency": "1",
+      "date": 1635712345431,
+      "completed": true,
+      "category": "bugs",
+      "completedDate": 1635713343704,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "When task is completed  You should be prompted with who completed it, and when it was completed",
+      "priority": "2",
+      "id": 36,
+      "urgency": "1",
+      "date": 1635701012538,
+      "completed": true,
+      "category": "features",
+      "completedDate": 1635714124302,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "Test2",
+      "priority": "1",
+      "id": 38,
+      "urgency": "1",
+      "date": 1635712342562,
+      "completed": true,
+      "category": "bugs",
+      "completedDate": 1635718038712,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "test",
+      "priority": "2",
+      "urgency": "2",
+      "date": 1635983217985,
+      "completed": true,
+      "category": "sprints",
+      "completedDate": 1635983223924,
+      "CompletedUser": "Ben",
+      "id": 41
+    },
+    {
+      "task": "When posting Sub Sprints: The usestae sets the thing to a number = to the length of an array I'm trying to make it. \nNo idea why this is happening. ",
+      "priority": "3",
+      "urgency": "2",
+      "date": 1635989080635,
+      "completed": true,
+      "category": "bugs",
+      "completedDate": 1635989692314,
+      "CompletedUser": "Ben",
+      "id": 42
+    },
+    {
+      "task": "Get a sidebar where we can select  pages",
+      "priority": "2",
+      "id": 6,
+      "completed": true,
+      "category": "features",
+      "completedDate": 1635990732541,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "Test",
+      "priority": "2",
+      "urgency": "2",
+      "date": 1635988076001,
+      "completed": true,
+      "category": "sprints",
+      "completedDate": 1635990781603,
+      "CompletedUser": "Ben",
+      "id": 43
+    },
+    {
+      "task": "Sprints should be treated dirrently then others stuff. \nSprints should be headers which allow for comments. ",
+      "priority": "3",
+      "urgency": "2",
+      "completed": true,
+      "category": "sprints",
+      "completedDate": 1635990798072,
+      "CompletedUser": "Ben",
+      "id": 44
+    },
+    {
+      "task": "Test1",
+      "priority": "2",
+      "urgency": "2",
+      "date": 1635990811308,
+      "completed": true,
+      "category": "sprints",
+      "completedDate": 1635990824483,
+      "CompletedUser": "Ben",
+      "id": 45
+    },
+    {
+      "task": "User login ",
+      "priority": "1",
+      "id": 11,
+      "urgency": "1",
+      "completed": true,
+      "category": "features",
+      "completedDate": 1635997621171,
+      "CompletedUser": "Ben"
+    },
+    {
+      "task": "Add landing page- Home ",
+      "priority": "1",
+      "id": 16,
+      "urgency": "1",
+      "completed": true,
+      "category": "features",
+      "completedDate": 1635997629714,
+      "CompletedUser": "Ben"
+    }
+  ],
+  "tasks": [
+    {
+      "task": "More Data bases:\nDatabase for completed tasks \nA database for users \n...ect",
+      "category": "features",
+      "priority": "1",
+      "completed": false,
+      "id": 18,
+      "urgency": "1"
+    },
+    {
+      "task": "My progress no longer displays completed tasks. ",
+      "category": "bugs",
+      "priority": "2",
+      "completed": false,
+      "id": 27,
+      "urgency": "2"
+    },
+    {
+      "task": "form stays the same after users posts to it ",
+      "category": "bugs",
+      "priority": "1",
+      "urgency": "1",
+      "completed": false,
+      "date": 1635698151639,
+      "id": 32
+    },
+    {
+      "task": "Urgency/Priority should say low instead of the number",
+      "category": "features",
+      "priority": "2",
+      "urgency": "1",
+      "completed": false,
+      "date": 1635700279530,
+      "id": 34
+    },
+    {
+      "task": "Urgency/Priority should say low When changing priority it should default to the current value ",
+      "category": "features",
+      "priority": "2",
+      "urgency": "1",
+      "completed": false,
+      "date": 1635700307916,
+      "id": 35
+    },
+    {
+      "task": "Seems like duplicate ID's are common. \nThis prevents some of the issues posting and moving to complete. ",
+      "category": "bugs",
+      "priority": "3",
+      "urgency": "3",
+      "completed": false,
+      "date": 1635719308546,
+      "id": 36
+    },
+    {
+      "task": "Test2",
+      "category": "sprints",
+      "priority": "2",
+      "urgency": "1",
+      "completed": false,
+      "date": 1635990816138,
+      "id": 38
+    },
+    {
+      "task": "Cards?",
+      "category": "features",
+      "priority": "2",
+      "urgency": "1",
+      "completed": false,
+      "date": 1635990854664,
+      "id": 39
+    },
+    {
+      "task": "My Progress Page:\nShould show Completed Progress!\nGive info on users//// who has copmpleted the task and how many of each type the have completed. \n\nMaybe several pages per each user. ",
+      "category": "sprints",
+      "priority": "3",
+      "urgency": "1",
+      "completed": false,
+      "date": 1635990932425,
+      "id": 40
+    },
+    {
+      "task": "Sidebar: click on an item and more should show up I guess?\nSo like if I click on Features, I should see two buttons one for features and one for completed Features",
+      "category": "features",
+      "priority": "2",
+      "urgency": "2",
+      "completed": false,
+      "date": 1635991126244,
+      "id": 41
+    },
+    {
+      "task": "Comment CodE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "category": "bugs",
+      "priority": "3",
+      "urgency": "2",
+      "completed": false,
+      "date": 1635997607015,
+      "id": 42
+    }
+  ]
+}
