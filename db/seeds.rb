@@ -68,8 +68,8 @@ Feature.create(
    sprint_id: database_bones.id,
     slug: "temp",
     completed_comment: " Not really completed",
-    created_by_id: ben,
-    completed_by_id: petunia,
+    created_by_id: ben.id,
+    completed_by_id: petunia.id,
     completed_at: "2022-11-29 21:56:34.364715000 +0000",
     completed: true
 
