@@ -1,3 +1,13 @@
+User.destroy_all
+User.reset_pk_sequence
+Sprint.destroy_all
+Sprint.reset_pk_sequence
+Feature.destroy_all
+Feature.reset_pk_sequence
+Bug.destroy_all
+Bug.reset_pk_sequence
+
+
 
 
 puts "users!"
@@ -9,7 +19,8 @@ name: "Ben Darago",
 slug: "ben-darago",
 role: "Owner and creator of app, works for cats",
 username: "BenDMaryland",
-email: "ben.d.maryland@gmail.com",
+password: "123",
+email: "ben.d.maryland@gmail.com"
 
  )
 
@@ -17,8 +28,9 @@ email: "ben.d.maryland@gmail.com",
 name: "Petunia",
 slug: "petunia",
 role: "Meow!",
-username: "Petunia@rose-agile.com",
-email: "ben.d.maryland@rose-agile.com",
+username: "Petunia_cat",
+password: "123",
+email: "ben.d.maryland@rose-agile.com"
  )
 
 
