@@ -1,9 +1,14 @@
 import React from 'react'
+import Login from './Login'
 
-function TopBar() {
+function TopBar({ CurrentUser, handleLogout }) {
+
+
+
     return (
         <div>
-            TopBar
+           <Login />
+            {CurrentUser ? <button onClick={handleLogout}>  Logout: {CurrentUser.name } </button> : null }
         </div>
     )
 }

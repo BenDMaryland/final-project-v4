@@ -10,6 +10,11 @@ class SprintsController < ApplicationController
         render json: sprint
     end
     
+    def create
+        sprint =  Sprint.create!(sprint_params_new)        
+        render json: sprint
+    end
+
 
     private 
     def  find_sprint
