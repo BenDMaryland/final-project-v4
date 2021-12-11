@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import Login from './Login'
+import { CurrentUserContext } from '../custom/CurrentUser';
 
-function TopBar({ CurrentUser, handleLogout }) {
-
+function TopBar({  handleLogout }) {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
 
     return (
