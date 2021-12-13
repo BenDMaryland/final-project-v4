@@ -11,6 +11,7 @@ class SprintsController < ApplicationController
     end
     
     def create
+        byebug
         sprint =  Sprint.create!(sprint_params_new)        
         render json: sprint
     end
@@ -22,7 +23,7 @@ class SprintsController < ApplicationController
     end
 
     def sprint_params_new
-        params.permit( :urgency, :priority, :sprint_title, :sprint_data, :slug, :goal_date,  :created_by)
+        params.permit( :urgency, :priority, :sprint_title, :sprint_data, :slug, :goal_date,  :created_by_id)
     end
 
 

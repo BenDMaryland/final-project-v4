@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import Sprints from "./Sprints";
+
 import { Routes, Route } from "react-router-dom"
+import Home from "./Home";
+import SprintForm from "./SprintForm";
 
-
-
-function MainPage({fetchedSprints}) {
+function MainPage({ fetchedSprints}) {
+  
     return (
         <div>
             <Routes>
-                <Route path="/" element={<Sprints fetchedSprints={fetchedSprints} />} />
+                <Route exact path="/" element={<Home fetchedSprints={fetchedSprints} />               } />
+                <Route exact path="/newsprint" element={<SprintForm />} />
             </Routes>
         </div>
     )
