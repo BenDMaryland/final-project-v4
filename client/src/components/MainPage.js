@@ -13,7 +13,7 @@ function MainPage({ fetchedSprints}) {
             <Routes>
          
                 <Route exact path="/sprints/" element={<Home fetchedSprints={fetchedSprints} />} />
-                <Route exact path="/sprints*" element={<Sprints fetchedSprint={fetchedSprints} />} />
+                <Route exact path="/sprints/*" element={<Sprints fetchedSprint={fetchedSprints} />} />
                 <Route exact path="/newsprint" element={<SprintForm />} />
                 <Route exact path="/" element={<LandingPage />} />
             </Routes>

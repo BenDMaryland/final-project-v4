@@ -1,5 +1,5 @@
 class FeaturesController < ApplicationController
-
+before_action :authorize
     
         def index 
         features = Feature.all
@@ -14,7 +14,7 @@ class FeaturesController < ApplicationController
     def create
 
         feature =  Feature.create!(feature_params_new)      
-          byebug
+        
         render json: feature
     end
 
@@ -28,6 +28,9 @@ class FeaturesController < ApplicationController
         params.require(:feature).permit( :urgency, :priority, :feature_title, :feature_data, :slug, :goal_date,  :created_by_id, :feature, :sprint_id)
     end
 
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    end
 
 
 end

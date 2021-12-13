@@ -27,14 +27,14 @@ function Home({ fetchedSprints }) {
                 <animated.div style={props}>
                     <p> Working On  </p>
                     <div className="CardContainer"  >
-                        {fetchedSprints.filter(sprint => sprint.progress > 0 && sprint.progress < 100).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
+                        {fetchedSprints.filter(sprint => sprint.progress ===1 ).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
                     </div>
                 </animated.div>
 
                 <animated.div style={props}>
                     <p> Completed </p>
                     <div className="CardContainer" >
-                        {fetchedSprints.filter(sprint => sprint.progress == 100).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
+                        {fetchedSprints.filter(sprint => sprint.progress === 2).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
                     </div>
                 </animated.div>
 

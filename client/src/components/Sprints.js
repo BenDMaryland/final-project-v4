@@ -9,24 +9,17 @@ function Sprints({ fetchedSprint: { sprint_title, progress, urgency, priority, i
     const [addNewSubSprint, setaddNewSubSprint] = useState(false)
     const [SubSprintType, setSubSprintType] = useState("null")
 
-
-
     function subSprintSelector(e) {
         setSubSprintType(e.target.value)
         setaddNewSubSprint(true)
     }
 
-
-
-
-
-
-
     if (!sprint_title) return null
 
     return (
-        <CardContainer>
-            <div className="card"> 
+<>
+       
+          <SprintContainer>
                 <div>
                     <h1>{sprint_title} </h1>
                     <h3>{sprint_data}</h3>
@@ -45,24 +38,34 @@ function Sprints({ fetchedSprint: { sprint_title, progress, urgency, priority, i
                     </select>
                     {addNewSubSprint ? <AddSubSprint id={id} SubSprintType={SubSprintType} setaddNewSubSprint={setaddNewSubSprint} /> : null}
                 </div>
+            </SprintContainer>
 
-                <div>
+ <CardContainer>
+                <div >
                     <h1> Comments </h1>
-                    {comments.map((comment) => <Comments key={id} comment={comment} />)}
+                    <div className="card">
+    
+                        {comments.map((comment) => <Comments key={comment.id} comment={comment} />)}
+                    </div>
+                </div>
+          
+
+            <div >
+                <h1> Features  </h1>
+                <div className="card">
+                    {features.map((feature) => <Features key={feature.id} feature={feature} />)}
                 </div>
             </div>
 
-            <div className="card">
-                <h1> Features  </h1>
-                {features.map((feature) => <Features key={id} feature={feature} />)}
-            </div>
-
-            <div className="card">
+            <div>
                 <h1> Bugs </h1>
-                {bugs.map((bug) => <Bugs key={id} bug={bug} />)}
-            </div >
-
+                <div className="card">
+                    {bugs.map((bug) => <Bugs key={bug.id} bug={bug} />)}
+                </div >
+            </div>
         </CardContainer>
+
+        </>
     )
 }
 
@@ -77,8 +80,13 @@ border: solid;
 
 .card{
 border: solid;
-
+display: grid;
+grid-template-columns:repeat(2, 1fr );
 }
 
+
+`
+const SprintContainer= styled.div`
+ text-align:center;
 
 `

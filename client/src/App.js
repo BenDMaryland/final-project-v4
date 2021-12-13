@@ -19,7 +19,7 @@ function App() {
       .then((data) => setFetchedSprints(data));
     }
   
-  }, [location.pathname]);
+  }, [location.pathname,CurrentUser]);
 
 
 
