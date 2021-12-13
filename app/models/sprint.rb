@@ -14,5 +14,8 @@ self.progress  = 0
 self.completed = false
 end
 
+  def  impact
+    self .urgency * self.priority
+  end
   
 end

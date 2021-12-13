@@ -2,6 +2,7 @@ class SprintsController < ApplicationController
 
     def index 
         sprints = Sprint.all
+        sprints =sprints.sort_by{|sprint| sprint.impact}.reverse
         render json: sprints
     end
 

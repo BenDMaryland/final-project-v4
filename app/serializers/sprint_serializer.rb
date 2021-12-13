@@ -4,8 +4,6 @@ class SprintSerializer < ActiveModel::Serializer
   has_many :features
   has_many :comments
 
-  def  impact
-    self .object.urgency * self.object.priority
-  end
+
 
 end
