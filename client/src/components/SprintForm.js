@@ -17,12 +17,13 @@ function SprintForm() {
 
       function NewSprintChangeHandler(e) {
      
-        setNewSprint(data => data = { ...data, [e.target.name]: e.target.value })
+          setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id })
+      
     }
 
     async   function NewSprintSubmitHandler(e){
         e.preventDefault()
-        setNewSprint({ ...NewSprint, ["created_by_id"]: CurrentUser.id})
+ 
 console.log(NewSprint)
         const response = await fetch("sprints", {
             method:   'POST',

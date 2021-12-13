@@ -11,7 +11,6 @@ class SprintsController < ApplicationController
     end
     
     def create
-
         sprint =  Sprint.create!(sprint_params_new)        
         render json: sprint
     end
