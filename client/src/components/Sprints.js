@@ -1,29 +1,14 @@
-// import React, { useState } from 'react'
+import React from 'react'
 
-// function Sprints({ fetchedSprints }) {
+function Sprints({fetchedSprint}) {
+    console.log(fetchedSprint)
 
+    return (
+        <div>
+            <h1>We made it</h1>
+            <h1>{fetchedSprint.sprint_title} </h1>
+        </div>
+    )
+}
 
-
-
-//     if(!fetchedSprints) return null
-
-
-//     return (
-
-//         fetchedSprints.map(sprint => {
-//             return (
-//                 <div key={sprint.id}>
-//                     <h1>{sprint.sprint_title}</h1>
-//                 </div>
-//             )
-//         })
-//     )
-
-
-
-
-
-
-// }
-
-// export default Sprints
+export default Sprints

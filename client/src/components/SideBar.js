@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { Link } from "react-router-dom";
 function SideBar() {
     return (
         <SideNav>
-            SideBar
+            <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
+            <Link className="nav-link" to="/sprints"><button color="inherit">Home Page </button></Link>
+            <Link className="nav-link" to="/newsprint"><button color="inherit">Add Sprint </button></Link>
+            
         </SideNav>
     )
 }
@@ -17,5 +20,6 @@ left: 0;
 height: 100%;
 width: 10%;
 background-color: #323232;
+color: white;
 
 `

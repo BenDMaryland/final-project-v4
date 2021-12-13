@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import SideBar from "./components/SideBar";
 import TopBar from "./components/TopBar";
@@ -8,13 +9,16 @@ import { CurrentUserContext } from './custom/CurrentUser';
 function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
-
+  const location = useLocation()
 
   useEffect(() => {
-    fetch("/sprints")
+    if (location.pathname.includes("sprints")) {
+      fetch(`${location.pathname}`)
       .then((r) => r.json())
       .then((data) => setFetchedSprints(data));
-  }, []);
+    }
+  
+    }, []);
 
 
 
