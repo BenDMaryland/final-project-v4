@@ -9,7 +9,6 @@ function TopBar({  handleLogout }) {
 
     return (
         <TopNav>
-           <Login />
             {CurrentUser ? <button onClick={handleLogout}>  Logout: {CurrentUser.name } </button> : null }
         </TopNav>
     )

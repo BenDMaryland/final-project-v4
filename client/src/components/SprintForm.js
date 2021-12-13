@@ -11,8 +11,8 @@ function SprintForm() {
         sprint_title: "",
         sprint_data: "",
         goal_date: "",
-        urgency: "",
-        priority: ""
+        urgency: "1",
+        priority: "1"
     })
 
       function NewSprintChangeHandler(e) {
@@ -36,7 +36,7 @@ console.log(NewSprint)
         if (response.ok) {
            console.log("ok")
         } else {
-            alert(data.errors.join("\n \n"))
+            alert(data.errors)
         }
     }
 

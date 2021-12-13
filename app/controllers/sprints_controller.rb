@@ -6,12 +6,12 @@ class SprintsController < ApplicationController
     end
 
     def show 
-        sprint=find_sprint
+        sprint= Sprint.find_by(slug: params[:id])
         render json: sprint
     end
     
     def create
-        byebug
+
         sprint =  Sprint.create!(sprint_params_new)        
         render json: sprint
     end

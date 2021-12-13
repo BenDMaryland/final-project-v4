@@ -5,6 +5,7 @@ import SideBar from "./components/SideBar";
 import TopBar from "./components/TopBar";
 import Footer from "./components/Footer";
 import { CurrentUserContext } from './custom/CurrentUser';
+import styled from 'styled-components';
 
 function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
@@ -44,18 +45,24 @@ function App() {
       
 
 
-  console.log(CurrentUser)
+  console.log("user is ", CurrentUser)
 
   // Grabing Sprints Index 
 
   return (
-    < >
+    <FullPage >
       <TopBar handleLogout={handleLogout}   />
       <SideBar />
       <MainPage fetchedSprints={fetchedSprints} />
       <Footer />
-    </>
+    </FullPage>
   );
 }
 
+
 export default App;
+
+const FullPage = styled.div `
+font-family: 'Roboto', sans-serif;
+
+`

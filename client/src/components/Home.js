@@ -1,43 +1,46 @@
-import React from 'react'
-import CompletedSprints from './CompletedSprints'
-import CurrentSprints from './CurrentSprints'
-import NewSprints from './NewSprints'
+import React,{useEffect, useState} from 'react'
+import AllSprints from './AllSprints'
 import styled from 'styled-components'
+import { useSpring, animated } from 'react-spring'
+
 
 function Home({ fetchedSprints }) {
+    
+    const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
+
 
     if (!fetchedSprints) return null
     if (fetchedSprints.length == undefined) return null
     else {
         console.log(fetchedSprints.length)
-    return (
+        return (
 
-        <SectionContainer>
+            <SectionContainer>
+               
+                <animated.div style={props}>
+                    <p> Haven't started </p>
+                    <div className="CardContainer"  >
+                        {fetchedSprints.filter(sprint => sprint.progress === 0).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
+                    </div>
+                </animated.div>
 
-            <div>
-                <p> Haven't started </p>
-                <div className="CardContainer"  >
-                    {fetchedSprints.filter(sprint => sprint.progress === 0).map((sprint) => <NewSprints key={sprint.id} sprint={sprint} />)}
-                </div>
-            </div>
+                <animated.div style={props}>
+                    <p> Working On  </p>
+                    <div className="CardContainer"  >
+                        {fetchedSprints.filter(sprint => sprint.progress > 0 && sprint.progress < 100).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
+                    </div>
+                </animated.div>
 
-            <div>
-                <p> Working On  </p>
-                <div className="CardContainer"  > 
-                    {fetchedSprints.filter(sprint => sprint.progress > 0 && sprint.progress < 100).map((sprint) => <CurrentSprints key={sprint.id} sprint={sprint} />)}
-                </div>
-            </div>
+                <animated.div style={props}>
+                    <p> Completed </p>
+                    <div className="CardContainer" >
+                        {fetchedSprints.filter(sprint => sprint.progress == 100).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
+                    </div>
+                </animated.div>
 
-            <div>
-                <p> Completed </p>
-                <div className="CardContainer" >
-                    {fetchedSprints.filter(sprint => sprint.progress == 100).map((sprint) => <CompletedSprints key={sprint.id} sprint={sprint} />)}
-                </div>
-            </div>
+            </SectionContainer>
 
-        </SectionContainer>
-
-    )
+        )
     }
 }
 
@@ -53,7 +56,7 @@ border: solid;
 padding:1em;
 border: solid;
 display: grid;
-grid-template-columns:repeat(3, 1fr );
+grid-template-columns:repeat(2, 1fr );
 
 }
 

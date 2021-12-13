@@ -30,6 +30,8 @@ function Login() {
 
 
     return (
+        <>
+        <h2>Login!</h2>
         < form onSubmit={handleLoginSubmit}>
             <label >Username:</label>
             <input type='text' name="username" value={UserLogin.username} onChange={handleLoginChange} required></input>
@@ -37,6 +39,7 @@ function Login() {
             <input type='password' name="password" value={UserLogin.password} onChange={handleLoginChange} required></input>
             <button >Login</button>
         </form>
+</>
     )
 }
 
