@@ -51,9 +51,10 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id }) {
                     <label>{SubSprintType}' details</label>
                     <textarea onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_data`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.sprint_data} ></textarea>
                 </>
-                : <>
+                : // Comments database is different from the Bugs/.Features as such it requires different prompts
+                <>
                     <label>{SubSprintType}</label>
-                    <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}details`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.details} ></input>
+                    <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_details`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.details} ></input>
                 </> }
 
 

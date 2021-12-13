@@ -23,7 +23,7 @@ function Sprints({ fetchedSprint: { sprint_title, progress, urgency, priority, i
 
 
     if (!sprint_title) return null
-    console.log(created_by)
+
     return (
         <CardContainer>
             <div className="card"> 
@@ -73,6 +73,7 @@ width: 100%;
 display: grid;
 grid-template-columns:repeat(3, 1fr );
 border: solid;
+
 
 .card{
 border: solid;

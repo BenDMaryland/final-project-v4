@@ -4,7 +4,5 @@ class BugSerializer < ActiveModel::Serializer
   has_one :created_by
   has_one :completed_by
 
-    def  impact
-    self .object.urgency * self.object.priority
-  end
+
 end

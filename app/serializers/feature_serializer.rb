@@ -3,7 +3,6 @@ class FeatureSerializer < ActiveModel::Serializer
   has_one :sprint
   has_one :created_by
   has_one :completed_by
-    def  impact
-    self .object.urgency * self.object.priority
-  end
+  
+
 end

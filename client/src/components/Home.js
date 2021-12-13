@@ -57,7 +57,8 @@ padding:1em;
 border: solid;
 display: grid;
 grid-template-columns:repeat(2, 1fr );
-
+padding: 1px;
+text-align: center;
 }
 
 `
