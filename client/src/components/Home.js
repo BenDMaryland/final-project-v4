@@ -7,6 +7,9 @@ import styled from 'styled-components'
 function Home({ fetchedSprints }) {
 
     if (!fetchedSprints) return null
+    if (fetchedSprints.length == undefined) return null
+    else {
+        console.log(fetchedSprints.length)
     return (
 
         <SectionContainer>
@@ -33,7 +36,9 @@ function Home({ fetchedSprints }) {
             </div>
 
         </SectionContainer>
+
     )
+    }
 }
 
 export default Home
