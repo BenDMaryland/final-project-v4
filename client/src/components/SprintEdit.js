@@ -9,6 +9,8 @@ function SprintEdit({ fetchedSprint, setEditSprint}) {
 
     function SprintEditChangeHandler(e) {
         setSprintEdit({ ...SprintEdit, [e.target.name]: e.target.value});
+
+
     }
 
 

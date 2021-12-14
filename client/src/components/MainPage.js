@@ -6,14 +6,14 @@ import SprintForm from "./SprintForm";
 import styled from "styled-components";
 import Sprints from "./Sprints"
 
-function MainPage({ fetchedSprints}) {
+function MainPage({ fetchedSprints, setDOMUpdater}) {
   
     return (
         <MainSection>
             <Routes>
          
-                <Route exact path="/sprints/" element={<Home fetchedSprints={fetchedSprints} />} />
-                <Route exact path="/sprints/*" element={<Sprints fetchedSprint={fetchedSprints} />} />
+                <Route exact path="/sprints/" element={<Home setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />} />
+                <Route exact path="/sprints/*" element={<Sprints setDOMUpdater={setDOMUpdater} fetchedSprint={fetchedSprints} />} />
                 <Route exact path="/newsprint" element={<SprintForm />} />
                 <Route exact path="/" element={<LandingPage />} />
             </Routes>

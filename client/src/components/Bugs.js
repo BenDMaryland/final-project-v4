@@ -1,13 +1,64 @@
-import React from 'react'
- import styled from 'styled-components'
-function Bugs({bug}) {
+import React, { useContext, useState } from 'react'
+import styled from 'styled-components'
+import { CurrentUserContext } from '../custom/CurrentUser';
+
+
+function Bugs({ bug, setDOMUpdater }) {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+
+
+
+
+
+
+    async function BugDeleteHandler() {
+        const r = await fetch(`/bugs/${bug.id}`, {
+            method: "DELETE",
+        })
+        const data = await r.json()
+        if (r.ok) {
+          
+        }
+        else { alert(data.error) }
+        setDOMUpdater(Math.random())
+    }
+
+    async function bugEditHandler(e) {
+
+        console.log("old n busted", bug.completed)
+        console.log("new hotness", !bug.completed)
+
+        const response = await fetch(`/bugs/${bug.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "completed": !bug.completed,
+                "completed_by_id": CurrentUser.id
+            })
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log("ok")
+        } else {
+            alert(data.errors)
+        }
+        setDOMUpdater(Math.random())
+    }
+
+
+
     return (
         <Card>
             <h2>{bug.bug_title}</h2>
             <p>{bug.bug_data} </p>
             <p>{bug.created_by.name} </p>
             <p>impact: {bug.impact}</p>
-           <p> Progress: {bug.progress} </p>
+            <p> Progress: {bug.progress} </p>
+            {CurrentUser.level >= 1 ? <><label>completed</label>  <input onChange={e => bugEditHandler(e)} defaultChecked={bug.completed} type="checkbox" ></input> </> : <p> no edit </p>}
+            {CurrentUser.level === 2 || bug.created_by.id === CurrentUser.id ? <button onClick={() => BugDeleteHandler()}>you can delete</button> : <p>You can't delete </p>}
         </Card>
     )
 }
@@ -15,6 +66,4 @@ function Bugs({bug}) {
 export default Bugs
 const Card = styled.div`
 border: solid;
-
-
 `

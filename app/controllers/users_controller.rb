@@ -28,7 +28,7 @@ before_action :authorize
     private 
 
     def user_params
-        params.permit(:name, :password, :email, :username )
+        params.permit( :name, :password, :email, :username )
 
     end
 

@@ -15,9 +15,25 @@ class CommentsController < ApplicationController
     def create
 
         comment =  Comment.create!(comment_params_new)        
+        comment.update(completed: false)
         render json: comment
     end
 
+def destroy
+comment =   find_comment
+return render json: { error: "Not authorized" }, status: :unauthorized  unless ( current_user.level  ==2    )
+comment.destroy
+end
+
+   def  update 
+        comment =   find_comment
+           return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1
+         comment.update!(comment_params_new)
+               if comment.completed 
+                comment.update(completed_at: Time.new)
+            end
+          render json: comment
+    end
 
     private 
     def  find_comment
@@ -25,7 +41,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params_new
-        params.require(:comment).permit( :urgency, :priority, :comment_details,  :slug, :goal_date,  :created_by_id, :comment, :sprint_id)
+        params.require(:comment).permit( :urgency, :priority, :comment_details,  :slug, :goal_date,  :created_by_id, :comment, :sprint_id, :completed, :completed_by_id)
     end
 
 
