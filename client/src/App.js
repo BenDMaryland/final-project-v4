@@ -14,7 +14,11 @@ function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation()
-const [DOMUpdater, setDOMUpdater] = useState(0)
+  const [FetchedProjects, setFetchedProjects] = useState([])
+  const [FilteredSprints, setFilteredSprints] = useState([])
+  const [ActiveProjectid, setActiveProjectid] = useState(1)
+
+  const [DOMUpdater, setDOMUpdater] = useState(0)
   useEffect(() => {
     if (location.pathname.includes("sprints")) {
       fetch(`${location.pathname}`)
@@ -22,10 +26,17 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
         .then((data) => setFetchedSprints(data));
     }
 
-  }, [location.pathname, CurrentUser,DOMUpdater]);
+  }, [location.pathname, CurrentUser, DOMUpdater]);
 
 
+  useEffect(() => {
+    {
+      fetch('/projects')
+        .then((r) => r.json())
+        .then((data) => setFetchedProjects(data));
+    }
 
+  }, [CurrentUser, DOMUpdater]);
 
 
 
@@ -48,7 +59,12 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
       });
   }
 
+  function projectFilter(props) {
 
+    setActiveProjectid(props)
+    setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === props))
+    console.log(FilteredSprints)
+  }
 
 
 
@@ -57,12 +73,12 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
   return (
     <DndProvider backend={HTML5Backend}>
       <FullPage >
-        <TopBar handleLogout={handleLogout} />
+        <TopBar projectFilter={projectFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <SideBar />
-      <MainPage setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
+        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={FilteredSprints} />
         <Footer />
       </FullPage>
-   </DndProvider >
+    </DndProvider >
   );
 }
 

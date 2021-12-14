@@ -13,8 +13,9 @@ function Home({ fetchedSprints, setDOMUpdater }) {
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
 
+
     function dragHandler(e, id) {
-        console.log("sprint is is ", id)
+
         setDroppedSprintId(id)
     }
 
