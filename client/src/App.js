@@ -14,18 +14,37 @@ function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation()
+  const [FetchedProjects, setFetchedProjects] = useState([])
+  const [FilteredSprints, setFilteredSprints] = useState([])
+const [ActiveProjectid, setActiveProjectid] = useState(1)
+
 const [DOMUpdater, setDOMUpdater] = useState(0)
   useEffect(() => {
-    if (location.pathname.includes("sprints")) {
+    if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
       fetch(`${location.pathname}`)
         .then((r) => r.json())
-        .then((data) => setFetchedSprints(data));
+        .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
+
+        
+    }
+    else if (location.pathname.includes("sprints")){
+      fetch(`${location.pathname}`)
+        .then((r) => r.json())
+        .then((data) => setFetchedSprints(data))
+
     }
 
-  }, [location.pathname, CurrentUser,DOMUpdater]);
+  }, [location.pathname, CurrentUser,DOMUpdater,ActiveProjectid]);
 
 
+  useEffect(() => {
+     {
+      fetch('/projects')
+        .then((r) => r.json())
+        .then((data) => setFetchedProjects (data));
+    }
 
+  }, [CurrentUser, DOMUpdater]);
 
 
 
@@ -48,6 +67,13 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
       });
   }
 
+function projectFilter(props){
+console.log(props)
+setActiveProjectid(props)
+
+}
+
+
 
 
 
@@ -57,9 +83,9 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
   return (
     <DndProvider backend={HTML5Backend}>
       <FullPage >
-        <TopBar handleLogout={handleLogout} />
+        <TopBar projectFilter={projectFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <SideBar />
-      <MainPage setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
+        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />
       </FullPage>
    </DndProvider >

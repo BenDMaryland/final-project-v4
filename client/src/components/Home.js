@@ -13,8 +13,9 @@ function Home({ fetchedSprints, setDOMUpdater }) {
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
 
+
     function dragHandler(e, id) {
-        console.log("sprint is is ", id)
+
         setDroppedSprintId(id)
     }
 
@@ -32,7 +33,7 @@ function Home({ fetchedSprints, setDOMUpdater }) {
         }
 
 
-        const r = await fetch(`sprints/${DroppedSprintId}`, {
+        const r = await fetch(`/sprints/${DroppedSprintId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +64,6 @@ function Home({ fetchedSprints, setDOMUpdater }) {
     if (!fetchedSprints) return null
     if (fetchedSprints.length == undefined) return null
     else {
-        console.log(fetchedSprints.length)
         return (
 
             <SectionContainer   >

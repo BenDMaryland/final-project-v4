@@ -16,6 +16,10 @@ function Sprints({ setDOMUpdater, fetchedSprint, fetchedSprint: { sprint_title, 
     const [EditSprint, setEditSprint] = useState(false)
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
 
+
+
+
+    
     function subSprintSelector(e) {
         setSubSprintType(e.target.value)
         setEditSprint(false)

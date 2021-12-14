@@ -5,17 +5,18 @@ import Home from "./Home";
 import SprintForm from "./SprintForm";
 import styled from "styled-components";
 import Sprints from "./Sprints"
+import AllProjects from "./AllProjects";
+function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects}) {
 
-function MainPage({ fetchedSprints, setDOMUpdater}) {
-  
     return (
         <MainSection>
             <Routes>
          
                 <Route exact path="/sprints/" element={<Home setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />} />
-                <Route exact path="/sprints/*" element={<Sprints setDOMUpdater={setDOMUpdater} fetchedSprint={fetchedSprints} />} />
-                <Route exact path="/newsprint" element={<SprintForm />} />
+                <Route exact path="/sprints/*" element={<Sprints setDOMUpdater={setDOMUpdater} fetchedSprint={fetchedSprints} FetchedProjects={FetchedProjects}/>} />
+                <Route exact path="/newsprint" element={<SprintForm FetchedProjects={FetchedProjects}/>} />
                 <Route exact path="/" element={<LandingPage />} />
+                <Route exact path="/projects" element={<AllProjects FetchedProjects={FetchedProjects} />}    />
             </Routes>
         </MainSection>
     )

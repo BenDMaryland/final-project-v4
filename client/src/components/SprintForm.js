@@ -5,26 +5,28 @@ import { CurrentUserContext } from '../custom/CurrentUser';
 
 
 
-function SprintForm() {
+function SprintForm({FetchedProjects}) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
     const [NewSprint, setNewSprint] = useState({
         sprint_title: "",
         sprint_data: "",
         goal_date: "",
-        urgency: "1",
-        priority: "1"
+        urgency: 1,
+        priority: 1,
+        project_id: 1
     })
 
-      function NewSprintChangeHandler(e) {
-     
-          setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id })
-      
-    }
 
+
+      function NewSprintChangeHandler(e) {
+          setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id })
+    
+    }
+    console.log(NewSprint)
     async   function NewSprintSubmitHandler(e){
         e.preventDefault()
  
-console.log(NewSprint)
+
         const response = await fetch("sprints", {
             method:   'POST',
             headers: {
@@ -41,7 +43,7 @@ console.log(NewSprint)
         }
     }
 
-
+if(!FetchedProjects) return null
     return (
         <form onSubmit={e=>NewSprintSubmitHandler(e)}>
             <label>sprint</label>
@@ -71,6 +73,12 @@ console.log(NewSprint)
                 </select>
             </>
 
+            <div>
+<label>Project id </label>
+                <select name="project_id" onChange={NewSprintChangeHandler}>
+           {FetchedProjects.map((project)=> <option value={project.id}>{project.name}</option>)}
+                </select>
+    </div>
             <label>Goal Date</label>
             <input type="datetime-local" onChange={e => NewSprintChangeHandler(e)} name="goal_date"value={NewSprint.goal_date} ></input>
 <button type="submit">Submit</button>

@@ -3,13 +3,15 @@ import Login from './Login'
 import { CurrentUserContext } from '../custom/CurrentUser';
 import styled from 'styled-components';
 
-function TopBar({  handleLogout }) {
-    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+function TopBar({ handleLogout, FetchedProjects, projectFilter }) {
 
+
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
     return (
         <TopNav>
             {CurrentUser ? <button onClick={handleLogout}>  Logout: {CurrentUser.name } </button> : null }
+            {FetchedProjects.map((project) => <button  key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)}
         </TopNav>
     )
 }

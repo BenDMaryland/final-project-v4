@@ -7,7 +7,7 @@ function SideBar() {
             <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
             <Link className="nav-link" to="/sprints"><button color="inherit">Home Page </button></Link>
             <Link className="nav-link" to="/newsprint"><button color="inherit">Add Sprint </button></Link>
-            
+            <Link className="nav-link" to="/projects"><button color="inherit">Projects  </button></Link>
         </SideNav>
     )
 }
