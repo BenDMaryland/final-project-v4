@@ -1,14 +1,17 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState, useContext} from 'react'
 import AllSprints from './AllSprints'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
-
+import { CurrentUserContext } from '../custom/CurrentUser'
+import LandingPage from './LandingPage'
 
 function Home({ fetchedSprints }) {
     
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
 
 
+    if (CurrentUser === undefined) return <LandingPage />
     if (!fetchedSprints) return null
     if (fetchedSprints.length == undefined) return null
     else {

@@ -19,10 +19,18 @@ before_action :authorize
         render json: sprint
     end
 
+def destroy
+sprint =  find_sprint 
+return render json: { error: "Not authorized" }, status: :unauthorized  if ( current_user.level  ==2    ||  sprint.created_by_id== session[:user_id]    )
+sprint.destroy
+end
+
+
 
     def  update 
-        sprint =  Sprint.create!(sprint_params_new)        
-           return render json: { error: "Not authorized" }, status: :unauthorized if  (current_user.level  <= 2   ||  params[:created_by_id]  ==  current_user.id   )
+        sprint =  find_sprint 
+           return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1
+            sprint.update!(sprint_params_new)
         render json: sprint
     end
 

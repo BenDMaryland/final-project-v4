@@ -15,13 +15,13 @@ function Signup() {
             e.preventDefault();
 
             console.log(UserSignUp)
-            // const response = await fetch("/signup", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify(UserSignUp),
-            // })
+            const response = await fetch("/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(UserSignUp),
+            })
         }
 
 
