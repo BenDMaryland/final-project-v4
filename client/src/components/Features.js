@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
 
 
-function Features({ feature }) {
-    const { CurrentUser, setCurrentUser, setDOMUpdater } = useContext(CurrentUserContext);
+function Features({ feature, setDOMUpdater }) {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
 
 
@@ -16,10 +16,12 @@ function Features({ feature }) {
             method: "DELETE",
         })
         const data = await r.json()
-    ///// add someway to rerender dom 
-        setDOMUpdater(Math.random())
-        
+        if (r.ok) {
+            setDOMUpdater(Math.random())
+        }
+        else { alert(data.error) }
     }
+    
 
     async function featureEditHandler(e) {
 
@@ -43,6 +45,7 @@ function Features({ feature }) {
         } else {
             alert(data.errors)
         }
+
         setDOMUpdater(Math.random())
     }
     return (

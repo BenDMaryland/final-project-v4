@@ -7,14 +7,15 @@ function Comments({ comment, setDOMUpdater}) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   async   function CommentDeleteHandler(){
-        const r = await fetch(`comments/${comment.id}`, {
+        const r = await fetch(`/comments/${comment.id}`, {
             method: "DELETE",
         })
         const data = await r.json()
         if (r.ok) {
-            setDOMUpdater(Math.random())
+      
         }
         else { alert(data.error) }
+      setDOMUpdater(Math.random())
     }
 
 async function commentEditHandler(e){

@@ -12,14 +12,15 @@ function Bugs({ bug, setDOMUpdater }) {
 
 
     async function BugDeleteHandler() {
-        const r = await fetch(`bugs/${bug.id}`, {
+        const r = await fetch(`/bugs/${bug.id}`, {
             method: "DELETE",
         })
         const data = await r.json()
         if (r.ok) {
-            setDOMUpdater(Math.random())
+          
         }
         else { alert(data.error) }
+        setDOMUpdater(Math.random())
     }
 
     async function bugEditHandler(e) {
