@@ -6,6 +6,9 @@ import TopBar from "./components/TopBar";
 import Footer from "./components/Footer";
 import { CurrentUserContext } from './custom/CurrentUser';
 import styled from 'styled-components';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 
 function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
@@ -15,11 +18,11 @@ function App() {
   useEffect(() => {
     if (location.pathname.includes("sprints")) {
       fetch(`${location.pathname}`)
-      .then((r) => r.json())
-      .then((data) => setFetchedSprints(data));
+        .then((r) => r.json())
+        .then((data) => setFetchedSprints(data));
     }
-  
-  }, [location.pathname,CurrentUser]);
+
+  }, [location.pathname, CurrentUser]);
 
 
 
@@ -42,7 +45,7 @@ function App() {
       });
   }
 
-      
+
 
 
   console.log("user is ", CurrentUser)
@@ -50,19 +53,21 @@ function App() {
   // Grabing Sprints Index 
 
   return (
-    <FullPage >
-      <TopBar handleLogout={handleLogout}   />
-      <SideBar />
-      <MainPage fetchedSprints={fetchedSprints} />
-      <Footer />
-    </FullPage>
+    <DndProvider backend={HTML5Backend} >
+      <FullPage >
+        <TopBar handleLogout={handleLogout} />
+        <SideBar />
+        <MainPage fetchedSprints={fetchedSprints} />
+        <Footer />
+      </FullPage>
+    </DndProvider >
   );
 }
 
 
 export default App;
 
-const FullPage = styled.div `
+const FullPage = styled.div`
 font-family: 'Roboto', sans-serif;
-
+height: 100vh;
 `
