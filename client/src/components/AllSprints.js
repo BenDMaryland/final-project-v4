@@ -2,14 +2,16 @@ import React, { useParams, useCallback } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
-import { useDropzone } from 'react-dropzone'
+
 
 function AllSprints({ dragHandler, sprint }) {
 
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
 
+
+
     return (
-        <Card onDragStart={e=>dragHandler(e,sprint.id)} name={sprint.id}  className="cards">
+        <Card  draggable={true} onDragStart={e=>dragHandler(e,sprint.id)} name={sprint.id}  className="cards">
             <animated.div  style={props}  >
             <Link className="nav-link" to={`./${sprint.slug}`}    >
 

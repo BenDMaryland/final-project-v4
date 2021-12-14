@@ -55,14 +55,14 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
   // Grabing Sprints Index 
 
   return (
-  
+    <DndProvider backend={HTML5Backend}>
       <FullPage >
         <TopBar handleLogout={handleLogout} />
         <SideBar />
       <MainPage setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />
       </FullPage>
-   
+   </DndProvider >
   );
 }
 

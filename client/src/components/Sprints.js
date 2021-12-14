@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import SprintEdit from './SprintEdit'
 import LandingPage from "./LandingPage"
 
+
 import { CurrentUserContext } from '../custom/CurrentUser'
 
 function Sprints({ setDOMUpdater, fetchedSprint, fetchedSprint: { sprint_title, progress, urgency, priority, impact, sprint_data, bugs, features, created_by, goal_date, comments, id } }) {
@@ -36,12 +37,6 @@ function Sprints({ setDOMUpdater, fetchedSprint, fetchedSprint: { sprint_title, 
         else { alert(data.error) }
 
     }
-
-
-
-
-
-
 
 if (!sprint_title) return null
 if (CurrentUser === undefined) return <LandingPage />
