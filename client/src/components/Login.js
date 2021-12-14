@@ -1,7 +1,10 @@
-import {  useState } from 'react'
-
+import {  useState, useContext } from 'react'
+import { CurrentUserContext } from '../custom/CurrentUser';
 
 function Login() {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+
+
 
     const [UserLogin, setUserLogin] = useState({
         username: "",
@@ -16,7 +19,15 @@ function Login() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(UserLogin),
+            
         })
+        const data = await response.json();
+
+        if (response.ok) {
+            setCurrentUser(data)
+        } else {
+            alert(data.error)
+        }
     }
 
 

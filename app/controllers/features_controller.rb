@@ -18,6 +18,21 @@ before_action :authorize
         render json: feature
     end
 
+def destroy
+feature =   find_feature
+return render json: { error: "Not authorized" }, status: :unauthorized  unless ( current_user.level  ==2    )
+feature.destroy
+end
+
+   def  update 
+        feature =   find_feature
+           return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1
+         feature.update!(feature_params_new)
+               if feature.completed 
+                feature.update(completed_at: Time.new)
+            end
+          render json: feature
+    end
 
     private 
     def  find_feature
@@ -25,7 +40,7 @@ before_action :authorize
     end
 
     def feature_params_new
-        params.require(:feature).permit( :urgency, :priority, :feature_title, :feature_data, :slug, :goal_date,  :created_by_id, :feature, :sprint_id)
+        params.require(:feature).permit( :urgency, :priority, :feature_title, :feature_data, :slug, :goal_date,  :created_by_id, :feature, :sprint_id, :completed, :completed_by_id)
     end
 
     def authorize

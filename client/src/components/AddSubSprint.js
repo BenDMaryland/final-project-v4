@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
 
-function AddSubSprint({ setaddNewSubSprint, SubSprintType, id }) {
+function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
     const [NewSubSprint, setNewSubSprint] = useState({
@@ -35,6 +35,7 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id }) {
             alert(data.errors)
         }
         setaddNewSubSprint(false)
+        setDOMUpdater(Math.random())
     }
 
 
@@ -45,9 +46,9 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id }) {
 
             {SubSprintType === "bug" || SubSprintType === "feature" ?
                 <>
-                <div>
-                    <label>{SubSprintType}</label>
-                    <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_title`} placeholder={` please add your ${SubSprintType}'s' title`} value={NewSubSprint.title} ></input>
+                    <div>
+                        <label>{SubSprintType}</label>
+                        <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_title`} placeholder={` please add your ${SubSprintType}'s' title`} value={NewSubSprint.title} ></input>
                     </div>
 
                     <label>{SubSprintType}' details</label>
@@ -59,31 +60,32 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id }) {
                     <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_details`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.details} ></input>
                 </>}
 
-            <div className="radio_container" >
-                <div className="radios">
-                    <label> Urgency:</label>
-                    <div className="radio_btns" onChange={NewSubSprintChangeHandler}>
-                        <label className="radio">Low</label> <input name="urgency" type="radio" value="1"></input>
-                        <label className="radio">Medium</label> <input name="urgency" type="radio" value="2"></input>
-                        <label className="radio" >high</label> <input name="urgency" type="radio" value="3"></input>
-                    </div>
-                </div>
-
-                <div className="radios">
-
-                    <label> Priority:</label>
-
-                    <div  className="radio_btns" onChange={NewSubSprintChangeHandler}>
-                        <label className="radio">Low<input name="priority" type="radio" value="1"></input></label>
-                        <label className="radio">Medium <input name="priority" type="radio" value="2"></input></label>
-                        <label className="radio">high <input name="priority" type="radio" value="3"></input></label>
+            {SubSprintType === "comment" ? null :
+                <div className="radio_container" >
+                    <div className="radios">
+                        <label> Urgency:</label>
+                        <div className="radio_btns" onChange={NewSubSprintChangeHandler}>
+                            <label className="radio">Low</label> <input name="urgency" type="radio" value="1"></input>
+                            <label className="radio">Medium</label> <input name="urgency" type="radio" value="2"></input>
+                            <label className="radio" >high</label> <input name="urgency" type="radio" value="3"></input>
+                        </div>
                     </div>
 
-                </div>
+                    <div className="radios">
 
-            </div>
-            <label>Goal Date</label>
-            <input type="datetime-local" onChange={e => NewSubSprintChangeHandler(e)} name="goal_date" value={NewSubSprint.goal_date} ></input>
+                        <label> Priority:</label>
+
+                        <div className="radio_btns" onChange={NewSubSprintChangeHandler}>
+                            <label className="radio">Low<input name="priority" type="radio" value="1"></input></label>
+                            <label className="radio">Medium <input name="priority" type="radio" value="2"></input></label>
+                            <label className="radio">high <input name="priority" type="radio" value="3"></input></label>
+                        </div>
+
+                    </div>
+
+                </div>}
+            {/* <label>Goal Date</label>
+        <input type="datetime-local" onChange={e => NewSubSprintChangeHandler(e)} name="goal_date" value={NewSubSprint.goal_date} ></input> */}
             <button type="submit">Submit</button>
 
         </SubSprintForm>

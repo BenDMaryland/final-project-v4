@@ -14,7 +14,7 @@ function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation()
-
+const [DOMUpdater, setDOMUpdater] = useState(0)
   useEffect(() => {
     if (location.pathname.includes("sprints")) {
       fetch(`${location.pathname}`)
@@ -22,7 +22,10 @@ function App() {
         .then((data) => setFetchedSprints(data));
     }
 
-  }, [location.pathname, CurrentUser]);
+  }, [location.pathname, CurrentUser,DOMUpdater]);
+
+
+
 
 
 
@@ -48,19 +51,18 @@ function App() {
 
 
 
-  console.log("user is ", CurrentUser)
 
   // Grabing Sprints Index 
 
   return (
-    <DndProvider backend={HTML5Backend} >
+  
       <FullPage >
         <TopBar handleLogout={handleLogout} />
         <SideBar />
-        <MainPage fetchedSprints={fetchedSprints} />
+      <MainPage setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />
       </FullPage>
-    </DndProvider >
+   
   );
 }
 
