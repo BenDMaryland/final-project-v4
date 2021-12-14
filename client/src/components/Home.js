@@ -20,21 +20,21 @@ function Home({ fetchedSprints }) {
 
             <SectionContainer>
                
-                <animated.div style={props}>
+                <animated.div className="section"  style={props}>
                     <p> Haven't started </p>
                     <div className="CardContainer"  >
                         {fetchedSprints.filter(sprint => sprint.progress === 0).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
                     </div>
                 </animated.div>
 
-                <animated.div style={props}>
+                <animated.div className="section"  style={props}>
                     <p> Working On  </p>
                     <div className="CardContainer"  >
                         {fetchedSprints.filter(sprint => sprint.progress ===1 ).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
                     </div>
                 </animated.div>
 
-                <animated.div style={props}>
+                <animated.div  className="section" style={props}>
                     <p> Completed </p>
                     <div className="CardContainer" >
                         {fetchedSprints.filter(sprint => sprint.progress === 2).map((sprint) => <AllSprints key={sprint.id} sprint={sprint} />)}
@@ -54,6 +54,7 @@ width: 100%;
 display: grid;
 grid-template-columns:repeat(3, 1fr );
 border: solid;
+height: 100vh;
 
 .CardContainer{
 padding:1em;
@@ -62,6 +63,11 @@ display: grid;
 grid-template-columns:repeat(2, 1fr );
 padding: 1px;
 text-align: center;
+}
+.section{
+border: solid;
+height: 100vh;
+
 }
 
 `
