@@ -15,4 +15,13 @@ def completed_sprints
 end
 
 
+
+
+def  missed_goals
+ completed_sprints =  self.sprints.filter{|sprint| !sprint.completed }.filter{|sprint| sprint.goal_date<Time.new}
+end
+
+
+
+
 end

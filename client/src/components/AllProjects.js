@@ -1,23 +1,28 @@
 import React from 'react'
 import styled from "styled-components";
+import Projects from './Projects';
 
 
-function AllProjects({FetchedProjects}) {
+function AllProjects({ FetchedProjects }) {
 
-let count = 8
+    let count = 8
 
-    if(!FetchedProjects) return null
+    if (!FetchedProjects) return null
     console.log(FetchedProjects)
     return (
         <ProjectContainer>
-            {FetchedProjects.map((project)=> 
+            {FetchedProjects.map((project) =>
 
-                <div className="project_card"> 
+                <div className="project_card">
 
 
 
-<h2>{project.name}</h2>
-<h4>{project.summary}</h4>
+                    <h2> {project.name}</h2>
+                    <h4>{project.summary}</h4>
+                    <p>Total sprints: {project.all_sprints} </p>
+                    <p> Completed Sprints:  {project.completed_sprints} </p>
+                    <p> Goal Dates Missed: {project.missed_goals.length}</p>
+                    <p> Goals not yet missed : {project.all_sprints - project.missed_goals.length - project.completed_sprints }</p>
                 </div>
 
             )}
