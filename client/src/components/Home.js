@@ -33,7 +33,7 @@ function Home({ fetchedSprints, setDOMUpdater }) {
         }
 
 
-        const r = await fetch(`sprints/${DroppedSprintId}`, {
+        const r = await fetch(`/sprints/${DroppedSprintId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,6 @@ function Home({ fetchedSprints, setDOMUpdater }) {
     if (!fetchedSprints) return null
     if (fetchedSprints.length == undefined) return null
     else {
-        console.log(fetchedSprints.length)
         return (
 
             <SectionContainer   >

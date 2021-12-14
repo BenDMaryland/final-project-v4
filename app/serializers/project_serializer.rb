@@ -1,5 +1,4 @@
 class ProjectSerializer< ActiveModel::Serializer
-  attributes  :id, :summary, :progress, :name
+  attributes  :id, :summary, :progress, :name, :completed_sprints, :all_sprints
 
-  has_many :sprints
 end

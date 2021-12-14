@@ -16,24 +16,32 @@ function App() {
   const location = useLocation()
   const [FetchedProjects, setFetchedProjects] = useState([])
   const [FilteredSprints, setFilteredSprints] = useState([])
-  const [ActiveProjectid, setActiveProjectid] = useState(1)
+const [ActiveProjectid, setActiveProjectid] = useState(1)
 
-  const [DOMUpdater, setDOMUpdater] = useState(0)
+const [DOMUpdater, setDOMUpdater] = useState(0)
   useEffect(() => {
-    if (location.pathname.includes("sprints")) {
+    if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
       fetch(`${location.pathname}`)
         .then((r) => r.json())
-        .then((data) => setFetchedSprints(data));
+        .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
+
+        
+    }
+    else if (location.pathname.includes("sprints")){
+      fetch(`${location.pathname}`)
+        .then((r) => r.json())
+        .then((data) => setFetchedSprints(data))
+
     }
 
-  }, [location.pathname, CurrentUser, DOMUpdater]);
+  }, [location.pathname, CurrentUser,DOMUpdater,ActiveProjectid]);
 
 
   useEffect(() => {
-    {
+     {
       fetch('/projects')
         .then((r) => r.json())
-        .then((data) => setFetchedProjects(data));
+        .then((data) => setFetchedProjects (data));
     }
 
   }, [CurrentUser, DOMUpdater]);
@@ -59,12 +67,14 @@ function App() {
       });
   }
 
-  function projectFilter(props) {
+function projectFilter(props){
+console.log(props)
+setActiveProjectid(props)
 
-    setActiveProjectid(props)
-    setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === props))
-    console.log(FilteredSprints)
-  }
+}
+
+
+
 
 
 
@@ -75,10 +85,10 @@ function App() {
       <FullPage >
         <TopBar projectFilter={projectFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <SideBar />
-        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={FilteredSprints} />
+        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />
       </FullPage>
-    </DndProvider >
+   </DndProvider >
   );
 }
 

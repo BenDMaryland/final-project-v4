@@ -5,4 +5,14 @@ has_many :features, through: :sprints
 has_many :comments, through: :sprints
 has_many :bugs, through: :sprints
 
+
+def all_sprints
+    self.sprints.count
+end
+
+def completed_sprints
+    self.sprints.filter{|sprint| sprint.completed }.count
+end
+
+
 end
