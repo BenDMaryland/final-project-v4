@@ -16,13 +16,18 @@ fetch ("/users")
  
 }, [])
     useEffect(() => {
+
+        if(CurrentUser ){
+            if(CurrentUser.boss)
     setGraphData(FetchedUsers.map((user) => user.user_evaluation_data))
+}
     }, [FetchedUsers])
 
 
-    
+   
     if (!FetchedUsers) return null
     if (CurrentUser === undefined) return <LandingPage />
+    console.log(CurrentUser)
     if (!CurrentUser.boss) return <LandingPage />
     console.log(GraphData)
     return (

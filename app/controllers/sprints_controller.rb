@@ -44,7 +44,7 @@ end
     end
 
     def sprint_params_new
-        params.permit( :urgency, :priority, :sprint_title, :sprint_data, :slug, :goal_date,  :created_by_id,:progress, :id,:completed_by_id, :completed, :completed_comment, :sprint, :project_id)
+        params.permit( :urgency, :priority, :sprint_title, :sprint_data, :slug, :goal_date,  :created_by_id,:progress, :id,:completed_by_id, :completed, :completed_comment, :sprint, :project_id, :assigned_to_id)
     end
 
  def authorize

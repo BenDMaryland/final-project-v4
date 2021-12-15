@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import AddSubSprint from './AddSubSprint'
 import Bugs from './Bugs'
 import Comments from './Comments'
@@ -10,13 +11,21 @@ import LandingPage from "./LandingPage"
 
 import { CurrentUserContext } from '../custom/CurrentUser'
 
-function Sprints({ setDOMUpdater, fetchedSprint, fetchedSprint: { sprint_title, progress, urgency, priority, impact, sprint_data, bugs, features, created_by, goal_date, comments, id } }) {
+function Sprints( ) {
     const [addNewSubSprint, setaddNewSubSprint] = useState(false)
     const [SubSprintType, setSubSprintType] = useState("null")
     const [EditSprint, setEditSprint] = useState(false)
+    const [fetchedSprint, setFetchedSprint] = useState(null)
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
+    const [DOMUpdater, setDOMUpdater] = useState(0)
+    const location = useLocation()
 
 
+    useEffect(() => {
+            fetch(`${location.pathname}`)
+                .then((r) => r.json())
+                .then((data) => setFetchedSprint(data))
+        }, [location.pathname, CurrentUser, DOMUpdater]);
 
 
     
@@ -32,7 +41,7 @@ function Sprints({ setDOMUpdater, fetchedSprint, fetchedSprint: { sprint_title, 
     }
 
     async function sprintDeleteHandler() {
-        const r = await fetch(`/sprints/${id}`, {
+        const r = await fetch(`/sprints/${fetchedSprint.id}`, {
             method: "DELETE",  })
        const  data = await r.json()
         if (r.ok) {
@@ -42,18 +51,19 @@ function Sprints({ setDOMUpdater, fetchedSprint, fetchedSprint: { sprint_title, 
 
     }
 
-if (!sprint_title) return null
+if (!fetchedSprint) return null
 if (CurrentUser === undefined) return <LandingPage />
 
 return (
+  
     <>
         <SprintContainer>
             <div>
-                <h1>{sprint_title} </h1>
-                <h3>{sprint_data}</h3>
-                <p>Total Impact {impact}</p>
-                <p>{goal_date}</p>
-                <p> Created by: {created_by.name}</p>
+                <h1>{fetchedSprint.sprint_title} </h1>
+                <h3>{fetchedSprint.sprint_data}</h3>
+                <p>Total Impact {fetchedSprint.impact}</p>
+                <p>{fetchedSprint.goal_date}</p>
+                <p> Created by: {fetchedSprint.created_by.name}</p>
                 {CurrentUser.level == 0 ? null : <button onClick={e => sprintEditSelector(e)}>Edit Sprint</button>}
                 {EditSprint ? <SprintEdit setEditSprint={setEditSprint} fetchedSprint={fetchedSprint} /> : null}
                 <p>Find a way to stop deleting by accident. </p>
@@ -70,7 +80,7 @@ return (
                         <option value="comment">Comment</option>
                     </select>
 
-                    {addNewSubSprint ? <AddSubSprint setDOMUpdater={setDOMUpdater} id={id} SubSprintType={SubSprintType} setaddNewSubSprint={setaddNewSubSprint} /> : null}
+                    {addNewSubSprint ? <AddSubSprint setDOMUpdater={setDOMUpdater} id={fetchedSprint.id} SubSprintType={SubSprintType} setaddNewSubSprint={setaddNewSubSprint} /> : null}
                 </div>}
         </SprintContainer>
 
@@ -78,21 +88,21 @@ return (
             <div >
                 <h1> Comments </h1>
                 <div className="card">
-                    {comments.map((comment) => <Comments setDOMUpdater={setDOMUpdater} key={comment.id} comment={comment} />)}
+                    {fetchedSprint.comments.map((comment) => <Comments setDOMUpdater={setDOMUpdater} key={comment.id} comment={comment} />)}
                 </div>
             </div>
 
             <div >
                 <h1> Features  </h1>
                 <div className="card">
-                    {features.map((feature) => <Features setDOMUpdater={setDOMUpdater} key={feature.id} feature={feature} />)}
+                    {fetchedSprint.features.map((feature) => <Features setDOMUpdater={setDOMUpdater} key={feature.id} feature={feature} />)}
                 </div>
             </div>
 
             <div>
                 <h1> Bugs </h1>
                 <div className="card">
-                    {bugs.map((bug) => <Bugs setDOMUpdater= { setDOMUpdater }  key={bug.id} bug={bug} />)}
+                    {fetchedSprint.bugs.map((bug) => <Bugs setDOMUpdater= { setDOMUpdater }  key={bug.id} bug={bug} />)}
                 </div >
             </div>
         </CardContainer>

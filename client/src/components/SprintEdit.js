@@ -17,6 +17,7 @@ function SprintEdit({ fetchedSprint, setEditSprint}) {
    async function SprintEditSubmitHandler(e) {
         e.preventDefault()
        let NewSprint = SprintEdit
+       NewSprint = { ...NewSprint, "assigned_to_id": CurrentUser.id}
         const response = await fetch(`${fetchedSprint.id}`, {
             method: 'PATCH',
             headers: {
