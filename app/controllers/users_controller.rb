@@ -9,6 +9,7 @@ before_action :authorize
       def create
         user = User.create!(user_params)
         if user.valid?
+          user.update(level: 0)
           session[:user_id] = user.id
           render json: user, status: :created
         else

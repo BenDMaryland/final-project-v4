@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_14_182024) do
+ActiveRecord::Schema.define(version: 2021_12_15_173729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_182024) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "project_id"
+    t.bigint "assigned_to_id"
+    t.index ["assigned_to_id"], name: "index_sprints_on_assigned_to_id"
     t.index ["completed_by_id"], name: "index_sprints_on_completed_by_id"
     t.index ["created_by_id"], name: "index_sprints_on_created_by_id"
   end
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_182024) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.integer "level"
+    t.boolean "boss"
   end
 
   add_foreign_key "bugs", "sprints"
@@ -124,6 +127,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_182024) do
   add_foreign_key "features", "sprints"
   add_foreign_key "features", "users", column: "completed_by_id"
   add_foreign_key "features", "users", column: "created_by_id"
+  add_foreign_key "sprints", "users", column: "assigned_to_id"
   add_foreign_key "sprints", "users", column: "completed_by_id"
   add_foreign_key "sprints", "users", column: "created_by_id"
 end
