@@ -15,13 +15,13 @@ def completed_sprints
 end
 
 def goal_not_yet_occured
-     self.sprints.filter{|sprint|  !sprint.completed}.filter{|sprint| sprint.goal_date >DateTime.new}.length 
+     self.sprints.filter{|sprint|  !sprint.completed}.filter{|sprint| sprint.goal_date >Time.now}.length 
 end
 
 
 def  missed_goals
  bad_completed_sprints =  self.sprints.filter{|sprint| sprint.completed }.filter{|sprint| sprint.goal_date < sprint.completed_at}.length 
- bad_uncompleted_sprints= self.sprints.filter{|sprint|  !sprint.completed}.filter{|sprint| sprint.goal_date < DateTime.new}.length 
+ bad_uncompleted_sprints= self.sprints.filter{|sprint|  !sprint.completed}.filter{|sprint| sprint.goal_date < Time.now}.length 
 bad_uncompleted_sprints + bad_completed_sprints
 end
 
@@ -43,7 +43,7 @@ completed_sprints = self.sprints.filter{|sprint| sprint.completed }
    saturday = {name: "saturday", created: self.sprints.filter{|sprint| sprint.created_at.saturday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.saturday? }.count } 
 
 
-week = [sunday, monday,tuesday,thursday,friday,saturday]
+week = [sunday, monday,tuesday,wednesday,thursday,friday,saturday]
 
 end
 
