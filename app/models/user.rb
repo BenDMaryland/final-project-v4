@@ -37,9 +37,12 @@ end
 
 def   assigned_to_goal_exceeded 
 bad_sprints = Sprint.goal_exceeded.filter{|sprint| sprint.assigned_to_id == self.id}.count
-
 end
 
+
+def user_evaluation_data
+ data = {name: self.name, assigned_tickets: assigned_to_count, completed_tickets: completed_sprints_count,  goals_exceeded: assigned_to_goal_exceeded}
+end
 
 
 end

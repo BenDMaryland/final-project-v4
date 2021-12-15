@@ -9,7 +9,7 @@ function AllSprints({ dragHandler, sprint }) {
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
 
 
-
+console.log(sprint)
     return (
         <Card  draggable={true} onDragStart={e=>dragHandler(e,sprint.id)} name={sprint.id}  className="cards">
             <animated.div  style={props}  >
@@ -18,7 +18,7 @@ function AllSprints({ dragHandler, sprint }) {
 
             <h3> {sprint.sprint_title} </h3>
             <p>Impact:  {sprint.impact}</p>
-                <p>{sprint.progress}</p>
+                 <p>{sprint.assigned_to_name}</p> 
                 
         </Link>
                 </animated.div>
