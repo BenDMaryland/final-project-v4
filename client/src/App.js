@@ -17,13 +17,29 @@ function App() {
   const [FetchedProjects, setFetchedProjects] = useState([])
   const [FilteredSprints, setFilteredSprints] = useState([])
 const [ActiveProjectid, setActiveProjectid] = useState(1)
-
+const[currentUserFilter, setCurrentUserFilter] =useState(false)
 const [DOMUpdater, setDOMUpdater] = useState(0)
   useEffect(() => {
     if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
+
+
+
+      if (currentUserFilter){
       fetch(`${location.pathname}`)
         .then((r) => r.json())
-        .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
+        .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id ))                           )
+
+}
+      else if (!currentUserFilter){
+        fetch(`${location.pathname}`)
+          .then((r) => r.json())
+          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
+
+      }
+
+
+      console.log(fetchedSprints)
+
 
         
     }
@@ -34,7 +50,7 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
 
     }
 
-  }, [location.pathname, CurrentUser,DOMUpdater,ActiveProjectid]);
+  }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
 
 
   useEffect(() => {
@@ -83,7 +99,7 @@ setActiveProjectid(props)
   return (
     <DndProvider backend={HTML5Backend}>
       <FullPage >
-        <TopBar projectFilter={projectFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
+        <TopBar projectFilter={projectFilter} currentUserFilter={currentUserFilter}setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <SideBar />
         <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />

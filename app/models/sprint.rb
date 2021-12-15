@@ -32,7 +32,9 @@ bad_uncompleted_sprints + bad_completed_sprints
   self.assigned_to.name
  end
 
-
+def was_goal_date_exceeded
+self.goal_date<  Time.current
+end
   
   
 end

@@ -13,14 +13,15 @@ function SprintForm({FetchedProjects}) {
         goal_date: "",
         urgency: 1,
         priority: 1,
-        project_id: 1
+        project_id: 1,
+        
     })
 
 
 
       function NewSprintChangeHandler(e) {
-          setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id })
-    
+          setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id , ["assigned_to_id"]: CurrentUser.id})
+    console.log(NewSprint)
     }
     console.log(NewSprint)
     async   function NewSprintSubmitHandler(e){

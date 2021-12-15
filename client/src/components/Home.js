@@ -40,6 +40,7 @@ function Home({ fetchedSprints, setDOMUpdater }) {
             },
             body: JSON.stringify({
                 "progress": location,
+                "assigned_to_id": CurrentUser.id,
                 "completed_by_id": completedby,
                 "completed": completed,
                 "completed_comment": CompletedComment
@@ -117,5 +118,6 @@ border: solid;
 height: 100vh;
 
 }
+
 
 `

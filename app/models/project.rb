@@ -81,7 +81,7 @@ saturday_last_week = {name: "7", created: made_last_week.filter{|sprint| sprint.
    wednesday = { name: "11",created: made_during_this_week.filter{|sprint| sprint.created_at.wednesday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.wednesday? }.count } 
    thursday  = {name: "12", created: made_during_this_week.filter{|sprint| sprint.created_at.thursday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.thursday? }.count } 
    friday = {name: "13", created: made_during_this_week.filter{|sprint| sprint.created_at.friday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.friday? }.count } 
-   saturday = {name: "14", created: made_during_this_week.filter{|sprint| sprint.created_at.saturday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.saturday? }.count } 
+   saturday = {name: "saturday", created: made_during_this_week.filter{|sprint| sprint.created_at.saturday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.saturday? }.count } 
 
 week = [sunday_last_week,    monday_last_week,   tuesday_last_week,   wednesday_last_week,   thursday_last_week,  friday_last_week,   saturday_last_week ,  sunday,   monday,   tuesday,  wednesday,   thursday,  friday,   saturday]
 end

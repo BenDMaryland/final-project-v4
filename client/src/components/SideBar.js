@@ -6,6 +6,7 @@ import { CurrentUserContext } from '../custom/CurrentUser'
 function SideBar() {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
 
+    if (!CurrentUser) return null 
     return (
         <SideNav>
             <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
