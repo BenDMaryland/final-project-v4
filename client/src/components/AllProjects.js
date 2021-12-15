@@ -32,7 +32,7 @@ function AllProjects({ FetchedProjects }) {
                     <BarChart
                         width={500}
                         height={300}
-                        data={project.created_and_completed_this_week}
+                        data={project.created_and_completed_sprints_total_amount}
                         margin={{
                             top: 11,
                             right: 30,

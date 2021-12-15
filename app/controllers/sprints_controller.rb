@@ -33,7 +33,7 @@ end
             sprint.update!(sprint_params_new)
             if sprint.completed 
                 
-                sprint.update(completed_at: self.updated_at)
+                sprint.update(completed_at: DateTime.now)
             end
         render json: sprint
     end

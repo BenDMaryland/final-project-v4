@@ -30,7 +30,7 @@ end
            return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1
          comment.update!(comment_params_new)
                if comment.completed 
-                comment.update(completed_at: Time.new)
+                comment.update(completed_at: DateTime.now)
             end
           render json: comment
     end
