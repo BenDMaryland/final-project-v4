@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { CurrentUserContext } from '../custom/CurrentUser';
-
+import LandingPage from './LandingPage';
 
 
 
@@ -44,6 +44,7 @@ function SprintForm({FetchedProjects}) {
     }
 
 if(!FetchedProjects) return null
+    if (CurrentUser === undefined) return <LandingPage />
     return (
         <form onSubmit={e=>NewSprintSubmitHandler(e)}>
             <label>sprint</label>

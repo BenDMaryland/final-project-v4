@@ -32,7 +32,8 @@ end
            return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1
             sprint.update!(sprint_params_new)
             if sprint.completed 
-                sprint.update(completed_at: Time.new)
+                
+                sprint.update(completed_at: self.updated_at)
             end
         render json: sprint
     end

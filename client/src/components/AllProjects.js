@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState, useContext, useCallback, PureComponent } from 'react'
 import styled from "styled-components";
 import Projects from './Projects';
+import { CurrentUserContext } from '../custom/CurrentUser'
+import LandingPage from './LandingPage';
 
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart } from 'recharts';
+import { Chart } from "react-google-charts";
 
 function AllProjects({ FetchedProjects }) {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
 
-    let count = 8
 
     if (!FetchedProjects) return null
+    if (CurrentUser === undefined) return <LandingPage />
     console.log(FetchedProjects)
     return (
         <ProjectContainer>
@@ -21,8 +26,56 @@ function AllProjects({ FetchedProjects }) {
                     <h4>{project.summary}</h4>
                     <p>Total sprints: {project.all_sprints} </p>
                     <p> Completed Sprints:  {project.completed_sprints} </p>
-                    <p> Goal Dates Missed: {project.missed_goals.length}</p>
-                    <p> Goals not yet missed : {project.all_sprints - project.missed_goals.length - project.completed_sprints }</p>
+                    <p> Goal Dates Missed: {project.missed_goals}</p>
+                    <p> Goals not yet missed : {project.all_sprints - project.missed_goals - project.completed_sprints }</p>
+               
+                    <BarChart
+                        width={500}
+                        height={300}
+                        data={project.created_and_completed_this_week}
+                        margin={{
+                            top: 11,
+                            right: 30,
+                            left: 20,
+                            bottom: 5
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="2 9" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="created" fill="#8884d8" />
+                        <Bar dataKey="completed" fill="#82ca9d" />
+                    </BarChart>
+                  
+
+
+                    <Chart
+                        width={'500px'}
+                        height={'300px'}
+                        chartType="PieChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ['Task', 'Hours per Day'],
+                            ['Goal has not yet Occured', project.goal_not_yet_occured],
+                            ['Goal  Missed',  project.missed_goals ],
+                            ['Goals achieved', project.goals_acheieved],
+
+                        ]}
+                        options={{
+                            title: 'My Daily Activities',
+                        }}
+                        rootProps={{ 'data-testid': '1' }}
+                    />
+
+
+
+
+
+
+
+
                 </div>
 
             )}
