@@ -6,6 +6,7 @@ class Sprint < ApplicationRecord
 belongs_to :project
   belongs_to :created_by, class_name: "User", foreign_key: "created_by_id", optional: true
   belongs_to :completed_by, class_name: "User", foreign_key: "completed_by_id", optional: true
+    belongs_to :completed_by, class_name: "User", foreign_key: "assigned_to_id", optional: true
   has_many :bugs, dependent: :destroy
   has_many :features, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -19,8 +20,16 @@ end
   def  impact
     self .urgency * self.priority
   end
+
+  def self.goal_exceeded
+ bad_completed_sprints =  self.all.filter{|sprint| sprint.completed }.filter{|sprint| sprint.goal_date < sprint.completed_at}
+ bad_uncompleted_sprints= self.all.filter{|sprint|  !sprint.completed}.filter{|sprint| sprint.goal_date < Time.current}
+bad_uncompleted_sprints + bad_completed_sprints
+  end
+
+
+
+
   
-
-
   
 end

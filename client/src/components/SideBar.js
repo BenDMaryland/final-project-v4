@@ -8,6 +8,7 @@ function SideBar() {
             <Link className="nav-link" to="/sprints"><button color="inherit">Home Page </button></Link>
             <Link className="nav-link" to="/newsprint"><button color="inherit">Add Sprint </button></Link>
             <Link className="nav-link" to="/projects"><button color="inherit">Projects  </button></Link>
+            <Link className="nav-link" to="/users"><button color="inherit">Users  </button></Link>
         </SideNav>
     )
 }

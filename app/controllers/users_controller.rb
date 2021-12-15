@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
 before_action :authorize
   skip_before_action :authorize, only: [:create]
-      def index 
-        render json: User.all 
-      end
+ 
 
 
       def create
@@ -25,6 +23,14 @@ before_action :authorize
            render_not_logged_in
         end
     end
+
+def index
+   return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.boss
+   render json: User.all 
+
+end
+
+
 
     private 
 
