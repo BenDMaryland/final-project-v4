@@ -61,7 +61,7 @@ width:100%;
 height:100%;
     border: solid;
     box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-    border-radius: 50% 20% / 10% 40%;
+    
 } 
 #red{
 background-color:#e34f4c;
@@ -69,7 +69,7 @@ width:100%;
 height:100%;
     border: solid;
     box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-    border-radius: 50% 20% / 10% 40%;
+
 }
 
 #blue{
@@ -78,7 +78,7 @@ width:100%;
 height:100%;
     border: solid;
     box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-border-radius: 50% 20% / 10% 40%;
+
 }
 
 

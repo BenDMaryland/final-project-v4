@@ -62,7 +62,7 @@ form{
 
 }
 
- input {
+ /* input {
   border: none;
   -webkit-appearance: none;
   -ms-appearance: none;
@@ -75,6 +75,6 @@ form{
   font-size: 14px;
   display: block;
  
-}
+} */
 
 `

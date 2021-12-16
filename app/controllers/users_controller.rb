@@ -15,7 +15,7 @@ before_action :authorize
         end
       end
 
-    def show 
+    def me 
         user = current_user
         if user 
         render json: user 
@@ -23,6 +23,17 @@ before_action :authorize
            render_not_logged_in
         end
     end
+
+def show
+  #  return render json: { error: "Not authorized" }, status: :unauthorized unless  unless ( session.include? :user_id    ||  current_user.boss   )
+user = User.find_by(slug: params[:id])
+ 
+        render json: user 
+
+end
+
+
+
 
 def index
    return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.boss

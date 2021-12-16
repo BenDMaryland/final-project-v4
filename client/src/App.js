@@ -95,7 +95,7 @@ function changeBackgroundHandler(){
     <DndProvider backend={HTML5Backend}>
       <FullPage style={{ "background-image": `url(./assets/images/${changeBackground}.bmp)` }}>
         <TopBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter}setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
-        <SideBar />
+        <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />
       </FullPage>

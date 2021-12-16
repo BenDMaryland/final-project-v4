@@ -13,9 +13,9 @@ function TopBar({ changeBackgroundHandler,handleLogout, FetchedProjects, project
     return (
         <TopNav>
             {CurrentUser ? <button onClick={handleLogout}>  Logout: {CurrentUser.name } </button> : null }
-            {FetchedProjects.map((project) => <button  key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)}
+            {/* {FetchedProjects.map((project) => <button  key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)}
             {CurrentUser ? <label>Just you?<input value={currentUserFilter}onChange={() => setCurrentUserFilter(!currentUserFilter)} type="checkbox"></input></label>  :null }
-            <button onClick={() => changeBackgroundHandler()}>cycle background</button>
+            <button onClick={() => changeBackgroundHandler()}>cycle background</button> */}
         </TopNav>
     )
 }
@@ -24,5 +24,5 @@ export default TopBar
 
 const TopNav= styled.nav `
 
-background-color: #e5e9ed;
+
 `

@@ -7,11 +7,12 @@ import styled from "styled-components";
 import Sprints from "./Sprints"
 import AllProjects from "./AllProjects";
 import AllUsers from "./AllUsers";
+import User from "./User";
 function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects}) {
 
     return (
         <MainSection >
-            {/* <img src="./assets/images/1.bmp"/> */}
+ 
             <Routes>
          
                 <Route exact path="/sprints/" element={<Home setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />} />
@@ -19,7 +20,8 @@ function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects}) {
                 <Route exact path="/newsprint" element={<SprintForm FetchedProjects={FetchedProjects}/>} />
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/projects" element={<AllProjects FetchedProjects={FetchedProjects} />}    />
-                <Route exact path="/users" element={<AllUsers  />} />
+                <Route exact path="/users/" element={<AllUsers  />} />
+                <Route exact path="/users/*" element={<User />} />
             </Routes>
         </MainSection>
     )
