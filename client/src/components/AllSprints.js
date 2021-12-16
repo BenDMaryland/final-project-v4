@@ -12,9 +12,9 @@ function AllSprints({ dragHandler, sprint }) {
     console.log(sprint.goal_date, sprint.was_goal_date_exceeded )
     return (
         <Card draggable={true}  onDragStart={e => dragHandler(e, sprint.id)} name={sprint.id} >
-            <div id={sprint.completed ? "green" : sprint.was_goal_date_exceeded? "blue": "red"}>
+            <div id={sprint.completed ? "green" : sprint.was_goal_date_exceeded ? "red": "blue"}>
             <animated.div  style={props} >
-                <Link className="nav-link" to={`./${sprint.slug}`}    >
+                <Link className="nav-link" to={`./${sprint.slug}`}   >
 
 
                     <h4> {sprint.sprint_title} </h4>
@@ -61,6 +61,7 @@ width:100%;
 height:100%;
     border: solid;
     box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+    border-radius: 50% 20% / 10% 40%;
 } 
 #red{
 background-color:#e34f4c;
@@ -68,6 +69,7 @@ width:100%;
 height:100%;
     border: solid;
     box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+    border-radius: 50% 20% / 10% 40%;
 }
 
 #blue{
@@ -76,7 +78,7 @@ width:100%;
 height:100%;
     border: solid;
     box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-
+border-radius: 50% 20% / 10% 40%;
 }
 
 

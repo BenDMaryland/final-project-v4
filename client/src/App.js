@@ -18,12 +18,11 @@ function App() {
   const [FilteredSprints, setFilteredSprints] = useState([])
 const [ActiveProjectid, setActiveProjectid] = useState(1)
 const[currentUserFilter, setCurrentUserFilter] =useState(false)
+const [changeBackground, setchangeBackground] = useState(1)
 const [DOMUpdater, setDOMUpdater] = useState(0)
+
   useEffect(() => {
     if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
-
-
-
       if (currentUserFilter){
       fetch(`${location.pathname}`)
         .then((r) => r.json())
@@ -33,24 +32,16 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
       else if (!currentUserFilter){
         fetch(`${location.pathname}`)
           .then((r) => r.json())
-          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
-
-      }
-
-
-      console.log(fetchedSprints)
-
-
-        
+          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid))) }      
     }
     else if (location.pathname.includes("sprints")){
       fetch(`${location.pathname}`)
         .then((r) => r.json())
         .then((data) => setFetchedSprints(data))
-
     }
 
   }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
+
 
 
   useEffect(() => {
@@ -89,7 +80,11 @@ setActiveProjectid(props)
 
 }
 
+function changeBackgroundHandler(){
+  setchangeBackground((changeBackground) => changeBackground = changeBackground+1)
+  console.log(changeBackground)
 
+}
 
 
 
@@ -98,8 +93,8 @@ setActiveProjectid(props)
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <FullPage >
-        <TopBar projectFilter={projectFilter} currentUserFilter={currentUserFilter}setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
+      <FullPage style={{ "background-image": `url(./assets/images/${changeBackground}.bmp)` }}>
+        <TopBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter}setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <SideBar />
         <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
         <Footer />
@@ -113,5 +108,8 @@ export default App;
 
 const FullPage = styled.div`
 font-family: 'Roboto', sans-serif;
-height: 100vh;
+height: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
 `

@@ -10,7 +10,8 @@ import AllUsers from "./AllUsers";
 function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects}) {
 
     return (
-        <MainSection>
+        <MainSection >
+            {/* <img src="./assets/images/1.bmp"/> */}
             <Routes>
          
                 <Route exact path="/sprints/" element={<Home setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />} />
@@ -28,6 +29,6 @@ export default MainPage
 
 const MainSection = styled.div`
 margin-left: 10%;
-
+height: 100vh;
 
 `

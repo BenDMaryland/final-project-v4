@@ -68,6 +68,7 @@ function Home({ fetchedSprints, setDOMUpdater }) {
         return (
 
             <SectionContainer   >
+                
 
                 <animated.div onDragOver={e => dragOverHandler(e)} onDrop={e => dropHandler(e, 0)} name="0" className="section" style={props}>
                     <p> Haven't started </p>
@@ -105,6 +106,8 @@ grid-template-columns:repeat(3, 1fr );
 border: solid;
 height: 100vh;
 
+
+
 .CardContainer{
 padding:1em;
 border: solid;
@@ -112,6 +115,8 @@ display: grid;
 grid-template-columns:repeat(2, 1fr );
 padding: 1px;
 text-align: center;
+background-color:#e3e4e6;
+
 }
 .section{
 border: solid;
