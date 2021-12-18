@@ -21,12 +21,6 @@ class ApplicationController < ActionController::API
     render json: { errors: ['You are not logged in.'] }, status: :unauthorized
   end
     
-  
-  def hello_world
-    session[:count] = (session[:count] || 0) + 1
-    render json: { count: session[:count] }
-  end
-
 
   
 end

@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Sprints from "./Sprints"
 import AllProjects from "./AllProjects";
 import AllUsers from "./AllUsers";
-
+import User from "./User"
 import KBAform from "./KBAform"
 import AllKbas from "./AllKbas";
 import Kbas from "./Kbas";
@@ -24,6 +24,7 @@ function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects}) {
                 <Route exact path="/" element={<LandingPage />} />
                 <Route exact path="/projects" element={<AllProjects FetchedProjects={FetchedProjects} />}    />
                 <Route exact path="/users/" element={<AllUsers  />} />
+                <Route exact path="/users/*" element={<User />} />
                 <Route exact path="/newkba/" element={<KBAform />} />
                 <Route exact path="/kbas/" element={<AllKbas />} />
                 <Route exact path="/kbas/*" element={<Kbas />} />

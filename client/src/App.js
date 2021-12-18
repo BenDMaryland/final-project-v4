@@ -94,7 +94,7 @@ function changeBackgroundHandler(){
   // Grabing Sprints Index 
 
   return (
-      <FullPage style={{ "background-image": `url(../assets/images/${changeBackground}.bmp)` }}>
+      <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
       
     <DndProvider backend={HTML5Backend}>
         <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />

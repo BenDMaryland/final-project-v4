@@ -15,7 +15,15 @@ before_action :authorize
         end
       end
 
-    def me 
+def show
+
+    return render json: { error: "Not authorized" }, status: :unauthorized unless    session.include? :user_id    ||  current_user.boss   
+user = User.find_by(slug: params[:id])
+
+        render json: user 
+end
+
+    def me
         user = current_user
         if user 
         render json: user 
@@ -24,13 +32,6 @@ before_action :authorize
         end
     end
 
-def show
-  #  return render json: { error: "Not authorized" }, status: :unauthorized unless  unless ( session.include? :user_id    ||  current_user.boss   )
-user = User.find_by(slug: params[:id])
- 
-        render json: user 
-
-end
 
    def  update 
         user =   User.find(params[:id])
@@ -44,6 +45,7 @@ end
 
 
 def index
+
    return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.boss
    render json: User.all 
 

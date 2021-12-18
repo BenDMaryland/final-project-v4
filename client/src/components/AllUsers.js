@@ -62,7 +62,7 @@ function AllUsers() {
                 {FetchedUsers.map((user) =>
 
                     <div key={user.id} className="card">
-                        {console.log(user.user_evaluation_data)}
+                    
                         <h2>{user.name}</h2>
                         <h2>Role: {user.role}</h2>
                         <p>Level: {user.level}</p>
