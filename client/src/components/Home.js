@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import AllSprints from './AllSprints'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 import { CurrentUserContext } from '../custom/CurrentUser'
 import LandingPage from './LandingPage'
-import { useDropzone } from 'react-dropzone'
+
 
 function Home({ fetchedSprints, setDOMUpdater }) {
 
@@ -71,21 +71,21 @@ function Home({ fetchedSprints, setDOMUpdater }) {
 
 
                 <animated.div onDragOver={e => dragOverHandler(e)} onDrop={e => dropHandler(e, 0)} name="0" className="section" style={props}>
-                    <p> Haven't started </p>
+                    <h2> Haven't started </h2>
                     <div className="CardContainer"  >
                         {fetchedSprints.filter(sprint => sprint.progress === 0).map((sprint) => <AllSprints dragHandler={dragHandler} key={sprint.id} sprint={sprint} />)}
                     </div>
                 </animated.div>
 
                 <animated.div onDragOver={e => dragOverHandler(e)} onDrop={e => dropHandler(e, 1)} name="1" className="section" style={props}>
-                    <p> Working On  </p>
+                    <h2> Working On  </h2>
                     <div className="CardContainer"  >
                         {fetchedSprints.filter(sprint => sprint.progress === 1).map((sprint) => <AllSprints dragHandler={dragHandler} key={sprint.id} sprint={sprint} />)}
                     </div>
                 </animated.div>
 
                 <animated.div onDragOver={e => dragOverHandler(e)} onDrop={e => dropHandler(e, 2)} name="2" className="section" style={props}>
-                    <p> Completed </p>
+                    <h2> Completed </h2>
                     <div className="CardContainer" >
                         {fetchedSprints.filter(sprint => sprint.progress === 2).map((sprint) => <AllSprints dragHandler={dragHandler} key={sprint.id} sprint={sprint} />)}
                     </div>
@@ -103,10 +103,15 @@ const SectionContainer = styled.div`
 width: 100%;
 display: grid;
 grid-template-columns:repeat(3, 1fr );
+overflow: scroll;
+height: 100%;
 
-height: 100vh;
-
-
+h2{
+         font-family: 'Montserrat', sans-serif;
+           color: white;
+           text-align:center;
+           text-shadow: 2px 2px 4px #000000;
+}
 
 .CardContainer{
 padding:1em;
@@ -119,7 +124,7 @@ text-align: center;
 
 }
 .section{
-border: solid;
+
 height: 100vh;
 
 }

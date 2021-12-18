@@ -56,7 +56,7 @@ if (CurrentUser === undefined) return <LandingPage />
 
 return (
   
-    <>
+    <FullContainer FullContainer>
         <SprintContainer>
             <div>
                 <h1>{fetchedSprint.sprint_title} </h1>
@@ -85,7 +85,7 @@ return (
         </SprintContainer>
 
         <CardContainer>
-            <div >
+            <div className='card' >
                 <h1> Comments </h1>
                 <div className="card">
                     {fetchedSprint.comments.map((comment) => <Comments setDOMUpdater={setDOMUpdater} key={comment.id} comment={comment} />)}
@@ -106,28 +106,68 @@ return (
                 </div >
             </div>
         </CardContainer>
-    </>
+    </FullContainer>
 )
 }
 
 export default Sprints
 
+const FullContainer= styled.div`
+position: absolute;
+width: 90%;
+
+h1{
+
+           font-family: 'Montserrat', sans-serif;
+           color: white;
+           text-shadow: 2px 2px 4px #000000;
+text-align:center;
+}
+`
+
+
+
+
+
+
+
 const CardContainer = styled.div`
 width: 100%;
 display: grid;
 grid-template-columns:repeat(3, 1fr );
-border: solid;
-
+height: 100%;
+margin:auto;
+height: 100%;
+margin: auto;
+top: 400px;
+position: relative;
+width: 100%;
 
 .card{
-border: solid;
+margin: 2%;
 display: grid;
-grid-template-columns:repeat(2, 1fr );
+grid-template-columns:repeat(1, 1fr );
+
 }
 
 
 `
 const SprintContainer = styled.div`
  text-align:center;
-
+color: #e3e4e6;
+   height: 300px;
+    width: 600px;
+    background-color: #323232;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 150%;
+    left: 40%;
+   opacity: 1;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+    padding-top:1em;
+    border-radius: 20px;
+    
 `

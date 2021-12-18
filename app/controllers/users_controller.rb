@@ -32,6 +32,14 @@ user = User.find_by(slug: params[:id])
 
 end
 
+   def  update 
+        user =   User.find(params[:id])
+           return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.boss 
+         user.update!(user_params)
+  
+          render json: user
+    end
+
 
 
 
@@ -46,7 +54,7 @@ end
     private 
 
     def user_params
-        params.permit( :name, :password, :email, :username )
+        params.permit( :name, :password, :email, :username, :level, :boss )
 
     end
 

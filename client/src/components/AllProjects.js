@@ -54,6 +54,7 @@ function AllProjects({ FetchedProjects }) {
                     <Chart
                         width={'500px'}
                         height={'300px'}
+                        
                         chartType="PieChart"
                         loader={<div>Loading Chart</div>}
                         data={[
@@ -64,17 +65,23 @@ function AllProjects({ FetchedProjects }) {
 
                         ]}
                         options={{
-                            title: 'My Daily Activities',
+                            titleTextStyle: {
+                                color: 'white'
+                            },
+                            legend: {
+                                textStyle: {
+                                    color: 'white'
+                                }},
+                            color: "white",
+                            title: 'Project performance',
+                            backgroundColor: {
+                                fill: '#323232',
+                                fillOpacity: 0.8
+                            }
+                            
                         }}
                         rootProps={{ 'data-testid': '1' }}
                     />
-
-
-
-
-
-
-
 
                 </div>
 
@@ -93,12 +100,15 @@ border: solid;
 height: 50vh;
 
 .project_card{
-
+       height: 100%;
+        border: 2px solid #292d3e;
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+color: white;
+background-color:#323232;
 padding:1em;
 border: solid;
 padding: 1px;
 text-align: center;
 }
-
 
 `

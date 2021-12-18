@@ -4,7 +4,7 @@ import Signup from './Signup'
 import styled from 'styled-components'
 
 function LandingPage() {
-    const [WantToSignUp, setWantToSignUp] = useState(false)
+
 
     return (
         <Lander>

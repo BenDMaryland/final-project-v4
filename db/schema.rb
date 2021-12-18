@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_15_173729) do
+ActiveRecord::Schema.define(version: 2021_12_17_163707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 2021_12_15_173729) do
     t.index ["completed_by_id"], name: "index_features_on_completed_by_id"
     t.index ["created_by_id"], name: "index_features_on_created_by_id"
     t.index ["sprint_id"], name: "index_features_on_sprint_id"
+  end
+
+  create_table "kbas", force: :cascade do |t|
+    t.text "kbatext"
+    t.integer "user_id"
+    t.string "category"
+    t.string "kba_title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "projects", force: :cascade do |t|

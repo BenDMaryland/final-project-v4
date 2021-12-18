@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom'
+import {  useLocation } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import SideBar from "./components/SideBar";
-import TopBar from "./components/TopBar";
-import Footer from "./components/Footer";
+
+
 import { CurrentUserContext } from './custom/CurrentUser';
 import styled from 'styled-components';
 import { DndProvider } from "react-dnd";
@@ -22,17 +22,19 @@ const [changeBackground, setchangeBackground] = useState(1)
 const [DOMUpdater, setDOMUpdater] = useState(0)
 
   useEffect(() => {
+    console.log(currentUserFilter)
     if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
       if (currentUserFilter){
       fetch(`${location.pathname}`)
         .then((r) => r.json())
         .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id ))                           )
-
+        .then((console.log("active")))
 }
       else if (!currentUserFilter){
         fetch(`${location.pathname}`)
           .then((r) => r.json())
           .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid))) }      
+                
     }
     else if (location.pathname.includes("sprints")){
       fetch(`${location.pathname}`)
@@ -82,7 +84,7 @@ setActiveProjectid(props)
 
 function changeBackgroundHandler(){
   setchangeBackground((changeBackground) => changeBackground = changeBackground+1)
-  console.log(changeBackground)
+
 
 }
 
@@ -92,14 +94,14 @@ function changeBackgroundHandler(){
   // Grabing Sprints Index 
 
   return (
+      <FullPage style={{ "background-image": `url(../assets/images/${changeBackground}.bmp)` }}>
+      
     <DndProvider backend={HTML5Backend}>
-      <FullPage style={{ "background-image": `url(./assets/images/${changeBackground}.bmp)` }}>
-        <TopBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter}setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
-        <Footer />
-      </FullPage>
+   
    </DndProvider >
+     </FullPage >
   );
 }
 
@@ -107,8 +109,11 @@ function changeBackgroundHandler(){
 export default App;
 
 const FullPage = styled.div`
-font-family: 'Roboto', sans-serif;
-height: 100%;
+font-family: 'Montserrat', sans-serif;
+height: 100vh;
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
 
   background-repeat: no-repeat;
   background-size: cover;

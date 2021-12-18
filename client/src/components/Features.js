@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
 
@@ -65,5 +65,16 @@ export default Features
 const Card = styled.div`
 border: solid;
 
+color: #e3e4e6;
+
+    
+    background-color: #323232;
+   opacity: 1;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+    padding-top:1em;
+    border-radius: 20px;
 
 `

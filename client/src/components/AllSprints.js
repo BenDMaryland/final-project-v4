@@ -1,4 +1,4 @@
-import React, { useParams, useCallback } from 'react'
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
@@ -32,7 +32,7 @@ export default AllSprints
 
 
 const Card = styled.div`
-
+height: 100%;
 border: solid;
     border: 1px;
     padding: 0;
@@ -42,9 +42,25 @@ padding: 0;
     margin: 1px;
     height: 100px;
     overflow:hidden;
+    font-weight: 600;
+  background: #323232;
+  border:none;
+  color: #999;
 
 a{
 color: black;
+ text-decoration: none;
+   
+
+
+    
+
+}
+a:hover,a:focus {
+text-decoration:none;
+background:#5fa2db;
+color: #ffffff;
+   text-shadow: 2px 2px 4px #000000;
 }
 
 h4{
@@ -64,7 +80,7 @@ height:100%;
     
 } 
 #red{
-background-color:#e34f4c;
+background-color:#fb607f;
 width:100%;
 height:100%;
     border: solid;
@@ -73,7 +89,7 @@ height:100%;
 }
 
 #blue{
-background-color:#cae7f1;
+background-color:#4474d7;
 width:100%;
 height:100%;
     border: solid;
