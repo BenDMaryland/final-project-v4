@@ -45,22 +45,22 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) 
         <SubSprintForm onSubmit={e => NewSubSprintSubmitHandler(e)}>
 
             {SubSprintType === "bug" || SubSprintType === "feature" ?
-                <>
+                <div className='inputs'>
                     <div>
-                        <label>{SubSprintType}</label>
+                      
                         <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_title`} placeholder={` please add your ${SubSprintType}'s' title`} value={NewSubSprint.title} ></input>
                     </div>
 
-                    <label>{SubSprintType}' details</label>
+                 
                     <textarea onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_data`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.sprint_data} ></textarea>
-                </>
+                </div>
                 : // Comments database is different from the Bugs/.Features as such it requires different prompts
                 <>
-                    <label>{SubSprintType}</label>
+            
                     <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_details`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.details} ></input>
                 </>}
 
-            {SubSprintType === "comment" ? null :
+            {/* {SubSprintType === "comment" ? null :
                 <div className="radio_container" >
                     <div className="radios">
                         <label> Urgency:</label>
@@ -83,7 +83,7 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) 
 
                     </div>
 
-                </div>}
+                </div>} */}
             {/* <label>Goal Date</label>
         <input type="datetime-local" onChange={e => NewSubSprintChangeHandler(e)} name="goal_date" value={NewSubSprint.goal_date} ></input> */}
             <button type="submit">Submit</button>
@@ -97,35 +97,52 @@ export default AddSubSprint
 
 const SubSprintForm = styled.form`
 
-display: grid;
-  width: 500px;
- height: 500px;
-  border: 2px solid #ccc;
-  transition: 1.1s ease-out;
-box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  filter: blur(0);
-  transform: scale(1);
-  opacity: 1;
-  visibility: visible;
-  position: absolute;
-   left: 257px;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-border-radius: 25px;
-    background: #eee;
+color: #e3e4e6;
+   height: 600px;
+    width: 600px;
+    background-color: #323232;
+    position: absolute;
+    top:400px;
 
-textarea {
-  width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  resize: none;
+   opacity: 1;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+    padding-top:1em;
+    z-index: 99;
+    border-radius: 20px;
+
+
+    .inputs{
+   input,textarea {
+         
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+    background-color: rgba(255,255,255,0.07);
+  padding: 12px;
+  border-radius: 3px;
+  width: 250px;
+  height:2em;
+  font-size: 14px;
+  margin-top: 1em;
+  color:white;
+ 
 }
-
+button{
+    margin-top: 20px;
+    width: 100%;
+    background-color: #8b949e;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}}
 .radio_container{
 display: grid;
 grid-template-columns:repeat(2, 1fr );
@@ -146,5 +163,5 @@ display: inline;
 label{
    align-self: center;
 }
-}
+
 `

@@ -11,7 +11,7 @@ import LandingPage from "./LandingPage"
 
 import { CurrentUserContext } from '../custom/CurrentUser'
 
-function Sprints( ) {
+function Sprints() {
     const [addNewSubSprint, setaddNewSubSprint] = useState(false)
     const [SubSprintType, setSubSprintType] = useState("null")
     const [EditSprint, setEditSprint] = useState(false)
@@ -22,28 +22,40 @@ function Sprints( ) {
 
 
     useEffect(() => {
-            fetch(`${location.pathname}`)
-                .then((r) => r.json())
-                .then((data) => setFetchedSprint(data))
-        }, [location.pathname, CurrentUser, DOMUpdater]);
+        fetch(`${location.pathname}`)
+            .then((r) => r.json())
+            .then((data) => setFetchedSprint(data))
+    }, [location.pathname, CurrentUser, DOMUpdater]);
 
 
-    
+
     function subSprintSelector(e) {
+        console.log(e.target.value)
+        if (e.target.value ==="0" ){
+            console.log("I ran ")
+            setEditSprint(false)
+            setaddNewSubSprint(false)
+
+        }
+        else {
         setSubSprintType(e.target.value)
         setEditSprint(false)
-        setaddNewSubSprint(true)
+        setaddNewSubSprint(true)}
     }
 
     function sprintEditSelector(e) {
+     
         setaddNewSubSprint(false)
         setEditSprint(true)
     }
 
     async function sprintDeleteHandler() {
+
+
         const r = await fetch(`/sprints/${fetchedSprint.id}`, {
-            method: "DELETE",  })
-       const  data = await r.json()
+            method: "DELETE",
+        })
+        const data = await r.json()
         if (r.ok) {
             setDOMUpdater(Math.random())
         }
@@ -51,71 +63,73 @@ function Sprints( ) {
 
     }
 
-if (!fetchedSprint) return null
-if (CurrentUser === undefined) return <LandingPage />
+    if (!fetchedSprint) return null
+    if (CurrentUser === undefined) return <LandingPage />
 
-return (
-  
-    <FullContainer FullContainer>
-        <SprintContainer>
-            <div>
-                <h1>{fetchedSprint.sprint_title} </h1>
-                <h3>{fetchedSprint.sprint_data}</h3>
-                <p>Total Impact {fetchedSprint.impact}</p>
-                <p>Goal date{fetchedSprint.goal_date}</p>
-            
-                <p> Created by: {fetchedSprint.created_by.name}</p>
-                {CurrentUser.level == 0 ? null : <button onClick={e => sprintEditSelector(e)}>Edit Sprint</button>}
-                {EditSprint ? <SprintEdit setEditSprint={setEditSprint} fetchedSprint={fetchedSprint} /> : null}
-                <p>Find a way to stop deleting by accident. </p>
-                {/* {CurrentUser.level === 2 || created_by.id === CurrentUser.id ? <button onClick={() => sprintDeleteHandler()}>you can delete</button> : null} */}
+    return (
 
-            </div>
-            {CurrentUser.level == 0 ? null :
-                <div>
-                    <label>Add SubSprint </label>
+        <FullContainer >
+            <SprintContainer>
+                <div className='maininfo'>
+                    <h1>{fetchedSprint.sprint_title} </h1>
+                    <h3>{fetchedSprint.sprint_data}</h3>
+                </div>
+
+                <div className='moreinfo'>
+                    <p>Total Impact {fetchedSprint.impact}</p>
+                    <p>complete before: {fetchedSprint.goal_date.slice(5, 10)}</p>
+     
+                </div>
+
+                <div className='editoptions'>
+                    {CurrentUser.level == 0 ? null : <button onClick={e => sprintEditSelector(e)}>Edit Sprint</button>}
+                    {EditSprint ? <SprintEdit setEditSprint={setEditSprint} fetchedSprint={fetchedSprint} /> : null}
+                    {CurrentUser.level === 2 || fetchedSprint.created_by.id === CurrentUser.id ? <button onClick={() => sprintDeleteHandler()}>Delete</button> : null}
+
                     <select name="subsprint" onChange={e => subSprintSelector(e)}>
-                        <option value="0">please Select a SubSprint</option>
+                        <option value="0">Make a new subsprint</option>
                         <option value="bug">Bug</option>
                         <option value="feature">Feature</option>
                         <option value="comment">Comment</option>
                     </select>
 
                     {addNewSubSprint ? <AddSubSprint setDOMUpdater={setDOMUpdater} id={fetchedSprint.id} SubSprintType={SubSprintType} setaddNewSubSprint={setaddNewSubSprint} /> : null}
-                </div>}
-        </SprintContainer>
 
-        <CardContainer>
-            <div className='card' >
-                <h1> Comments </h1>
-                <div className="card">
-                    {fetchedSprint.comments.map((comment) => <Comments setDOMUpdater={setDOMUpdater} key={comment.id} comment={comment} />)}
                 </div>
-            </div>
+            </SprintContainer>
 
-            <div >
-                <h1> Features  </h1>
-                <div className="card">
-                    {fetchedSprint.features.map((feature) => <Features setDOMUpdater={setDOMUpdater} key={feature.id} feature={feature} />)}
+            <CardContainer>
+                <div className='card' >
+                    <h1> Comments </h1>
+                    <div className="card">
+                        {fetchedSprint.comments.map((comment) => <Comments setDOMUpdater={setDOMUpdater} key={comment.id} comment={comment} />)}
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <h1> Bugs </h1>
-                <div className="card">
-                    {fetchedSprint.bugs.map((bug) => <Bugs setDOMUpdater= { setDOMUpdater }  key={bug.id} bug={bug} />)}
-                </div >
-            </div>
-        </CardContainer>
-    </FullContainer>
-)
+                <div >
+                    <h1> Features  </h1>
+                    <div className="card">
+                        {fetchedSprint.features.map((feature) => <Features setDOMUpdater={setDOMUpdater} key={feature.id} feature={feature} />)}
+                    </div>
+                </div>
+
+                <div>
+                    <h1> Bugs </h1>
+                    <div className="card">
+                        {fetchedSprint.bugs.map((bug) => <Bugs setDOMUpdater={setDOMUpdater} key={bug.id} bug={bug} />)}
+                    </div >
+                </div>
+            </CardContainer>
+        </FullContainer>
+    )
 }
 
 export default Sprints
 
-const FullContainer= styled.div`
+const FullContainer = styled.div`
 position: absolute;
 width: 90%;
+height:100%;
 
 h1{
 
@@ -126,12 +140,6 @@ text-align:center;
 }
 `
 
-
-
-
-
-
-
 const CardContainer = styled.div`
 width: 100%;
 display: grid;
@@ -141,15 +149,15 @@ margin:auto;
 height: 100%;
 margin: auto;
 top: 400px;
-position: relative;
+position: absolute;
+z-index:1;
 width: 100%;
 
 .card{
 margin: 2%;
 display: grid;
-grid-template-columns:repeat(1, 1fr );
+grid-template-columns:repeat(1, 1fr );}
 
-}
 
 
 `
@@ -157,12 +165,13 @@ const SprintContainer = styled.div`
  text-align:center;
 color: #e3e4e6;
    height: 300px;
+    z-index: 99;
     width: 600px;
     background-color: #323232;
     position: absolute;
-    transform: translate(-50%,-50%);
-    top: 150%;
-    left: 40%;
+   
+    top: 2%;
+    left: 10%;
    opacity: 1;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -170,5 +179,25 @@ color: #e3e4e6;
     padding: 50px 35px;
     padding-top:1em;
     border-radius: 20px;
-    
+    .moreinfo{
+display: grid;
+grid-template-columns:repeat(2, 1fr );}
+
+.editoptions{
+display: grid;
+grid-template-columns:repeat(3, 1fr );
+
+
+button,select{
+padding: 20px;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+  background: #323232;
+  border:none;
+  color: #999;
+    cursor: pointer;
+}
+}
 `

@@ -14,7 +14,7 @@ function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation()
-
+  const [showSideBar, setshowSideBar] = useState(false)
   const [FetchedProjects, setFetchedProjects] = useState([])
 const [ActiveProjectid, setActiveProjectid] = useState(1)
 const[currentUserFilter, setCurrentUserFilter] =useState(false)
