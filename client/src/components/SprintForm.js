@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react'
 import { CurrentUserContext } from '../custom/CurrentUser';
 import LandingPage from './LandingPage';
 import styled from 'styled-components';
+import emailjs from 'emailjs-com'
+import { useNavigate  } from "react-router-dom";
 
-
-
-function SprintForm({FetchedProjects}) {
+function SprintForm({ FetchedProjects }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+    let navigate = useNavigate ();
     const [NewSprint, setNewSprint] = useState({
         sprint_title: "",
         sprint_data: "",
@@ -14,22 +15,28 @@ function SprintForm({FetchedProjects}) {
         urgency: 1,
         priority: 1,
         project_id: 1,
-        
+
     })
 
+    function mailHandler() {
+        emailjs.send("service_7pqzf5i", "template_mqbrehs", CurrentUser, "user_CfmaCp7A2fXHSSdqpMgIq")
 
-
-      function NewSprintChangeHandler(e) {
-          setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id , ["assigned_to_id"]: CurrentUser.id})
-    console.log(NewSprint)
     }
-    console.log(NewSprint)
-    async   function NewSprintSubmitHandler(e){
-        e.preventDefault()
+
+
+    function NewSprintChangeHandler(e) {
+        setNewSprint(data => data = { ...data, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id, ["assigned_to_id"]: CurrentUser.id })
  
 
+
+    }
+
+    async function NewSprintSubmitHandler(e) {
+        e.preventDefault()
+        if (NewSprint.priority * NewSprint.urgency === 9 ) mailHandler()
+
         const response = await fetch("sprints", {
-            method:   'POST',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -38,25 +45,20 @@ function SprintForm({FetchedProjects}) {
         const data = await response.json();
 
         if (response.ok) {
-           console.log("ok")
+            console.log("ok")
+            navigate('/sprints');
         } else {
-            alert(data.errors)
+            alert(data.error)
         }
     }
-
-if(!FetchedProjects) return null
+console.log(SprintForm)
+    if (!FetchedProjects) return null
     if (CurrentUser === undefined) return <LandingPage />
     return (
-        <SprinterForm onSubmit={e=>NewSprintSubmitHandler(e)}>
-      
+        <SprinterForm onSubmit={e => NewSprintSubmitHandler(e)}>
             <input onChange={e => NewSprintChangeHandler(e)} name="sprint_title" placeholder="Please add your Sprint's title" value={NewSprint.sprint_title} ></input>
-         
             <textarea onChange={e => NewSprintChangeHandler(e)} name="sprint_data" placeholder="Please add your Sprint's details" value={NewSprint.sprint_details} ></textarea>
-
-
             <>
-
-              
                 <select name="urgency" onChange={NewSprintChangeHandler}>
                     <option value="0">please Select a Urgency</option>
                     <option value="1">Low</option>
@@ -65,8 +67,6 @@ if(!FetchedProjects) return null
                 </select>
             </>
             <>
-
-             
                 <select name="priority" onChange={NewSprintChangeHandler}>
                     <option value="0">please Select a Urgency</option>
                     <option value="1">Low</option>
@@ -74,16 +74,15 @@ if(!FetchedProjects) return null
                     <option value="3">High</option>
                 </select>
             </>
-
+            {NewSprint.urgency * NewSprint.priority ===9 ? <p className='Warning'> Warning you are sending a priority one request all team members will be emailed </p>: null}
             <div>
-
                 <select name="project_id" onChange={NewSprintChangeHandler}>
-           {FetchedProjects.map((project)=> <option value={project.id}>{project.name}</option>)}
+                    {FetchedProjects.map((project) => <option value={project.id}>{project.name}</option>)}
                 </select>
-    </div>
+            </div>
             <label>Goal Date</label>
-            <input type="datetime-local" onChange={e => NewSprintChangeHandler(e)} name="goal_date"value={NewSprint.goal_date} ></input>
-<button type="submit">Submit</button>
+            <input type="datetime-local" onChange={e => NewSprintChangeHandler(e)} name="goal_date" value={NewSprint.goal_date} ></input>
+            <button type="submit">Submit</button>
         </SprinterForm>
     )
 }
@@ -117,8 +116,8 @@ color: #e3e4e6;
     background-color: rgba(255,255,255,0.07);
   padding: 12px;
   border-radius: 3px;
-  width: 250px;
-  height:2em;
+  width: 380px;
+  height:4em;
   font-size: 14px;
   margin-top: 1em;
   color:white;

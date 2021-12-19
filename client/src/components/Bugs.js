@@ -17,7 +17,7 @@ function Bugs({ bug, setDOMUpdater }) {
         })
         const data = await r.json()
         if (r.ok) {
-          
+
         }
         else { alert(data.error) }
         setDOMUpdater(Math.random())

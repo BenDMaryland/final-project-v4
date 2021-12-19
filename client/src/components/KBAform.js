@@ -1,6 +1,6 @@
-import React, {  useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw  } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
@@ -24,7 +24,7 @@ function KBAform() {
     })
 
     function NewKbaChangleHandler(e) {
-      
+
         setkbaFormData(data => data = { ...data, [e.target.name]: e.target.value })
 
     }
@@ -36,11 +36,11 @@ function KBAform() {
         const data = editorState.getCurrentContent();
         await submitPage(data);
     }
-        // const content = JSON.stringify(convertToRaw(editorState))
-     
+    // const content = JSON.stringify(convertToRaw(editorState))
 
-        const submitPage = async (data) => {
-            const content = JSON.stringify(convertToRaw(data));
+
+    const submitPage = async (data) => {
+        const content = JSON.stringify(convertToRaw(data));
         const response = await fetch(`/kbas/`, {
             method: 'POST',
             headers: {
@@ -52,10 +52,10 @@ function KBAform() {
                     "kba_title": kbaFormData.kba_title,
                     "category": kbaFormData.category,
                     'kbatext': content
-          }
+                }
             )
         });
-  
+
 
         if (response.ok) {
             console.log("ok")
@@ -66,7 +66,7 @@ function KBAform() {
 
 
     return (
-        <EditContainer onSubmit={ kbaSubmitHandler} >
+        <EditContainer onSubmit={kbaSubmitHandler} >
             <input name='kba_title' placeholder="Title" value={kbaFormData.kba_title} onChange={NewKbaChangleHandler}   ></input>
             <input name='category' placeholder="Category" value={kbaFormData.category} onChange={NewKbaChangleHandler}   ></input>
 

@@ -62,7 +62,8 @@ return (
                 <h1>{fetchedSprint.sprint_title} </h1>
                 <h3>{fetchedSprint.sprint_data}</h3>
                 <p>Total Impact {fetchedSprint.impact}</p>
-                <p>{fetchedSprint.goal_date}</p>
+                <p>Goal date{fetchedSprint.goal_date}</p>
+            
                 <p> Created by: {fetchedSprint.created_by.name}</p>
                 {CurrentUser.level == 0 ? null : <button onClick={e => sprintEditSelector(e)}>Edit Sprint</button>}
                 {EditSprint ? <SprintEdit setEditSprint={setEditSprint} fetchedSprint={fetchedSprint} /> : null}

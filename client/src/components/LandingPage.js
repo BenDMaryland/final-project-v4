@@ -1,19 +1,38 @@
-import React,{useState} from 'react'
+import { useState, useContext } from 'react'
 import Login from './Login'
 import Signup from './Signup'
-import styled from 'styled-components'
+import { CurrentUserContext } from '../custom/CurrentUser';
+import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
 
-function LandingPage() {
+function LandingPage({setDOMUpdater }) {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
 
     return (
         <Lander>
             <h1 >Welcome to Agile Solutions!</h1>
-        <div className='modal'>
-           
-            <Login />
-            <Signup />
-        </div>
+            <div className='modal'>
+
+                {!CurrentUser ? <>  <Login setDOMUpdater={setDOMUpdater} /> <Signup setDOMUpdater={setDOMUpdater}/>  </>
+                    :
+                        <>
+                            <h2>Welcome to Agile Solutions </h2>
+                            <h3>New user info</h3>
+                            <p>As a new user your access is limited until a manager approves your access</p>
+                            <p> If you'd like full access please an Admin account, the default value for login should grant you full access</p>
+                         
+                           <h3>Sprints</h3>
+                            <p>This a program management software that allows users to manage projects as well as indivudual sprints </p>
+<p>Please check the Sprints tab to access all current sprints </p>
+<p> To progress a sprint just drag it to the correct location</p>
+<p> For more information please click the sprint to be taken to that sprints page, where you can leave comments</p>
+<h3>Boss stuff</h3>
+<p>If you're account is a boss account you can check the project tab to check on the status on individual projects </p>
+<p> You can also click on the users tab to check individual users progress</p>
+                        </>             
+                }
+            </div>
         </Lander>
     )
 }
@@ -60,7 +79,7 @@ h1{
  
 }
 button{
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
     background-color: #8b949e;
     color: #080710;

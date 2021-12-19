@@ -6,8 +6,8 @@ import styled from "styled-components";
 
 function Kbas() {
 
-let location= useLocation()
-const [KbaData, setKbaData] = useState(null)
+    let location = useLocation()
+    const [KbaData, setKbaData] = useState(null)
 
 
     useEffect(() => {
@@ -17,15 +17,14 @@ const [KbaData, setKbaData] = useState(null)
     }, [location.pathname]);
 
 
-    console.log(location.pathname)
+   
 
 
 
 
 
 
-
-if(!KbaData) return null
+    if (!KbaData) return null
     const contentState = convertFromRaw(JSON.parse(KbaData.kbatext))
     const editorState = EditorState.createWithContent(contentState)
 

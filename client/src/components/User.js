@@ -44,14 +44,14 @@ function User() {
         }
     }
     async function UserFireHandler() {
-        // const r = await fetch(`/user/${FetchedUser.id}`, {
-        //     method: "DELETE",
-        // })
-        // const data = await r.json()
-        // if (r.ok) {
-        //     console.log("ok!")
-        // }
-        // else { alert(data.error) }
+        const r = await fetch(`/users/${FetchedUser.id}`, {
+            method: "DELETE",
+        })
+        const data = await r.json()
+        if (r.ok) {
+            console.log("ok!")
+        }
+        else { alert(data.error) }
 
     }
 

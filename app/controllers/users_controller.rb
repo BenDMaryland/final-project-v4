@@ -45,12 +45,16 @@ end
 
 
 def index
-
    return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.boss
    render json: User.all 
-
 end
 
+def destroy
+user =   User.find(params[:id])
+byebug
+return render json: { error: "Not authorized" }, status: :unauthorized  unless ( current_user.level  ==2    )
+user.destroy
+end
 
 
     private 

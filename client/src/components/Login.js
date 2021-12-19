@@ -1,14 +1,16 @@
 import { useState, useContext } from 'react'
 import { CurrentUserContext } from '../custom/CurrentUser';
 import styled from 'styled-components';
-function Login() {
-    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+import { useNavigate } from "react-router-dom";
 
+function Login({ setDOMUpdater}) {
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+    let navigate = useNavigate();
 
 
     const [UserLogin, setUserLogin] = useState({
-        username: "",
-        password: ""
+        username: "BenDMaryland",
+        password: "123"
     });
 
     async function handleLoginSubmit(e) {
@@ -19,12 +21,13 @@ function Login() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(UserLogin),
-
+            
         })
         const data = await response.json();
 
         if (response.ok) {
             setCurrentUser(data)
+            setDOMUpdater(Math.random())
         } else {
             alert(data.error)
         }
@@ -45,9 +48,9 @@ function Login() {
             <h2>Login!</h2>
             < form onSubmit={handleLoginSubmit}>
 
-               <input placeholder='Username' type='text' name="username" value={UserLogin.username} onChange={handleLoginChange} required></input>
+                <input  type='text' name="username" value={UserLogin.username} onChange={handleLoginChange} required></input>
                 <input type='password' name="password" value={UserLogin.password} onChange={handleLoginChange} required></input>
-                 <button >Login</button>
+                <button >Login</button>
             </form>
         </Signer>
     )

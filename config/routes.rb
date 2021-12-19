@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :features
   resources :bugs
-  resources :users, only: [:index, :create, :show, :update, :destroy]
+  resources :users
   resources :sprints
   resources :projects
   resources :kbas

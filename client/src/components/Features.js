@@ -21,7 +21,7 @@ function Features({ feature, setDOMUpdater }) {
         }
         else { alert(data.error) }
     }
-    
+
 
     async function featureEditHandler(e) {
 

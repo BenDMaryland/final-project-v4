@@ -27,8 +27,8 @@ function AllProjects({ FetchedProjects }) {
                     <p>Total sprints: {project.all_sprints} </p>
                     <p> Completed Sprints:  {project.completed_sprints} </p>
                     <p> Goal Dates Missed: {project.missed_goals}</p>
-                    <p> Goals not yet missed : {project.all_sprints - project.missed_goals - project.completed_sprints }</p>
-               
+                    <p> Goals not yet missed : {project.all_sprints - project.missed_goals - project.completed_sprints}</p>
+
                     <BarChart
                         width={500}
                         height={300}
@@ -48,19 +48,19 @@ function AllProjects({ FetchedProjects }) {
                         <Bar dataKey="created" fill="#8884d8" />
                         <Bar dataKey="completed" fill="#82ca9d" />
                     </BarChart>
-                  
+
 
 
                     <Chart
                         width={'500px'}
                         height={'300px'}
-                        
+
                         chartType="PieChart"
                         loader={<div>Loading Chart</div>}
                         data={[
                             ['Task', 'Hours per Day'],
                             ['Goal has not yet Occured', project.goal_not_yet_occured],
-                            ['Goal  Missed',  project.missed_goals ],
+                            ['Goal  Missed', project.missed_goals],
                             ['Goals achieved', project.goals_acheieved],
 
                         ]}
@@ -71,14 +71,15 @@ function AllProjects({ FetchedProjects }) {
                             legend: {
                                 textStyle: {
                                     color: 'white'
-                                }},
+                                }
+                            },
                             color: "white",
                             title: 'Project performance',
                             backgroundColor: {
                                 fill: '#323232',
                                 fillOpacity: 0.8
                             }
-                            
+
                         }}
                         rootProps={{ 'data-testid': '1' }}
                     />

@@ -60,8 +60,9 @@ function Home({ fetchedSprints, setDOMUpdater }) {
 
     }
 
-
+console.log(CurrentUser)
     if (CurrentUser === undefined) return <LandingPage />
+    if (CurrentUser === null) return <LandingPage />
     if (!fetchedSprints) return null
     if (fetchedSprints.length == undefined) return null
     else {

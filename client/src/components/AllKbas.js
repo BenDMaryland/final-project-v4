@@ -7,25 +7,25 @@ import styled from "styled-components";
 
 function AllKbas() {
     const [FetchedKbas, setFetchedKbas] = useState(null)
-const [FilteredSearch, setFilteredSearch] = useState("")
+    const [FilteredSearch, setFilteredSearch] = useState("")
     useEffect(() => {
         fetch(`/kbas`)
             .then((r) => r.json())
             .then((data) => setFetchedKbas(data))
     }, []);
 
-function searchHandler(e){
-    setFilteredSearch(e.target.value)
+    function searchHandler(e) {
+        setFilteredSearch(e.target.value)
 
 
-}
+    }
 
     if (!FetchedKbas) return null
 
 
     return (
         <div>
-            <input onChange={e=>searchHandler(e)} value={FilteredSearch} type="search"></input>
+            <input onChange={e => searchHandler(e)} value={FilteredSearch} type="search"></input>
             <CardContainer>
 
                 {FetchedKbas.filter((kba) => kba.kba_title.toLowerCase().includes(FilteredSearch.toLowerCase()) || kba.kbatext.toLowerCase().includes(FilteredSearch.toLowerCase()) || kba.category.toLowerCase().includes(FilteredSearch.toLowerCase())).map((kba) => {

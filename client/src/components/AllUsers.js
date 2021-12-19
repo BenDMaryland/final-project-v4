@@ -33,7 +33,7 @@ function AllUsers() {
     return (
         <UserContainer>
 
-            <div className='performance_tab'> 
+            <div className='performance_tab'>
                 <BarChart
                     width={800}
                     height={300}
@@ -49,7 +49,7 @@ function AllUsers() {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-               
+
                     <Legend />
                     <Bar dataKey="assigned_tickets" fill="#8884d8" />
                     <Bar dataKey="goals_exceeded" fill="#f26d70" />
@@ -62,7 +62,7 @@ function AllUsers() {
                 {FetchedUsers.map((user) =>
 
                     <div key={user.id} className="card">
-                    
+
                         <h2>{user.name}</h2>
                         <h2>Role: {user.role}</h2>
                         <p>Level: {user.level}</p>

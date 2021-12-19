@@ -1,21 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
-import {  useLocation } from 'react-router-dom'
+import {  useLocation,useNavigate } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import SideBar from "./components/SideBar";
-
-
 import { CurrentUserContext } from './custom/CurrentUser';
 import styled from 'styled-components';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import TopNav from './components/TopNav';
 
 
 function App() {
+  const navigate = useNavigate()
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation()
+
   const [FetchedProjects, setFetchedProjects] = useState([])
-  const [FilteredSprints, setFilteredSprints] = useState([])
 const [ActiveProjectid, setActiveProjectid] = useState(1)
 const[currentUserFilter, setCurrentUserFilter] =useState(false)
 const [changeBackground, setchangeBackground] = useState(1)
@@ -74,6 +74,7 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
       .then((r) => {
         if (r.ok) { setCurrentUser(); }
       });
+    navigate('/')
   }
 
 function projectFilter(props){
@@ -91,15 +92,22 @@ function changeBackgroundHandler(){
 
 
 
+// 
+
+
   // Grabing Sprints Index 
 
   return (
       <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
-      
+ 
     <DndProvider backend={HTML5Backend}>
+        <TopNav handleLogout={handleLogout}/>
+    
         <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
-        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
    
+        <div>
+        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
+      </div>
    </DndProvider >
      </FullPage >
   );
@@ -109,6 +117,8 @@ function changeBackgroundHandler(){
 export default App;
 
 const FullPage = styled.div`
+
+
 font-family: 'Montserrat', sans-serif;
 height: 100vh;
 .scrollbar-hidden::-webkit-scrollbar {
@@ -117,4 +127,8 @@ height: 100vh;
 
   background-repeat: no-repeat;
   background-size: cover;
+
+
+
+
 `

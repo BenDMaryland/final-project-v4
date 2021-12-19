@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
 
+
 import { CurrentUserContext } from '../custom/CurrentUser'
 function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, projectFilter, setCurrentUserFilter, currentUserFilter }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
@@ -13,8 +14,7 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
     if (!FetchedProjects) return null
 
     return (
-        <SideNav>
-
+        <SideNav >
 
 
 
@@ -24,8 +24,8 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
 
                 <div className='currentUser'>
                     <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
-                    <div className='dropdowncontainer'> 
-                    <label>Sprints</label>   <select   onClick={() => setshowSprintOptions(!showSprintOptions)} className='dropdown' ></select>
+                    <div className='dropdowncontainer'>
+                        <label>Sprints</label>   <select onClick={() => setshowSprintOptions(!showSprintOptions)} className='dropdown' ></select>
                     </div>
                     {showSprintOptions ?
                         <div className='dropeddown'>
@@ -34,8 +34,8 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
                         </div>
 
                         : null}
-                    <div className='dropdowncontainer'> 
-                    <label>Filtering</label> <select onClick={() => setshowFilterOptions(!showFilterOptions)} className='dropdown' ></select>
+                    <div className='dropdowncontainer'>
+                        <label>Filtering</label> <select onClick={() => setshowFilterOptions(!showFilterOptions)} className='dropdown' ></select>
                     </div>
                     {showFilterOptions ?
                         <div className='dropeddown'>
@@ -47,9 +47,9 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
                         </div>
                         :
                         null}
-                    <div className='dropdowncontainer'> 
-                    <label>kba </label>     <select onClick={() => setshowKbaOptions(!showKbaOptions)} className='dropdown' >kba options</select>
-                   </div>
+                    <div className='dropdowncontainer'>
+                        <label>kba </label>     <select onClick={() => setshowKbaOptions(!showKbaOptions)} className='dropdown' >kba options</select>
+                    </div>
                     {showKbaOptions ?
                         <div className='dropeddown'>
                             <Link className="nav-link" to="/newkba"><button color="inherit">Add a Kba</button></Link>
@@ -63,8 +63,9 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
                     {CurrentUser.boss ?
 
                         <div className='boss_menu'>
-
-                            <button className='dropdown' onClick={() => setshowBossOptions(!showBossOptions)} >Boss optinms </button>
+                            <div className='dropdowncontainer'>
+                                <label>Boss </label>     <select onClick={() => setshowBossOptions(!showBossOptions)} className='dropdown' >s</select>
+                            </div>
                             {showBossOptions ?
                                 <div>
                                     <Link className="nav-link" to="/projects"><button color="inherit">Projects  </button></Link>
@@ -87,7 +88,7 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
 
 
 
-            <button onClick={() => changeBackgroundHandler()}>cycle background</button>
+            <button onClick={() => changeBackgroundHandler()}>Cycle Background</button>
 
         </SideNav>
     )
@@ -96,11 +97,14 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
 export default SideBar
 
 const SideNav = styled.nav`
+
+
+
 position: fixed;
 left: 2px;
 top:20%;
 height: 50%;
-width: 10%;
+width: 12%;
 background-color: #323232;
 color: white;
 display: block;
@@ -128,9 +132,7 @@ color: #ffffff;
  .dropdowncontainer{
 display: grid;
 grid-template-columns: 4fr 1fr;
-
-
-              }
+   }
 
 
 label{
