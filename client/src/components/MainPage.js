@@ -36,8 +36,9 @@ function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects }) {
 export default MainPage
 
 const MainSection = styled.div`
-margin-left: 12%;
+margin-left: 10%;
 height: 97vh;
 margin-top:3vh;
-
+width:88%;
+position: absolute;
 `

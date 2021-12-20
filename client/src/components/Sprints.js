@@ -87,7 +87,7 @@ function Sprints() {
                     {CurrentUser.level === 2 || fetchedSprint.created_by.id === CurrentUser.id ? <button onClick={() => sprintDeleteHandler()}>Delete</button> : null}
 
                     <select name="subsprint" onChange={e => subSprintSelector(e)}>
-                        <option value="0">Make a new subsprint</option>
+                        <option value="0">Add SubSprint</option>
                         <option value="bug">Bug</option>
                         <option value="feature">Feature</option>
                         <option value="comment">Comment</option>
@@ -128,65 +128,60 @@ export default Sprints
 
 const FullContainer = styled.div`
 position: absolute;
-width: 90%;
+width: 100%;
 height:100%;
+overflow: scroll;
+overflow-x: hidden;
+margin-right:20px;
 
 h1{
-
            font-family: 'Montserrat', sans-serif;
            color: white;
            text-shadow: 2px 2px 4px #000000;
 text-align:center;
 }
 `
-
 const CardContainer = styled.div`
 width: 100%;
 display: grid;
 grid-template-columns:repeat(3, 1fr );
 height: 100%;
-margin:auto;
 height: 100%;
-margin: auto;
 top: 400px;
 position: absolute;
-z-index:1;
-width: 100%;
-
 .card{
-margin: 2%;
-display: grid;
+margin-left:4px;
+
 grid-template-columns:repeat(1, 1fr );}
-
-
-
 `
 const SprintContainer = styled.div`
  text-align:center;
 color: #e3e4e6;
-   height: 300px;
+   height: 350px;
     z-index: 99;
     width: 600px;
     background-color: #323232;
     position: absolute;
-   
     top: 2%;
-    left: 10%;
+    left: 50%;
+       transform: translate(-50%);
    opacity: 1;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
+    padding: 5px 35px;
     padding-top:1em;
-    border-radius: 20px;
+    display: grid;
+
     .moreinfo{
 display: grid;
 grid-template-columns:repeat(2, 1fr );}
 
 .editoptions{
 display: grid;
-grid-template-columns:repeat(3, 1fr );
+grid-template-columns:repeat(1, 1fr  );
 
+}
 
 button,select{
 padding: 20px;
@@ -197,7 +192,10 @@ padding: 20px;
   background: #323232;
   border:none;
   color: #999;
+  
+    text-align: center;
     cursor: pointer;
 }
-}
+
+
 `

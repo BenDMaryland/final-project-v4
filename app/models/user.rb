@@ -33,6 +33,11 @@ end
  self.assigned_to.sort_by {|sprint| sprint.impact }.last  
  end
 
+ def slugify 
+self.slug = username.parameterize 
+self.progress  = 0
+self.completed = false
+end
 
 
 def   assigned_to_goal_exceeded 

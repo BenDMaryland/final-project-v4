@@ -104,7 +104,7 @@ position: fixed;
 left: 2px;
 top:20%;
 height: 50%;
-width: 12%;
+width: 10%;
 background-color: #323232;
 color: white;
 display: block;

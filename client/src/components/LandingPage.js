@@ -49,12 +49,12 @@ h1{
 }
 .modal{color: #e3e4e6;
    height: 800px;
-    width: 400px;
+      width: 600px;
     background-color: #323232;
     position: absolute;
-    transform: translate(-50%,-50%);
+   transform: translate(-50%,-50%);
     top: 50%;
-    left: 55%;
+    left: 50%;
    opacity: 1;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);

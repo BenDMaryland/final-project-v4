@@ -11,6 +11,13 @@ belongs_to :project
   has_many :features, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+
+
+   validates :sprint_title, :sprint_data, :goal_date, presence: true 
+  validates :sprint_title, uniqueness: true 
+
+
+
 def slugify 
 self.slug = sprint_title.parameterize 
 self.progress  = 0

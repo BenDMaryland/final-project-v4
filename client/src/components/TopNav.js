@@ -35,10 +35,9 @@ margin:8px;
     font-weight: 600;
   background: #323232;
   border:none;
-  color: #999;
+  color: #999;}
 
 
-}
 button{
 padding: 20px;
 padding: 12px 0;

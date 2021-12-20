@@ -27,10 +27,10 @@ function AllProjects({ FetchedProjects }) {
                     <p>Total sprints: {project.all_sprints} </p>
                     <p> Completed Sprints:  {project.completed_sprints} </p>
                     <p> Goal Dates Missed: {project.missed_goals}</p>
-                    <p> Goals not yet missed : {project.all_sprints - project.missed_goals - project.completed_sprints}</p>
+                    <p> Goals not yet missed : {project.goal_not_yet_occured}</p>
 
                     <BarChart
-                        width={500}
+                        width={600}
                         height={300}
                         data={project.created_and_completed_sprints_total_amount}
                         margin={{

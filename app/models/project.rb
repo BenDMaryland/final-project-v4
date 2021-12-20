@@ -39,23 +39,6 @@ end
 
 
 
-#Please remeber to refactor before you show anyone 
-# def created_and_completed_this_week
-# completed_sprints = self.sprints.filter{|sprint| sprint.completed }
-#    sunday  = {name: "sunday", created: self.sprints.filter{|sprint| sprint.created_at.sunday? }.count,  completed:  completed_sprints .filter{|sprint| sprint.completed_at.sunday? }.count } 
-#    monday = {name: "monday", created: self.sprints.filter{|sprint| sprint.created_at.monday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.monday? }.count } 
-#    tuesday  = {name: "tuesday", created: self.sprints.filter{|sprint| sprint.created_at.tuesday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.tuesday? }.count } 
-#    wednesday = { name: "wednesday",created: self.sprints.filter{|sprint| sprint.created_at.wednesday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.wednesday? }.count } 
-#    thursday  = {name: "thursday", created: self.sprints.filter{|sprint| sprint.created_at.thursday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.thursday? }.count } 
-#    friday = {name: "friday", created: self.sprints.filter{|sprint| sprint.created_at.friday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.friday? }.count } 
-#    saturday = {name: "saturday", created: self.sprints.filter{|sprint| sprint.created_at.saturday? }.count, completed:  completed_sprints .filter{|sprint| sprint.completed_at.saturday? }.count } 
-# week = [sunday, monday,tuesday,wednesday,thursday,friday,saturday]
-# end
-
-#Please remeber to refactor before you show anyone 
-#Please remeber to refactor before you show anyone 
-#Please remeber to refactor before you show anyone 
-#Please remeber to refactor before you show anyone 
 def  created_and_completed_sprints_total_amount
 
  start_of_week=  Date.today.beginning_of_week
@@ -81,7 +64,7 @@ saturday_last_week = {name: "7", created: made_last_week.filter{|sprint| sprint.
    wednesday = { name: "11",created: made_during_this_week.filter{|sprint| sprint.created_at.wednesday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.wednesday? }.count } 
    thursday  = {name: "12", created: made_during_this_week.filter{|sprint| sprint.created_at.thursday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.thursday? }.count } 
    friday = {name: "13", created: made_during_this_week.filter{|sprint| sprint.created_at.friday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.friday? }.count } 
-   saturday = {name: "saturday", created: made_during_this_week.filter{|sprint| sprint.created_at.saturday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.saturday? }.count } 
+   saturday = {name: "14", created: made_during_this_week.filter{|sprint| sprint.created_at.saturday? }.count, completed:  completed_during_this_week .filter{|sprint| sprint.completed_at.saturday? }.count } 
 
 week = [sunday_last_week,    monday_last_week,   tuesday_last_week,   wednesday_last_week,   thursday_last_week,  friday_last_week,   saturday_last_week ,  sunday,   monday,   tuesday,  wednesday,   thursday,  friday,   saturday]
 end

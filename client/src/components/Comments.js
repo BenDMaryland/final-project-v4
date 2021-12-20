@@ -49,7 +49,7 @@ function Comments({ comment, setDOMUpdater }) {
             <h2>{comment.comment_details}</h2>
             <p>{comment.created_by.name} </p>
 
-            {CurrentUser.level >= 1 ? <><label>completed</label>  <input onChange={e => commentEditHandler(e)} defaultChecked={comment.completed} type="checkbox" ></input> </> : <p> no edit </p>}
+            {CurrentUser.level >= 1 ? <><label>completed<input onChange={e => commentEditHandler(e)} defaultChecked={comment.completed} type="checkbox" ></input></label>   </> : <p> no edit </p>}
             {CurrentUser.level === 2 || comment.created_by.id === CurrentUser.id ? <button onClick={() => CommentDeleteHandler()}>you can delete</button> : <p>You can't delete </p>}
         </Card>
     )
@@ -60,9 +60,11 @@ export default Comments
 
 const Card = styled.div`
 border: solid;
-
+display: grid;
 color: #e3e4e6;
-
+h2{
+    text-align:center;
+}
     
     background-color: #323232;
    opacity: 1;
@@ -71,6 +73,36 @@ color: #e3e4e6;
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
     padding-top:1em;
-    border-radius: 20px;
+    height:300px;
+    margin-bottom:5px;
+input{
+
+  background-color: #fff;
+
+  margin: 1;
+  font: inherit;
+  color: currentColor;
+
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+}
+
+button{
+padding: 20px;
+padding: 12px 0;
+ font-size: 18px;
+font-weight: 600;
+  background: #323232;
+
+  color: #999;
+    cursor: pointer;
+}
+button:hover,button:focus {
+text-decoration:none;
+background:#5fa2db;
+color: #ffffff;
+}
 
 `

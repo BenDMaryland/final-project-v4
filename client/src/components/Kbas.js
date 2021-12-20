@@ -49,10 +49,13 @@ const Card = styled.div`
 h2{
     text-align:center;
 }
+font-family: 'Roboto', sans-serif;
 
+overflow: scroll;
+overflow-x:hidden;
 color: #e3e4e6;
    height: 70vh;
-    width: 80vw;
+    width: 75vw;
     background-color: #323232;
     position: absolute;
     transform: translate(-50%,-50%);
@@ -64,7 +67,7 @@ color: #e3e4e6;
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
     padding-top:1em;
-    border-radius: 20px;
+
 
 
 `

@@ -88,20 +88,38 @@ export default KBAform
 const EditContainer = styled.form`
 color: #e3e4e6;
    height: 70vh;
-    width: 80vw;
+    width: 60vw;
     background-color: #323232;
     position: absolute;
-    transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
     top: 50%;
-    left: 55%;
+    left: 50%;
    opacity: 1;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
     padding-top:1em;
-    border-radius: 20px;
+    overflow: scroll;
+    overflow-x:hidden;
+    /* border-radius: 20px; */
 
+      input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+    background-color: rgba(255,255,255,0.07);
+  padding: 12px;
+  border-radius: 3px;
+  width: 580px;
+  height:4em;
+  font-size: 14px;
+  margin-top: 1em;
+  color:white;
+ resize:none;
+}
 .demo-toolbar-custom{
 background-color: #36393F;
     color: black;

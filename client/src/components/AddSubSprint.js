@@ -98,12 +98,13 @@ export default AddSubSprint
 const SubSprintForm = styled.form`
 
 color: #e3e4e6;
-   height: 600px;
+   height: 400px;
     width: 600px;
     background-color: #323232;
     position: absolute;
-    top:400px;
-
+  transform: translate(-50%);
+    top: 130%;
+    left: 50%;
    opacity: 1;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -111,10 +112,11 @@ color: #e3e4e6;
     padding: 50px 35px;
     padding-top:1em;
     z-index: 99;
-    border-radius: 20px;
+ 
+display: grid;
+grid-template-columns:repeat(1, 1fr );}
 
 
-    .inputs{
    input,textarea {
          
   border: none;
@@ -125,8 +127,8 @@ color: #e3e4e6;
     background-color: rgba(255,255,255,0.07);
   padding: 12px;
   border-radius: 3px;
-  width: 250px;
-  height:2em;
+  width: 550px;
+  height:6em;
   font-size: 14px;
   margin-top: 1em;
   color:white;
@@ -134,6 +136,8 @@ color: #e3e4e6;
 }
 button{
     margin-top: 20px;
+    position: relative;
+    bottom: 2px;
     width: 100%;
     background-color: #8b949e;
     color: #080710;

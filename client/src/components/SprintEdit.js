@@ -48,12 +48,12 @@ if(!fetchedSprint) return null
 
             <>
                 <div>
-                    <label>Sprint Title</label>
-                    <input onChange={e => SprintEditChangeHandler(e)} name="sprint_title" placeholder={SprintEdit.sprint_title} value={SprintEdit.sprint_title} ></input>
+            
+                    <input  className="main" onChange={e => SprintEditChangeHandler(e)} name="sprint_title" placeholder={SprintEdit.sprint_title} value={SprintEdit.sprint_title} ></input>
                 </div>
 
-                <label>Sprint Details </label>
-                <textarea onChange={e => SprintEditChangeHandler(e)} name="sprint_data" placeholder={SprintEdit.sprint_data} value={SprintEdit.sprint_data} ></textarea>
+          
+                <textarea className="main" onChange={e => SprintEditChangeHandler(e)} name="sprint_data" placeholder={SprintEdit.sprint_data} value={SprintEdit.sprint_data} ></textarea>
             </>
 
 
@@ -62,9 +62,9 @@ if(!fetchedSprint) return null
                 <div className="radios">
                     <label> Urgency:</label>
                     <div className="radio_btns" onChange={SprintEditChangeHandler}>
-                        <label className="radio">Low</label> <input defaultChecked={fetchedSprint.urgency === 1} name="urgency" type="radio" value={1}></input>
-                        <label className="radio">Medium</label> <input defaultChecked={fetchedSprint.urgency === 2} name="urgency" type="radio" value={2}></input>
-                        <label className="radio" >high</label> <input defaultChecked={fetchedSprint.urgency === 3} name="urgency" type="radio" value={3}></input>
+                        <label className="radio">Low <input defaultChecked={fetchedSprint.urgency === 1} name="urgency" type="radio" value={1}></input></label>
+                        <label className="radio">Medium <input defaultChecked={fetchedSprint.urgency === 2} name="urgency" type="radio" value={2}></input></label>
+                        <label className="radio" >high <input defaultChecked={fetchedSprint.urgency === 3} name="urgency" type="radio" value={3}></input></label>
                     </div>
                 </div>
 
@@ -92,33 +92,47 @@ export default SprintEdit
 
 const SprintEditForm = styled.form`
 
-display: grid;
-  width: 500px;
- height: 500px;
-  border: 2px solid #ccc;
-  transition: 1.1s ease-out;
-box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  filter: blur(0);
-  transform: scale(1);
-  opacity: 1;
-  visibility: visible;
-  position: absolute;
-   left: 257px;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-border-radius: 25px;
-    background: #eee;
-
-textarea {
-  width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  resize: none;
+color: #e3e4e6;
+   height: 400px;
+    width: 600px;
+    background-color: #323232;
+    position: absolute;
+  transform: translate(-50%,-50%);
+    top: 170%;
+    left: 50%;
+   opacity: 1;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+    padding-top:1em;
+    /* border-radius: 20px; */
+  .main {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+    background-color: rgba(255,255,255,0.07);
+  padding: 12px;
+  border-radius: 3px;
+  width: 580px;
+  height:4em;
+  font-size: 14px;
+  margin-top: 1em;
+  color:white;
+ resize:none;
+}
+button,select{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #8b949e;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .radio_container{
@@ -136,6 +150,7 @@ grid-template-columns:repeat(2, 1fr );
 }
 .radio{
 display: inline;
+align-self:end;
 }
 
 label{
