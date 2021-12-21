@@ -8,9 +8,7 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) 
     const [NewSubSprint, setNewSubSprint] = useState({
         urgency: "1",
         priority: "1"
-
     })
-
 
     function NewSubSprintChangeHandler(e) {
         setNewSubSprint({ ...NewSubSprint, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id, ["sprint_id"]: id });
@@ -38,56 +36,21 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) 
         setDOMUpdater(Math.random())
     }
 
-
     return (
-
-
         <SubSprintForm onSubmit={e => NewSubSprintSubmitHandler(e)}>
 
             {SubSprintType === "bug" || SubSprintType === "feature" ?
                 <div className='inputs'>
                     <div>
-                      
                         <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_title`} placeholder={` please add your ${SubSprintType}'s' title`} value={NewSubSprint.title} ></input>
                     </div>
-
-                 
                     <textarea onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_data`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.sprint_data} ></textarea>
                 </div>
                 : // Comments database is different from the Bugs/.Features as such it requires different prompts
                 <>
-            
                     <input onChange={e => NewSubSprintChangeHandler(e)} name={`${SubSprintType}_details`} placeholder={` please add your ${SubSprintType}'s' data`} value={NewSubSprint.details} ></input>
                 </>}
-
-            {/* {SubSprintType === "comment" ? null :
-                <div className="radio_container" >
-                    <div className="radios">
-                        <label> Urgency:</label>
-                        <div className="radio_btns" onChange={NewSubSprintChangeHandler}>
-                            <label className="radio">Low</label> <input name="urgency" type="radio" value="1"></input>
-                            <label className="radio">Medium</label> <input name="urgency" type="radio" value="2"></input>
-                            <label className="radio" >high</label> <input name="urgency" type="radio" value="3"></input>
-                        </div>
-                    </div>
-
-                    <div className="radios">
-
-                        <label> Priority:</label>
-
-                        <div className="radio_btns" onChange={NewSubSprintChangeHandler}>
-                            <label className="radio">Low<input name="priority" type="radio" value="1"></input></label>
-                            <label className="radio">Medium <input name="priority" type="radio" value="2"></input></label>
-                            <label className="radio">high <input name="priority" type="radio" value="3"></input></label>
-                        </div>
-
-                    </div>
-
-                </div>} */}
-            {/* <label>Goal Date</label>
-        <input type="datetime-local" onChange={e => NewSubSprintChangeHandler(e)} name="goal_date" value={NewSubSprint.goal_date} ></input> */}
             <button type="submit">Submit</button>
-
         </SubSprintForm>
 
     )

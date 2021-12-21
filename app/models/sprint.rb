@@ -16,6 +16,16 @@ belongs_to :project
    validates :sprint_title, :sprint_data, :goal_date, presence: true 
   validates :sprint_title, uniqueness: true 
 
+  def related_kba
+sprint_title_includes = Kba.all.filter{|kba|   kba.kba_title.downcase.include? (self.sprint_title.downcase  || self.sprint_data.downcase)}
+sprint_data_includes = Kba.all.filter{|kba|   kba.kbatext.downcase.include? (self.sprint_title.downcase  || self.sprint_data.downcase)}
+kba_title_includes     = Kba.all.filter {|kba|   self.sprint_title.downcase.include?  ( kba.kba_title.downcase   ||  kba.kbatext.downcase)  } 
+kbatext_includes     = Kba.all.filter {|kba|   self.sprint_data.downcase.include?  ( kba.kba_title.downcase   ||  kba.kbatext.downcase) }
+
+ all =kbatext_includes + kba_title_includes   + sprint_data_includes+sprint_title_includes
+ all_id =all.map{|kba| [kba.id, kba.kba_title ]}
+ all_id .uniq
+end
 
 
 def slugify 

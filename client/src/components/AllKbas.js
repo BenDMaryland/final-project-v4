@@ -16,46 +16,33 @@ function AllKbas() {
 
     function searchHandler(e) {
         setFilteredSearch(e.target.value)
-
-
     }
-
     if (!FetchedKbas) return null
-
 
     return (
         <div>
             <input onChange={e => searchHandler(e)} value={FilteredSearch} type="search"></input>
             <CardContainer>
-
                 {FetchedKbas.filter((kba) => kba.kba_title.toLowerCase().includes(FilteredSearch.toLowerCase()) || kba.kbatext.toLowerCase().includes(FilteredSearch.toLowerCase()) || kba.category.toLowerCase().includes(FilteredSearch.toLowerCase())).map((kba) => {
 
                     const contentState = convertFromRaw(JSON.parse(kba.kbatext))
                     const editorState = EditorState.createWithContent(contentState)
-
                     return (
+
                         <div className="card" key={kba.id}>
                             <Link className="nav-link" to={`./${kba.id}`}   >  <h2>{kba.kba_title}</h2>     </Link>
-
                             <Editor
                                 toolbarClassName="demo-toolbar-custom"
                                 wrapperClassName="demo-wrapper"
                                 editorState={editorState}
                                 readOnly={true}
                             />
-
                         </div>
                     )
-
-
                 })}
-
             </CardContainer>
         </div>
     )
-
-
-
 }
 
 export default AllKbas

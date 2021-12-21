@@ -76,18 +76,8 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
                         : null}
                 </div> :
                 <>
-
-
-
                 </>
-
-
-
             }
-
-
-
-
             <button onClick={() => changeBackgroundHandler()}>Cycle Background</button>
 
         </SideNav>

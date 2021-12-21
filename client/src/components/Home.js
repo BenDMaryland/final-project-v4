@@ -28,8 +28,11 @@ function Home({ fetchedSprints, setDOMUpdater }) {
         if (location === 2) {
 
             CompletedComment = prompt('Please enter your completed comment')
+            if (CompletedComment===null){return null}
+console.log(CompletedComment)
             completed = true
             completedby = CurrentUser.id
+
         }
 
 

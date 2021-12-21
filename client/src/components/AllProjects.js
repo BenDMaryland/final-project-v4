@@ -19,9 +19,6 @@ function AllProjects({ FetchedProjects }) {
             {FetchedProjects.map((project) =>
 
                 <div className="project_card">
-
-
-
                     <h2> {project.name}</h2>
                     <h4>{project.summary}</h4>
                     <p>Total sprints: {project.all_sprints} </p>
@@ -33,13 +30,7 @@ function AllProjects({ FetchedProjects }) {
                         width={600}
                         height={300}
                         data={project.created_and_completed_sprints_total_amount}
-                        margin={{
-                            top: 11,
-                            right: 30,
-                            left: 20,
-                            bottom: 5
-                        }}
-                    >
+                        margin={{ top: 11, right: 30, left: 20, bottom: 5 }}    >
                         <CartesianGrid strokeDasharray="2 9" />
                         <XAxis dataKey="name" />
                         <YAxis />
@@ -48,8 +39,6 @@ function AllProjects({ FetchedProjects }) {
                         <Bar dataKey="created" fill="#8884d8" />
                         <Bar dataKey="completed" fill="#82ca9d" />
                     </BarChart>
-
-
 
                     <Chart
                         width={'500px'}
@@ -61,9 +50,7 @@ function AllProjects({ FetchedProjects }) {
                             ['Task', 'Hours per Day'],
                             ['Goal has not yet Occured', project.goal_not_yet_occured],
                             ['Goal  Missed', project.missed_goals],
-                            ['Goals achieved', project.goals_acheieved],
-
-                        ]}
+                            ['Goals achieved', project.goals_acheieved],]}
                         options={{
                             titleTextStyle: {
                                 color: 'white'
@@ -83,9 +70,7 @@ function AllProjects({ FetchedProjects }) {
                         }}
                         rootProps={{ 'data-testid': '1' }}
                     />
-
                 </div>
-
             )}
         </ProjectContainer>
     )

@@ -6,11 +6,6 @@ import { CurrentUserContext } from '../custom/CurrentUser';
 function Bugs({ bug, setDOMUpdater }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
-
-
-
-
-
     async function BugDeleteHandler() {
         const r = await fetch(`/bugs/${bug.id}`, {
             method: "DELETE",
@@ -47,8 +42,6 @@ function Bugs({ bug, setDOMUpdater }) {
         }
         setDOMUpdater(Math.random())
     }
-
-
 
     return (
         <Card>

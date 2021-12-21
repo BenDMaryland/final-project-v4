@@ -14,35 +14,32 @@ function AllUsers() {
         fetch("/users")
             .then((r) => r.json())
             .then((data) => setFetchedUsers(data))
-
     }, [])
     useEffect(() => {
-
         if (CurrentUser) {
             if (CurrentUser.boss)
                 setGraphData(FetchedUsers.map((user) => user.user_evaluation_data))
         }
     }, [FetchedUsers])
 
-
-
+    if (!GraphData) return null
     if (!FetchedUsers) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (!CurrentUser.boss) return <LandingPage />
-
+    console.log(GraphData)
     return (
         <UserContainer>
 
             <div className='performance_tab'>
                 <BarChart
                     width={800}
-                    height={300}
+                    height={400}
                     data={GraphData}
                     margin={{
                         top: 11,
                         right: 30,
                         left: 20,
-                        bottom: 5
+                        bottom: 10
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
@@ -50,19 +47,15 @@ function AllUsers() {
                     <YAxis />
                     <Tooltip />
 
-                    <Legend />
+                    <Legend wrapperStyle={{ top: 25, right: 0 }} />
                     <Bar dataKey="assigned_tickets" fill="#8884d8" />
                     <Bar dataKey="goals_exceeded" fill="#f26d70" />
                     <Bar dataKey="completed_tickets" fill="#82ca9d" />
                 </BarChart>
-
             </div>
             <div className='card_container'>
-
                 {FetchedUsers.map((user) =>
-
                     <div key={user.id} className="card">
-
                         <h2>{user.name}</h2>
                         <h2>Role: {user.role}</h2>
                         <p>Level: {user.level}</p>
