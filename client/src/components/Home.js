@@ -63,7 +63,7 @@ console.log(CompletedComment)
 
     }
 
-console.log(CurrentUser)
+
     if (CurrentUser === undefined) return <LandingPage />
     if (CurrentUser === null) return <LandingPage />
     if (!fetchedSprints) return null
@@ -109,6 +109,7 @@ display: grid;
 grid-template-columns:repeat(3, 1fr );
 overflow: scroll;
 height: 100%;
+overflow-x:hidden;
 
 h2{
          font-family: 'Montserrat', sans-serif;

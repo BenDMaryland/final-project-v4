@@ -8,13 +8,14 @@ function AllSprints({ dragHandler, sprint }) {
 
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
 
+    console.log(sprint)
     if (!sprint) return null
-
+    console.log(sprint)
     return (
         <Card draggable={true} onDragStart={e => dragHandler(e, sprint.id)} name={sprint.id} >
             <div id={sprint.completed ? "green" : sprint.was_goal_date_exceeded ? "red" : "blue"}>
                 <animated.div style={props} >
-                    <Link className="nav-link" to={`./${sprint.slug}`}   >
+                    <Link  draggable={false} className="nav-link" to={`./${sprint.slug}`}   >
                         <h4> {sprint.sprint_title.slice(0, 40)} </h4>
                         <p>Impact:  {sprint.impact}</p>
                         {sprint.assigned_to_name ? <p>{sprint.assigned_to_name}</p> : <p>No one is Working This!</p>}

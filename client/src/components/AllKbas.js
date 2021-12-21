@@ -20,8 +20,8 @@ function AllKbas() {
     if (!FetchedKbas) return null
 
     return (
-        <div>
-            <input onChange={e => searchHandler(e)} value={FilteredSearch} type="search"></input>
+        <WholeContainer>
+            <input placeholder="search" onChange={e => searchHandler(e)} value={FilteredSearch} type="search"></input>
             <CardContainer>
                 {FetchedKbas.filter((kba) => kba.kba_title.toLowerCase().includes(FilteredSearch.toLowerCase()) || kba.kbatext.toLowerCase().includes(FilteredSearch.toLowerCase()) || kba.category.toLowerCase().includes(FilteredSearch.toLowerCase())).map((kba) => {
 
@@ -41,44 +41,65 @@ function AllKbas() {
                     )
                 })}
             </CardContainer>
-        </div>
+        </WholeContainer>
     )
 }
 
 export default AllKbas
 
+const WholeContainer =styled.div`
+
+      input{
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+    background-color:#ffffff;
+  padding: 12px;
+  border-radius: 3px;
+  width: 600px;
+  border:solid;
+  height:4em;
+  font-size: 14px;
+  margin-top: 1em;
+margin-right: 50vw;
+margin-left: 25vw;}
+
+
+`
+
 const CardContainer = styled.div`
 display: grid;
-
 grid-template-columns:repeat(2, 1fr );
-
-
+padding-top:2px;
 .card{
-        border: 2px solid #292d3e;
+        /* border: 2px solid #292d3e; */
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-color: white;
-background-color:#323232;
+color: black;
+background-color:#ffffff;
 padding:1em;
-
-height: 220px;
+height: 29px;
 overflow: hidden;
-padding: 1px;
+padding-top:2px;
 text-align: center;
 width:90%;
-
 margin:10px;
-    box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+    box-shadow: rgb(38 57 77) 0px 20px 30px -10px;}
 a{
-color: black;
-   text-shadow: 2px 2px 4px rgb(38 57 77);
+    color: black;
+
  text-decoration: none;}
    
 a:hover,a:focus {
 text-decoration:none;
 background:#5fa2db;
-color: #ffffff;
-   text-shadow: 2px 2px 4px #000000;
+color: #258be0;
+   text-shadow: 2px 2px 4px rgb(38 57 77);
 }
 
+h2{
+    margin-top:2px;
+}
 
 `

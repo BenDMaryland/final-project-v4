@@ -48,26 +48,43 @@ export default Kbas
 const Card = styled.div`
 h2{
     text-align:center;
-}
-font-family: 'Roboto', sans-serif;
-
-overflow: scroll;
-overflow-x:hidden;
-color: #e3e4e6;
-   height: 70vh;
-    width: 75vw;
-    background-color: #323232;
+}/* color: #e3e4e6; */
+   height: 100%;
+    width: 60vw;
+    background-color: #ffffff;
     position: absolute;
-    transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
     top: 50%;
-    left: 55%;
-   opacity: 1;
-    backdrop-filter: blur(10px);
+    left: 40%;
+   /* opacity: 1;
+    backdrop-filter: blur(10px); */
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
+    /* padding: 50px 35px; */
     padding-top:1em;
+    overflow: scroll;
+    overflow-x:hidden;
+    /* border-radius: 20px; */
 
+      input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+    background-color:#e4e4e4;
+  padding: 12px;
+  border-radius: 3px;
+  width: 580px;
+  border:solid;
+  height:4em;
+  font-size: 14px;
+  margin-top: 1em;
 
-
+ resize:none;
+}
+.demo-toolbar-custom{
+background-color: #323232;
+    /* color: black; */
+}
 `

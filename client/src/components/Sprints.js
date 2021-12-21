@@ -67,7 +67,7 @@ function Sprints() {
 
     if (!fetchedSprint) return null
     if (CurrentUser === undefined) return <LandingPage />
-    console.log(fetchedSprint.related_kba)
+    console.log(fetchedSprint)
     return (
 
         <FullContainer >
@@ -91,11 +91,7 @@ function Sprints() {
                     <div >
                         {fetchedSprint.related_kba ? !showRelatedKba ?
                             <button onClick={() => setshowRelatedKba(true)}>Show Related Kba's</button>
-
-
                             :
-
-
                             <div className='kbaModal'>
                                 {fetchedSprint.related_kba.map((kba) =>
 

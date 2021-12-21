@@ -69,7 +69,7 @@ function KBAform() {
         <EditContainer onSubmit={kbaSubmitHandler} >
             <input name='kba_title' placeholder="Title" value={kbaFormData.kba_title} onChange={NewKbaChangleHandler}   ></input>
             <input name='category' placeholder="Category" value={kbaFormData.category} onChange={NewKbaChangleHandler}   ></input>
-
+            <button type="submit">Submit</button>
             <Editor
                 toolbarClassName="demo-toolbar-custom"
                 wrapperClassName="demo-wrapper"
@@ -77,7 +77,7 @@ function KBAform() {
                 onEditorStateChange={setEditorState}
             />
 
-            <button type="submit">Submit</button>
+          
 
         </EditContainer>
     )
@@ -86,19 +86,19 @@ function KBAform() {
 export default KBAform
 
 const EditContainer = styled.form`
-color: #e3e4e6;
-   height: 70vh;
-    width: 60vw;
-    background-color: #323232;
+/* color: #e3e4e6; */
+   height: 97%;
+    width: 70vw;
+    background-color: #ffffff;
     position: absolute;
   transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
-   opacity: 1;
-    backdrop-filter: blur(10px);
+   /* opacity: 1;
+    backdrop-filter: blur(10px); */
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
+    /* padding: 50px 35px; */
     padding-top:1em;
     overflow: scroll;
     overflow-x:hidden;
@@ -110,18 +110,19 @@ color: #e3e4e6;
   -ms-appearance: none;
   -moz-appearance: none;
   appearance: none;
-    background-color: rgba(255,255,255,0.07);
+    background-color:#e4e4e4;
   padding: 12px;
   border-radius: 3px;
   width: 580px;
+  border:solid;
   height:4em;
   font-size: 14px;
   margin-top: 1em;
-  color:white;
+
  resize:none;
 }
 .demo-toolbar-custom{
-background-color: #36393F;
-    color: black;
+background-color: #323232;
+    /* color: black; */
 }
 `

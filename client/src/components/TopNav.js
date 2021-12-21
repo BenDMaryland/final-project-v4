@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 function TopNav({ handleLogout }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
-    console.log(CurrentUser)
     return (
         <TopBar>
             {CurrentUser ?

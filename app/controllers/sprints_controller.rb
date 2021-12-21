@@ -5,7 +5,7 @@ before_action :authorize
     def index 
         sprints = Sprint.all
         sprints =sprints.sort_by{|sprint| sprint.impact}.reverse
-        render json: sprints
+        render json: sprints, each_serializer: SprintIndexSerializer
     end
 
     def show 
