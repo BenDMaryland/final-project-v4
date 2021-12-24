@@ -49,13 +49,14 @@ const Card = styled.div`
 h2{
     text-align:center;
 }/* color: #e3e4e6; */
-   height: 100%;
-    width: 60vw;
+      height: 97%;
+      width: 70vw;
     background-color: #ffffff;
     position: absolute;
   transform: translate(-50%,-50%);
     top: 50%;
-    left: 40%;
+    left: 50%;
+    padding: 2em;
    /* opacity: 1;
     backdrop-filter: blur(10px); */
     border: 2px solid rgba(255,255,255,0.1);

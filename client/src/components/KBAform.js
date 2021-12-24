@@ -94,7 +94,7 @@ const EditContainer = styled.form`
   transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
-   /* opacity: 1;
+    padding: 2em;
     backdrop-filter: blur(10px); */
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
