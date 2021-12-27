@@ -5,13 +5,26 @@ before_action :authorize
 
 
       def create
-        user = User.create!(user_params)
-        if user.valid?
-          user.update(level: 0)
+    
+        user = User.create(user_params)
+   
+
+          if user.valid?
+   
+        
+            if user.member_of.members.length ==1
+                 user.update(level: 2)
+                     user.update(boss: true)
           session[:user_id] = user.id
           render json: user, status: :created
+            else 
+              user.update(level: 0)
+          session[:user_id] = user.id
+          render json: user, status: :created
+            end
         else
-          render json: { error: user.errors.full_messages }, status: :unprocessable_entity
+
+          render json: { errors: user.error.full_messages }, status: :unprocessable_entity
         end
       end
 
@@ -52,7 +65,7 @@ end
 
 def destroy
 user =   User.find(params[:id])
-byebug
+
 return render json: { error: "Not authorized" }, status: :unauthorized  unless ( current_user.level  ==2    )
 user.destroy
 end
@@ -61,7 +74,7 @@ end
     private 
 
     def user_params
-        params.permit( :name, :password, :email, :username, :level, :boss, :member_of_id )
+        params.permit(:user, :name, :password, :email, :username, :level, :boss, :member_of_id,:role )
 
     end
 

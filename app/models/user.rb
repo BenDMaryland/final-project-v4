@@ -39,8 +39,6 @@ end
 
  def slugify 
 self.slug = username.parameterize 
-self.progress  = 0
-self.completed = false
 end
 
 

@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
 
      def index 
+
         projects = Project.all.filter{|project| project.belongs_to_id == current_user.member_of_id }
-        
+
         render json: projects
     end
 
@@ -23,6 +24,8 @@ class ProjectsController < ApplicationController
 
 
    def  update 
+
+
         project =   find_project
            return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  == 2
          project.update!(project_params)

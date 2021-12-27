@@ -44,12 +44,14 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
         .then((data) => setFetchedSprints(data))
     }
 
+
   }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
 
 
 
   useEffect(() => {
      {
+       if(!CurrentUser) return null
       fetch('/projects')
         .then((r) => r.json())
         .then((data) => setFetchedProjects (data));
