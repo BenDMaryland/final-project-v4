@@ -14,14 +14,15 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
     let location = useLocation()
 
     if (!FetchedProjects) return null
-
+    if (CurrentUser === undefined) return null
+console.log(FetchedProjects)
 
     return (
 
 
         <SideNavDark >
      
-                {CurrentUser ?
+                {CurrentUser.level >0 ?
 
                     <div className='currentUser'>
                         <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
@@ -70,6 +71,7 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
                                 {showBossOptions ?
                                     <div>
                                         <Link className="nav-link" to="/projects"><button color="inherit">Projects  </button></Link>
+                                    <Link className="nav-link" to="/newproject"><button color="inherit">New Project  </button></Link>
                                         <Link className="nav-link" to="/users"><button color="inherit">Users  </button></Link>
                                     </div>
                                     : null}

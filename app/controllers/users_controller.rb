@@ -17,13 +17,14 @@ before_action :authorize
 
 def show
 
-    return render json: { error: "Not authorized" }, status: :unauthorized unless    session.include? :user_id    ||  current_user.boss   
+    return render json: { error: "Not authorized" }, status: :unauthorized unless      current_user.boss    &&  current_user.member_of_id == User.find_by(slug: params[:id]).member_of_id
+    
 user = User.find_by(slug: params[:id])
-
         render json: user 
 end
 
     def me
+
         user = current_user
         if user 
         render json: user 
@@ -46,7 +47,7 @@ end
 
 def index
    return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.boss
-   render json: User.all 
+   render json: User.all.filter{|user| user.member_of_id == current_user.member_of_id   }
 end
 
 def destroy
@@ -60,7 +61,7 @@ end
     private 
 
     def user_params
-        params.permit( :name, :password, :email, :username, :level, :boss )
+        params.permit( :name, :password, :email, :username, :level, :boss, :member_of_id )
 
     end
 

@@ -13,7 +13,7 @@ class KbasController < ApplicationController
     end
     
     def create
-byebug
+
         kba =  Kba.create!(kba_params_new)        
 
         render json: kba

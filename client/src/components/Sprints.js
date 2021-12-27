@@ -67,6 +67,7 @@ function Sprints() {
 
     if (!fetchedSprint) return null
     if (CurrentUser === undefined) return <LandingPage />
+    if (CurrentUser.level === 0) return <LandingPage />
     console.log(fetchedSprint)
     return (
 

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :sprints
   resources :projects
   resources :kbas
-
+  resources :teams
+  
  post "/signup", to: "users#create"
   get "/me", to: "users#me"
  

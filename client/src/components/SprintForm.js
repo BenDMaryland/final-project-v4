@@ -14,7 +14,8 @@ function SprintForm({ FetchedProjects }) {
         goal_date: "",
         urgency: 1,
         priority: 1,
-        project_id: 1,
+        project_id: ''
+   
 
     })
 
@@ -54,6 +55,7 @@ function SprintForm({ FetchedProjects }) {
 console.log(SprintForm)
     if (!FetchedProjects) return null
     if (CurrentUser === undefined) return <LandingPage />
+    if (CurrentUser.level === 0) return <LandingPage />
     return (
         <SprinterForm onSubmit={e => NewSprintSubmitHandler(e)}>
             <input onChange={e => NewSprintChangeHandler(e)} name="sprint_title" placeholder="Please add your Sprint's title" value={NewSprint.sprint_title} ></input>
@@ -77,6 +79,7 @@ console.log(SprintForm)
             {NewSprint.urgency * NewSprint.priority ===9 ? <p className='Warning'> Warning you are sending a priority one request all team members will be emailed </p>: null}
             <div>
                 <select name="project_id" onChange={NewSprintChangeHandler}>
+                    <option value={0}>Please select your project</option>
                     {FetchedProjects.map((project) => <option value={project.id}>{project.name}</option>)}
                 </select>
             </div>

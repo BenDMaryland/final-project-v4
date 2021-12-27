@@ -14,6 +14,7 @@ function App() {
   const [fetchedSprints, setFetchedSprints] = useState();
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation()
+
   const [showSideBar, setshowSideBar] = useState(false)
   const [FetchedProjects, setFetchedProjects] = useState([])
 const [ActiveProjectid, setActiveProjectid] = useState(1)
@@ -22,7 +23,8 @@ const [changeBackground, setchangeBackground] = useState(1)
 const [DOMUpdater, setDOMUpdater] = useState(0)
 
   useEffect(() => {
-    console.log(currentUserFilter)
+    if (!CurrentUser) return
+   if(CurrentUser.level ===0) return
     if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
       if (currentUserFilter){
       fetch(`${location.pathname}`)
@@ -78,7 +80,7 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
   }
 
 function projectFilter(props){
-console.log(props)
+
 setActiveProjectid(props)
 
 }

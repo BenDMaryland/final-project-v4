@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_163707) do
+ActiveRecord::Schema.define(version: 2021_12_27_180851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 2021_12_17_163707) do
     t.string "integer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "belongs_to_id"
+    t.index ["belongs_to_id"], name: "index_projects_on_belongs_to_id"
   end
 
   create_table "sprints", force: :cascade do |t|
@@ -114,6 +116,13 @@ ActiveRecord::Schema.define(version: 2021_12_17_163707) do
     t.index ["created_by_id"], name: "index_sprints_on_created_by_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -125,6 +134,8 @@ ActiveRecord::Schema.define(version: 2021_12_17_163707) do
     t.string "password_digest"
     t.integer "level"
     t.boolean "boss"
+    t.bigint "member_of_id"
+    t.index ["member_of_id"], name: "index_users_on_member_of_id"
   end
 
   add_foreign_key "bugs", "sprints"
@@ -136,7 +147,9 @@ ActiveRecord::Schema.define(version: 2021_12_17_163707) do
   add_foreign_key "features", "sprints"
   add_foreign_key "features", "users", column: "completed_by_id"
   add_foreign_key "features", "users", column: "created_by_id"
+  add_foreign_key "projects", "teams", column: "belongs_to_id"
   add_foreign_key "sprints", "users", column: "assigned_to_id"
   add_foreign_key "sprints", "users", column: "completed_by_id"
   add_foreign_key "sprints", "users", column: "created_by_id"
+  add_foreign_key "users", "teams", column: "member_of_id"
 end

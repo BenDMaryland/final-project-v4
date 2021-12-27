@@ -12,6 +12,7 @@ import KBAform from "./KBAform"
 import AllKbas from "./AllKbas";
 import Kbas from "./Kbas";
 import TopNav from "./TopNav";
+import ProjectForm from "./ProjectForm";
 function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects }) {
 
     return (
@@ -23,6 +24,7 @@ function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects }) {
                 <Route exact path="/newsprint" element={<SprintForm FetchedProjects={FetchedProjects} />} />
                 <Route exact path="/" element={<LandingPage setDOMUpdater={setDOMUpdater} />} />
                 <Route exact path="/projects" element={<AllProjects FetchedProjects={FetchedProjects} />} />
+                <Route exact path="/newproject" element={<ProjectForm/>} />
                 <Route exact path="/users/" element={<AllUsers />} />
                 <Route exact path="/users/*" element={<User />} />
                 <Route exact path="/newkba/" element={<KBAform />} />

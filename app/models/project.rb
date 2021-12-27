@@ -4,6 +4,8 @@ has_many :sprints
 has_many :features, through: :sprints
 has_many :comments, through: :sprints
 has_many :bugs, through: :sprints
+belongs_to :team, class_name: "Team", foreign_key: "belongs_to_id", optional: true
+
 
 
 def all_sprints

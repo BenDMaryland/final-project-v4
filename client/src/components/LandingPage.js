@@ -48,7 +48,7 @@ h1{
            text-shadow: 2px 2px 4px #000000;
 }
 .modal{color: #e3e4e6;
-   height: 800px;
+   height: 900px;
       width: 600px;
     background-color: #323232;
     position: absolute;
@@ -71,14 +71,15 @@ h1{
     background-color: rgba(255,255,255,0.07);
   padding: 12px;
   border-radius: 3px;
-  width: 250px;
+  width: 550px;
   height:2em;
+  display: block;
   font-size: 14px;
   margin-top: 1em;
   color:white;
  
 }
-button{
+button,select{
     margin-top: 20px;
     width: 100%;
     background-color: #8b949e;

@@ -3,12 +3,14 @@ before_action :authorize
     
 
     def index 
-        sprints = Sprint.all
+          return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1 
+        sprints = Sprint.all.filter{|sprint| sprint.team.id == current_user.member_of_id }
         sprints =sprints.sort_by{|sprint| sprint.impact}.reverse
         render json: sprints, each_serializer: SprintIndexSerializer
     end
 
     def show 
+          return render json: { error: "Not authorized" }, status: :unauthorized unless current_user.level  >= 1
         sprint= Sprint.find_by(slug: params[:id])
         render json: sprint
     end

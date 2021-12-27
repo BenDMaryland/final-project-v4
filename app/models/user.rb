@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
 
+  before_create :slugify
   has_many :created_sprints, class_name: "Sprint", foreign_key: "created_by_id", dependent: :destroy
   has_many :completed_sprints, class_name: "Sprint", foreign_key: "completed_by_id", dependent: :destroy
 has_many :assigned_to, class_name: "Sprint", foreign_key: "assigned_to_id", dependent: :destroy
@@ -13,6 +14,9 @@ has_many :assigned_to, class_name: "Sprint", foreign_key: "assigned_to_id", depe
 
   has_many :created_comments, class_name: "Comment", foreign_key: "created_by_id", dependent: :destroy
   has_many :completed_comments, class_name: "Comment", foreign_key: "completed_by_id", dependent: :destroy
+
+belongs_to :member_of, class_name: "Team", foreign_key: "member_of_id", optional: true
+
 
   validates :name, :email, :password_digest, presence: true 
   validates :email, uniqueness: true 
