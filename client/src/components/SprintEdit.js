@@ -3,21 +3,20 @@ import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
 
 
-function SprintEdit({ fetchedSprint, setEditSprint}) {
+function SprintEdit({ fetchedSprint, setEditSprint, setDOMUpdater }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
     const [SprintEdit, setSprintEdit] = useState(fetchedSprint)
 
     function SprintEditChangeHandler(e) {
-        setSprintEdit({ ...SprintEdit, [e.target.name]: e.target.value});
-
-
+        setSprintEdit({ ...SprintEdit, [e.target.name]: e.target.value });
+console.log(SprintEdit)
     }
 
 
-   async function SprintEditSubmitHandler(e) {
+    async function SprintEditSubmitHandler(e) {
         e.preventDefault()
-       let NewSprint = SprintEdit
-       NewSprint = { ...NewSprint, "assigned_to_id": CurrentUser.id}
+        let NewSprint = SprintEdit
+        NewSprint = { ...NewSprint, "assigned_to_id": CurrentUser.id }
         const response = await fetch(`${fetchedSprint.id}`, {
             method: 'PATCH',
             headers: {
@@ -32,15 +31,15 @@ function SprintEdit({ fetchedSprint, setEditSprint}) {
         } else {
             alert(data.error)
         }
-       setEditSprint(false)
-
+        setEditSprint(false)
+        setDOMUpdater(Math.random())
 
 
     }
 
 
-if(!fetchedSprint) return null 
-  
+    if (!fetchedSprint) return null
+
     return (
 
         <SprintEditForm onSubmit={e => SprintEditSubmitHandler(e)}>
@@ -48,34 +47,33 @@ if(!fetchedSprint) return null
 
             <>
                 <div>
-            
-                    <input  className="main" onChange={e => SprintEditChangeHandler(e)} name="sprint_title" placeholder={SprintEdit.sprint_title} value={SprintEdit.sprint_title} ></input>
+
+                    <input className="main" onChange={e => SprintEditChangeHandler(e)} name="sprint_title" placeholder={SprintEdit.sprint_title} value={SprintEdit.sprint_title} ></input>
                 </div>
 
-          
+
                 <textarea className="main" onChange={e => SprintEditChangeHandler(e)} name="sprint_data" placeholder={SprintEdit.sprint_data} value={SprintEdit.sprint_data} ></textarea>
             </>
 
 
             <div className="radio_container" >
 
-                <div className="radios">
-                    <label> Urgency:</label>
-                    <div className="radio_btns" onChange={SprintEditChangeHandler}>
-                        <label className="radio">Low <input defaultChecked={fetchedSprint.urgency === 1} name="urgency" type="radio" value={1}></input></label>
-                        <label className="radio">Medium <input defaultChecked={fetchedSprint.urgency === 2} name="urgency" type="radio" value={2}></input></label>
-                        <label className="radio" >high <input defaultChecked={fetchedSprint.urgency === 3} name="urgency" type="radio" value={3}></input></label>
-                    </div>
-                </div>
 
-                <div className="radios">
-                    <label> Priority:</label>
-                    <div className="radio_btns" onChange={SprintEditChangeHandler}>
-                        <label className="radio">Low<input defaultChecked={fetchedSprint.priority === 1} name="priority" type="radio" value={1}></input></label>
-                        <label className="radio">Medium <input defaultChecked={fetchedSprint.priority === 2} name="priority" type="radio" value={2}></input></label>
-                        <label className="radio">high <input defaultChecked={fetchedSprint.priority === 3} name="priority" type="radio" value={3 }></input></label>
-                    </div>
-                </div>
+                <select name="urgency" className="impact" onChange={SprintEditChangeHandler} >
+                    <option value={SprintEdit.urgency} >Please Select your Urgency </option>
+                    <option value={1}>Low</option>
+                        <option value={2}>Medium</option>
+                        <option value={3}>High</option>
+                        </select>
+                      
+       
+                <select name="priority" className="impact" onChange={SprintEditChangeHandler} >
+                    <option value={SprintEdit.priority} >Please Select your Priority</option>
+                        <option value={1}>Low</option>
+                        <option value={2}>Medium</option>
+                        <option value={3}>High</option>
+                    </select>
+          
 
 
             </div>
@@ -125,6 +123,9 @@ color: #e3e4e6;
 }
 button,select{
     margin-top: 50px;
+    padding: 5px;
+margin-right:10px;
+margin-left:10px;
     width: 100%;
     background-color: #8b949e;
     color: #080710;
@@ -139,19 +140,11 @@ button,select{
 display: grid;
 grid-template-columns:repeat(2, 1fr );
 height: fit-content;
+
 }
 
-.radios{
-display: grid;
-grid-template-columns:repeat(2, 1fr );
-}
-.radio_btns{
-    display: grid;
-}
-.radio{
-display: inline;
-align-self:end;
-}
+
+
 
 label{
    align-self: center;

@@ -30,41 +30,29 @@ function Sprints() {
             .then((data) => setFetchedSprint(data))
     }, [location.pathname, CurrentUser, DOMUpdater]);
 
-
-
     function subSprintSelector(e) {
         console.log(e.target.value)
         if (e.target.value === "0") {
             console.log("I ran ")
             setEditSprint(false)
-            setaddNewSubSprint(false)
-
-        }
+            setaddNewSubSprint(false)   }
         else {
             setSubSprintType(e.target.value)
             setEditSprint(false)
             setaddNewSubSprint(true)
-        }
-    }
+        }  }
 
     function sprintEditSelector(e) {
-
         setaddNewSubSprint(false)
         setEditSprint(true)
     }
 
     function sprintDeleteHandler() {
-
-
         fetch(`/sprints/${fetchedSprint.id}`, {
             method: "DELETE",
         })
         navigate('/sprints');
     }
-
-
-
-
     if (!fetchedSprint) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (CurrentUser.level === 0) return <LandingPage />
@@ -86,20 +74,17 @@ function Sprints() {
 
                 <div className='editoptions'>
                     {CurrentUser.level == 0 ? null : <button onClick={e => sprintEditSelector(e)}>Edit Sprint</button>}
-                    {EditSprint ? <SprintEdit setEditSprint={setEditSprint} fetchedSprint={fetchedSprint} /> : null}
+                    {EditSprint ? <SprintEdit setEditSprint={setEditSprint} setDOMUpdater={setDOMUpdater}  fetchedSprint={fetchedSprint} /> : null}
                     {CurrentUser.level === 2 || fetchedSprint.created_by.id === CurrentUser.id ? confirmDelete ? <button onClick={() => setsconfirmDelete(false)}>Delete </button> : <button onClick={() => sprintDeleteHandler()}>Are you sure?</button> : null}
-
                     <div >
                         {fetchedSprint.related_kba ? !showRelatedKba ?
                             <button onClick={() => setshowRelatedKba(true)}>Show Related Kba's</button>
                             :
                             <div className='kbaModal'>
                                 {fetchedSprint.related_kba.map((kba) =>
-
                                     <div >
                                         <Link className="nav-link" to={"/kbas/" + kba[0]} ><button color="inherit">{kba[1]} </button></Link>
                                     </div>
-
                                 )}
                                 <p>_________________</p>
                                 <button className='return' onClick={() => setshowRelatedKba(false)}>Return</button>
@@ -201,7 +186,7 @@ grid-template-columns:repeat(2, 1fr );}
 
 .editoptions{
 display: grid;
-grid-template-columns:repeat(1, 1fr  );
+grid-template-columns:repeat(4, 1fr  );
 
 .kbaModal{
    

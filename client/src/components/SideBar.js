@@ -36,9 +36,12 @@ console.log(FetchedProjects)
                             </div>
 
                             : null}
+                    {location.pathname === "/sprints" ?
+                        <>
                         <div className='dropdowncontainer'>
                             <label>Filtering</label> <select onClick={() => setshowFilterOptions(!showFilterOptions)} className='dropdown' ></select>
                         </div>
+    
                         {showFilterOptions ?
                             <div className='dropeddown'>
 
@@ -48,7 +51,12 @@ console.log(FetchedProjects)
 
                             </div>
                             :
+
                             null}
+                        </>
+                            :null}
+
+
                         <div className='dropdowncontainer'>
                             <label>Kba </label>     <select onClick={() => setshowKbaOptions(!showKbaOptions)} className='dropdown' >kba options</select>
                         </div>

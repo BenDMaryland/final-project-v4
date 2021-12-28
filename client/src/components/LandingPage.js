@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../custom/CurrentUser';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 
-function LandingPage({setDOMUpdater }) {
+function LandingPage({ setDOMUpdater }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
 
@@ -13,25 +13,46 @@ function LandingPage({setDOMUpdater }) {
         <Lander>
             <h1 >Welcome to Agile Solutions!</h1>
             <div className='modal'>
-
-                {!CurrentUser ? <>  <Login setDOMUpdater={setDOMUpdater} /> <Signup setDOMUpdater={setDOMUpdater}/>  </>
+                {!CurrentUser ?
+                    <>  <Login setDOMUpdater={setDOMUpdater} /> <Signup setDOMUpdater={setDOMUpdater} />  </>
                     :
+                    CurrentUser.level === 0 ?
                         <>
                             <h2>Welcome to Agile Solutions </h2>
                             <h3>New user info</h3>
-                            <p>As a new user your access is limited until a manager approves your access</p>
-                            <p> If you'd like full access please an Admin account, the default value for login should grant you full access</p>
-                         
-                           <h3>Sprints</h3>
-                            <p>This a program management software that allows users to manage projects as well as indivudual sprints </p>
-<p>Please check the Sprints tab to access all current sprints </p>
-<p> To progress a sprint just drag it to the correct location</p>
-<p> For more information please click the sprint to be taken to that sprints page, where you can leave comments</p>
-<h3>Boss stuff</h3>
-<p>If you're account is a boss account you can check the project tab to check on the status on individual projects </p>
-<p> You can also click on the users tab to check individual users progress</p>
-                        </>             
-                }
+                            <p>Welcome to the Agile solutions, as a new account you have no access until you are approved by a manager. </p>
+                            <p>If you'd like to demo the App please use the default account.  </p>
+                            <p>Username: BenDMaryland</p>
+                            <p>Password: 123</p>
+
+                            <h3>About </h3>
+                            <p> This is my capstone project for my time at FlatIron bootcamp, I made this app in three using React for the front end and Ruby on Rails for the backend.  </p>
+                            <h2> Key Features </h2>
+                            <p> Teams: Teams allow this application to serve multiple teams. Each teams data is separate from each other (except KBA's )</p>
+                            <p>Projects: Within a team there are multiple projects, all team members are able to see all projects within a team  </p>
+                            <p>Sprints: Sprints are individual tasks that are assigned to an individual team member. </p>
+                            <p>KBA's: A KBA is a an article where users can post information on how to resolve issues. </p>
+                            <p>Boss's tabs: A User who is a boss can see data about each users progress and each projects progress</p>
+                            <p>Separation of duties: Admin accounts can delete sprints,  Boss accounts can fire users, and see user data.</p>
+                        </>
+                        :
+                        <>
+                            <h2>Welcome to Agile Solutions </h2>
+                            <h2> Information </h2>
+                            <h2> Key Features </h2>
+                            <h3>Teams</h3>
+                            <p> Teams allow this application to serve multiple teams. Each teams data is separate from each other (except KBA's )</p>
+                            <h3>Projects</h3>
+                            <p> Within a team there are multiple projects, all team members are able to see all projects within a team  </p>
+                            <h3>Sprints</h3>
+                            <p>Sprints are individual tasks that are assigned to an individual team member. </p>
+                            <h3>KBA's</h3>
+                            <p>A KBA is a an article where users can post information on how to resolve issues. </p>
+                            <h3>Boss's tabs</h3>
+                            <p>A User who is a boss can see data about each users progress and each projects progress</p>
+                            <h3>Separation of duties</h3>
+                            <p>Admin accounts can delete sprints,  Boss accounts can fire users, and see user data.</p>
+                        </>   }
             </div>
         </Lander>
     )

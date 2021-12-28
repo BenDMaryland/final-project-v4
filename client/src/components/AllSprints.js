@@ -8,9 +8,8 @@ function AllSprints({ dragHandler, sprint }) {
 
     const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
 
-    console.log(sprint)
     if (!sprint) return null
-    console.log(sprint)
+
     return (
         <Card draggable={true} onDragStart={e => dragHandler(e, sprint.id)} name={sprint.id} >
             <div id={sprint.completed ? "green" : sprint.was_goal_date_exceeded ? "red" : "blue"}>

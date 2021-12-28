@@ -88,8 +88,12 @@ setActiveProjectid(props)
 }
 
 function changeBackgroundHandler(){
+  if(changeBackground ==8){
+    setchangeBackground(1)
+  }
+  else{
   setchangeBackground((changeBackground) => changeBackground = changeBackground+1)
-
+}
 
 }
 
@@ -105,7 +109,7 @@ function changeBackgroundHandler(){
       <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
  
     <DndProvider backend={HTML5Backend}>
-        <TopNav handleLogout={handleLogout}/>
+        <TopNav  handleLogout={handleLogout}/>
     
         <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
    

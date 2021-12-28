@@ -34,7 +34,7 @@ def assigned_to_count
 end
 
  def highest_impact_ticket
- self.assigned_to.sort_by {|sprint| sprint.impact }.last  
+ self.assigned_to.filter{|sprint| sprint.completed ==false}.sort_by {|sprint| sprint.impact }.last  
  end
 
  def slugify 
