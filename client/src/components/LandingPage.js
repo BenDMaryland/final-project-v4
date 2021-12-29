@@ -29,7 +29,7 @@ function LandingPage({ setDOMUpdater }) {
                             <p> This is my capstone project for my time at FlatIron bootcamp, I made this app in three using React for the front end and Ruby on Rails for the backend.  </p>
                             <h2> Key Features </h2>
                             <p> Teams: Teams allow this application to serve multiple teams. Each teams data is separate from each other (except KBA's )</p>
-                            <p>Projects: Within a team there are multiple projects, all team members are able to see all projects within a team  </p>
+                            <p>Projects: fWithin a team there are multiple projects, all team members are able to see all projects within a team  </p>
                             <p>Sprints: Sprints are individual tasks that are assigned to an individual team member. </p>
                             <p>KBA's: A KBA is a an article where users can post information on how to resolve issues. </p>
                             <p>Boss's tabs: A User who is a boss can see data about each users progress and each projects progress</p>
