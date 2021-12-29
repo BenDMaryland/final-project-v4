@@ -46,12 +46,13 @@ function Kbas() {
 export default Kbas
 
 const Card = styled.div`
+    color: white;
 h2{
     text-align:center;
 }/* color: #e3e4e6; */
       height: 97%;
       width: 70vw;
-    background-color: #ffffff;
+    background-color: #323232;
     position: absolute;
   transform: translate(-50%,-50%);
     top: 50%;

@@ -10,7 +10,10 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
     const [showFilterOptions, setshowFilterOptions] = useState(false)
     const [showKbaOptions, setshowKbaOptions] = useState(false)
     const [showBossOptions, setshowBossOptions] = useState(false)
-    const [darkmode, setdarkmode] = useState(true)
+    const [showfilterProjects, setshowfilterProjects] = useState(true)
+
+
+
     let location = useLocation()
 
     if (!FetchedProjects) return null
@@ -43,9 +46,14 @@ console.log(FetchedProjects)
                         </div>
     
                         {showFilterOptions ?
-                            <div className='dropeddown'>
-
-                                {FetchedProjects.map((project) => <button key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)}
+                            <div className='dropeddown_lowe'>
+                                    <div className='dropdowncontainer_lower'>
+                                        <label>Projects</label> <select onClick={() => setshowfilterProjects(!showfilterProjects)} className='dropdown_lower' ></select>
+                                    </div>
+                                    {showfilterProjects?
+                                FetchedProjects.map((project) => <button key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)
+:null
+}
 
                                 <button value={currentUserFilter} onClick={() => setCurrentUserFilter(!currentUserFilter)} >Just you?</button>
 
@@ -162,5 +170,20 @@ display: block;
 }
 
 
+.dropdown_lower{
+display: block;
+    width: 100%;
+
+  background: inherit;
+  border:none;
+  color: inherit;
+
+}
+
+.dropdowncontainer_lower{
+display: grid;
+grid-template-columns: 4fr 1fr;
+ width: 80%;
+}
 
 `

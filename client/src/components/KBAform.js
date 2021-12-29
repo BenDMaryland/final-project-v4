@@ -89,7 +89,7 @@ const EditContainer = styled.form`
 /* color: #e3e4e6; */
    height: 97%;
     width: 70vw;
-    background-color: #ffffff;
+    background-color: #323232;
     position: absolute;
   transform: translate(-50%,-50%);
     top: 50%;
@@ -103,14 +103,14 @@ const EditContainer = styled.form`
     overflow: scroll;
     overflow-x:hidden;
     /* border-radius: 20px; */
-
+ color: white;
       input {
   border: none;
   -webkit-appearance: none;
   -ms-appearance: none;
   -moz-appearance: none;
   appearance: none;
-    background-color:#e4e4e4;
+    background-color:#323232;
   padding: 12px;
   border-radius: 3px;
   width: 580px;
@@ -118,7 +118,7 @@ const EditContainer = styled.form`
   height:4em;
   font-size: 14px;
   margin-top: 1em;
-
+ color: white;
  resize:none;
 }
 .demo-toolbar-custom{
