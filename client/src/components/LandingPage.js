@@ -48,7 +48,7 @@ function LandingPage({ setDOMUpdater }) {
                             <p>Sprints are individual tasks that are assigned to an individual team member. </p>
                             <h3>KBA's</h3>
                             <p>A KBA is a an article where users can post information on how to resolve issues. </p>
-                            <h3>Boss's tabs</h3>
+                            <h3>Boss's  tabs</h3>
                             <p>A User who is a boss can see data about each users progress and each projects progress</p>
                             <h3>Separation of duties</h3>
                             <p>Admin accounts can delete sprints,  Boss accounts can fire users, and see user data.</p>
