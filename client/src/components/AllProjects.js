@@ -4,7 +4,7 @@ import Projects from './Projects';
 import { CurrentUserContext } from '../custom/CurrentUser'
 import LandingPage from './LandingPage';
 
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart } from 'recharts';
+import { LineChart, Line, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Chart } from "react-google-charts";
 
 function AllProjects({ FetchedProjects }) {
@@ -14,6 +14,7 @@ function AllProjects({ FetchedProjects }) {
     if (!FetchedProjects) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (!CurrentUser.boss) return <LandingPage />
+    console.log(FetchedProjects)
     return (
         <ProjectContainer>
             {FetchedProjects.map((project) =>
@@ -26,6 +27,32 @@ function AllProjects({ FetchedProjects }) {
                     <p> Goal Dates Missed: {project.missed_goals}</p>
                     <p> Goals not yet missed : {project.goal_not_yet_occured}</p>
 
+<div className='charts'>
+    <div>
+        <h1>Progress over time</h1>
+                    <LineChart
+                        width={500}
+                        height={300}
+                        data={project.completed_over_time_graph}
+                        margin={{
+                            top: 5,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                         <Line type="monotone" dataKey="created" stroke="#8884d8" activeDot={{ r: 8 }} /> 
+                        <Line type="monotone" dataKey="completed" stroke="#82ca9d" />
+                    </LineChart>
+                        </div>
+
+                        <div>
+                            <h1>Progress per  day </h1>
                     <BarChart
                         width={600}
                         height={300}
@@ -39,6 +66,10 @@ function AllProjects({ FetchedProjects }) {
                         <Bar dataKey="created" fill="#8884d8" />
                         <Bar dataKey="completed" fill="#82ca9d" />
                     </BarChart>
+                    </div>
+                    </div>
+
+
 
                     <Chart
                         width={'500px'}
@@ -84,6 +115,11 @@ display: grid;
 grid-template-columns:repeat(2, 1fr );
 border: solid;
 height: 50vh;
+.charts{
+display: grid;
+grid-template-columns:repeat(2, 1fr );
+
+}
 
 .project_card{
        height: 100%;
