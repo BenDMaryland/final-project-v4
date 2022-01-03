@@ -80,7 +80,7 @@ def created_and_completed_sprints_total_amount
   
   i = self.created_at.to_date
   current_day = Time.current.to_date
-
+current_day = current_day + 1
 completed_sprints = self.sprints.filter{|sprint| sprint.completed ==true}
 
   completed_sprints = completed_sprints.map{|sprint|   sprint.completed_at.to_date }
@@ -111,7 +111,7 @@ def completed_over_time_graph
   
   i = self.created_at.to_date
   current_day = Time.current.to_date  
-
+current_day = current_day + 1
   sprints = self.sprints.filter{|sprint| sprint.completed ==true}
   sprints = sprints.map{|sprint|   sprint.completed_at.to_date }
   created_sprints = self.sprints.map{|sprint|   sprint.created_at.to_date }

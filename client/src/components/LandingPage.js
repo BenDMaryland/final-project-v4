@@ -69,12 +69,12 @@ h1{
            text-shadow: 2px 2px 4px #000000;
 }
 .modal{color: #e3e4e6;
-   height: 900px;
+   height: 70vh;
       width: 600px;
     background-color: #323232;
     position: absolute;
    transform: translate(-50%,-50%);
-    top: 50%;
+    top: 55%;
     left: 50%;
    opacity: 1;
     backdrop-filter: blur(10px);

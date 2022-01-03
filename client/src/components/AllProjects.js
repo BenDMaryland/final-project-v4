@@ -112,9 +112,10 @@ export default AllProjects
 const ProjectContainer = styled.div`
 width: 100%;
 display: grid;
-grid-template-columns:repeat(2, 1fr );
+grid-template-columns:repeat(1, 1fr );
 border: solid;
-height: 50vh;
+height: 100%;
+overflow-y:scroll;
 .charts{
 display: grid;
 grid-template-columns:repeat(2, 1fr );
