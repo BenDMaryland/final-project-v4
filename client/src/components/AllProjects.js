@@ -22,10 +22,8 @@ function AllProjects({ FetchedProjects }) {
                 <div className="project_card">
                     <h2> {project.name}</h2>
                     <h4>{project.summary}</h4>
-                    <p>Total sprints: {project.all_sprints} </p>
-                    <p> Completed Sprints:  {project.completed_sprints} </p>
-                    <p> Goal Dates Missed: {project.missed_goals}</p>
-                    <p> Goals not yet missed : {project.goal_not_yet_occured}</p>
+                    <p>Your team has completed {project.completed_sprints} of  {project.all_sprints}  total sprints</p>
+                    <p> You're team has missed  {project.missed_goals} goals </p>
 
 <div className='charts'>
     <div>

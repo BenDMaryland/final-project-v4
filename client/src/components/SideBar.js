@@ -18,87 +18,87 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
 
     if (!FetchedProjects) return null
     if (CurrentUser === undefined) return null
-console.log(FetchedProjects)
+    console.log(FetchedProjects)
 
     return (
 
 
         <SideNavDark >
-     
-                {CurrentUser.level >0 ?
 
-                    <div className='currentUser'>
-                        <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
-                        <div className='dropdowncontainer'>
-                            <label>Sprints</label>   <select onClick={() => setshowSprintOptions(!showSprintOptions)} className='dropdown' ></select>
+            {CurrentUser.level > 0 ?
+
+                <div className='currentUser'>
+                    <Link className="nav-link" to="/"><button color="inherit">Landing Page</button></Link>
+                    <div className='dropdowncontainer'>
+                        <label>Sprints</label>   <select onClick={() => setshowSprintOptions(!showSprintOptions)} className='dropdown' ></select>
+                    </div>
+                    {showSprintOptions ?
+                        <div className='dropeddown'>
+                            <Link className="nav-link" to="/newsprint"><button color="inherit">Add Sprint </button></Link>
+                            <Link className="nav-link" to="/sprints"><button color="inherit">Sprints </button></Link>
                         </div>
-                        {showSprintOptions ?
-                            <div className='dropeddown'>
-                                <Link className="nav-link" to="/newsprint"><button color="inherit">Add Sprint </button></Link>
-                                <Link className="nav-link" to="/sprints"><button color="inherit">Sprints </button></Link>
-                            </div>
 
-                            : null}
+                        : null}
                     {location.pathname === "/sprints" ?
                         <>
-                        <div className='dropdowncontainer'>
-                            <label>Filtering</label> <select onClick={() => setshowFilterOptions(!showFilterOptions)} className='dropdown' ></select>
-                        </div>
-    
-                        {showFilterOptions ?
-                            <div className='dropeddown_lowe'>
+                            <div className='dropdowncontainer'>
+                                <label>Filtering</label> <select onClick={() => setshowFilterOptions(!showFilterOptions)} className='dropdown' ></select>
+                            </div>
+
+                            {showFilterOptions ?
+                                <div className='dropeddown_lowe'>
                                     <div className='dropdowncontainer_lower'>
                                         <label>Projects</label> <select onClick={() => setshowfilterProjects(!showfilterProjects)} className='dropdown_lower' ></select>
                                     </div>
-                                    {showfilterProjects?
-                                FetchedProjects.map((project) => <button key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)
-:null
-}
+                                    {showfilterProjects ?
+                                        FetchedProjects.map((project) => <button key={project.id} onClick={() => projectFilter(project.id)}>{project.name}</button>)
+                                        : null
+                                    }
 
-                                <button value={currentUserFilter} onClick={() => setCurrentUserFilter(!currentUserFilter)} >Just you?</button>
+                                    <button value={currentUserFilter} onClick={() => setCurrentUserFilter(!currentUserFilter)} >Just you?</button>
 
-                            </div>
-                            :
-
-                            null}
-                        </>
-                            :null}
-
-
-                        <div className='dropdowncontainer'>
-                            <label>Kba </label>     <select onClick={() => setshowKbaOptions(!showKbaOptions)} className='dropdown' >kba options</select>
-                        </div>
-                        {showKbaOptions ?
-                            <div className='dropeddown'>
-                                <Link className="nav-link" to="/newkba"><button color="inherit">Add a Kba</button></Link>
-                                <Link className="nav-link" to="/kbas"><button color="inherit">KBAS </button></Link>
-                            </div>
-                            : null
-                        }
-
-
-
-                        {CurrentUser.boss ?
-
-                            <div className='boss_menu'>
-                                <div className='dropdowncontainer'>
-                                    <label>Boss </label>     <select onClick={() => setshowBossOptions(!showBossOptions)} className='dropdown' >s</select>
                                 </div>
-                                {showBossOptions ?
-                                    <div>
-                                        <Link className="nav-link" to="/projects"><button color="inherit">Projects  </button></Link>
-                                    <Link className="nav-link" to="/newproject"><button color="inherit">New Project  </button></Link>
-                                        <Link className="nav-link" to="/users"><button color="inherit">Users  </button></Link>
-                                    </div>
-                                    : null}
+                                :
+
+                                null}
+                        </>
+                        : null}
+
+
+                    <div className='dropdowncontainer'>
+                        <label>Kba </label>     <select onClick={() => setshowKbaOptions(!showKbaOptions)} className='dropdown' >kba options</select>
+                    </div>
+                    {showKbaOptions ?
+                        <div className='dropeddown'>
+                            <Link className="nav-link" to="/newkba"><button color="inherit">Add a Kba</button></Link>
+                            <Link className="nav-link" to="/kbas"><button color="inherit">KBAS </button></Link>
+                        </div>
+                        : null
+                    }
+
+
+
+                    {CurrentUser.boss ?
+
+                        <div className='boss_menu'>
+                            <div className='dropdowncontainer'>
+                                <label>Boss </label>     <select onClick={() => setshowBossOptions(!showBossOptions)} className='dropdown' >s</select>
                             </div>
-                            : null}
-                    </div> :
-                    <>
-                    </>
-                }
-                <button onClick={() => changeBackgroundHandler()}>Cycle Background</button>
-           
+                            {showBossOptions ?
+                                <div>
+                                    <Link className="nav-link" to="/projects"><button color="inherit">Projects  </button></Link>
+                                    <Link className="nav-link" to="/newproject"><button color="inherit">New Project  </button></Link>
+                                    <Link className="nav-link" to="/users"><button color="inherit">Users  </button></Link>
+                                </div>
+                                : null}
+                        </div>
+                        : null}
+                </div> :
+                <>
+                </>
+            }
+            <button onClick={() => changeBackgroundHandler()}>Cycle Background</button>
+
         </SideNavDark>
     )
 }

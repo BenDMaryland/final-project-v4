@@ -57,13 +57,19 @@ function AllUsers() {
                 {FetchedUsers.map((user) =>
                     <div key={user.id} className="card">
                         <h2>{user.name}</h2>
-                        <h2>Role: {user.role}</h2>
-                        <p>Level: {user.level}</p>
-                        {user.boss ? <p>Boss</p> : null}
-                        {user.highest_impact_ticket ? <p> {user.highest_impact_ticket.urgency * user.highest_impact_ticket.priority}</p> : null}
-                        <p>goals missed: {user.assigned_to_goal_exceeded}</p>
-                        <p>completed_sprints_count{user.completed_sprints_count}</p>
-                        <p>assigned_to_count: {user.assigned_to_count}</p>
+                        <h2> {user.role}</h2>
+
+                        { user.level === 0 ?
+                    <p> New user please approve or deny </p>    
+                    :
+                    user.level === 1? 
+                    <p>Normal user</p>
+                    :
+                    <p>Admin</p>
+                    }
+
+                        {user.boss ? <p>Boss</p> : <p>Not a boss</p>}
+                 
                         < Link className="nav-link" to={`./${user.slug}`}  ><button> Click here</button></Link>
                     </div>
                 )}
@@ -78,6 +84,7 @@ function AllUsers() {
 
 export default AllUsers
 const UserContainer = styled.div`
+
 
 
 .performance_tab{
@@ -98,9 +105,9 @@ color:white;
 .card_container  {text-shadow: 2px 2px 4px #000000;
 width: 100%;
 display: grid;
-grid-template-columns:repeat(3, 1fr );
+grid-template-columns:repeat(2, 1fr );
 
-height: 50vh;
+height: 30vh;
 }
 .card{
         border: 2px solid #292d3e;
@@ -111,5 +118,16 @@ padding:1em;
 border: solid;
 padding: 1px;
 text-align: center;
+}
+button,select{
+    margin-top: 20px;
+    width: 100%;
+    background-color: #8b949e;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
 }`
 //
