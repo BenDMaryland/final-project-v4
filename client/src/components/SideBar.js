@@ -114,7 +114,8 @@ const SideNavDark = styled.nav`
 position: fixed;
 left: 2px;
 top:20%;
-height: 50%;
+min-height: 50%;
+    max-height:100%;
 width: 10%;
 background-color: #323232;
 color: white;

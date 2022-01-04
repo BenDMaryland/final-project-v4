@@ -78,29 +78,30 @@ console.log(FetchedUser)
                         FetchedUser.level === 1 ?
                             <p>Normal user</p>
                             :
-                            <p>Admin</p>
+                            <p>User is an admin</p>
                     }
 
-                    {FetchedUser.boss ? <p>Boss</p> : <p>Not a boss</p>}
+                    {FetchedUser.boss ? <p>user is a boss</p> : <p>Not a boss</p>}
                 </div>
 
                 {showform ?
 
                     <div className='boss_area'>
-
+                        {FetchedUser.level === 0 ? <h2>Please assign a user level </h2> : <h2>Change Users privlidges</h2>}
                         <form onSubmit={e => userSubmiteHandler(e)}>
 
                             <div className='form'>
+                            
                                 <div name="level" >
-                                    {FetchedUser.level === 0 ? <p>Please assign a user level </p> : <p>Change Users privlidges</p>}
+                                
                                     <p>Regular users can view and Edit all data, but can only delete their own posts </p>
                                     <p>Admins have full access and can delete all data </p>
-                                    <input type="radio" onClick={e => userChangeHandler(e)} defaultChecked={FetchedUser.level === 1} value="1" name="level" /> Regular User
-                                    <input type="radio" onClick={e => userChangeHandler(e)} defaultChecked={FetchedUser.level === 2} value="2" name="level" /> Admin
+                                   Regular User <input type="radio" onClick={e => userChangeHandler(e)} defaultChecked={FetchedUser.level === 1} value="1" name="level" />
+                                    Admin <input type="radio" onClick={e => userChangeHandler(e)} defaultChecked={FetchedUser.level === 2} value="2" name="level" /> 
                                 </div>
 
                                 <div name="boss" >
-                                    {FetchedUser.boss ? <p>Boss</p> : <p>Regular User</p>}
+                                  <p>Bosses are able to view information about projects, and users as well as change user permissions and fire users. </p>
                                     <input onClick={e => userChangeHandler(e)} defaultChecked={FetchedUser.boss} type="radio" value="true" name="boss" /> Boss
                                     <input onClick={e => userChangeHandler(e)} defaultChecked={!FetchedUser.boss} type="radio" value="false" name="boss" /> User
 
@@ -150,12 +151,12 @@ display: grid;
 grid-template-columns:repeat(1, 1fr );
 color: #e3e4e6;
    height: 400px;
-    width: 400px;
+    width: 500px;
     background-color: #323232;
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 50%;
-    left: 55%;
+    top: 60%;
+    left: 50%;
    opacity: 1;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -167,6 +168,21 @@ color: #e3e4e6;
 .form{
 display: grid;
 grid-template-columns:repeat(2, 1fr );
+input{
+display:block;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+
+}
 }
 
 
@@ -188,8 +204,8 @@ img{
 }
 
 .fire_modal{color: #e3e4e6;
-   height: 400px;
-    width: 400px;
+   height: 500px;
+    width: 500px;
     background-color: #323232;
     position: absolute;
     transform: translate(-50%,-50%);

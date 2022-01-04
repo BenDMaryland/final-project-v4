@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import {  useLocation,useNavigate } from 'react-router-dom'
+import {  Routes, useLocation,useNavigate } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import SideBar from "./components/SideBar";
 import { CurrentUserContext } from './custom/CurrentUser';
@@ -106,6 +106,7 @@ function changeBackgroundHandler(){
   // Grabing Sprints Index 
 
   return (
+
       <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
  
     <DndProvider backend={HTML5Backend}>
@@ -118,6 +119,8 @@ function changeBackgroundHandler(){
       </div>
    </DndProvider >
      </FullPage >
+
+
   );
 }
 

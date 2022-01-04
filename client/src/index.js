@@ -6,11 +6,15 @@ import styled from 'styled-components';
 import { Routes, Route } from "react-router-dom"
 import { BrowserRouter } from "react-router-dom";
 import {CurrentUserProvider} from "./custom/CurrentUser"
-
+import FakeFinal from './components/FakeFinal'
 ReactDOM.render(
   <BrowserRouter>
     <CurrentUserProvider>
-      <App style={{"height": "100%"}}/>
+      <Routes>
+        <Route path='/fakefinal' element={<FakeFinal style={{ "height": "100%" }} />} />
+     <Route path='*' element={  <App style={{"height": "100%"}}/>}/>
+
+      </Routes>
     </CurrentUserProvider >
   </BrowserRouter>,
   document.getElementById('root')
