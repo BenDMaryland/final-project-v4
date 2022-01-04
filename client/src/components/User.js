@@ -39,10 +39,11 @@ function User() {
         const data = await response.json();
 
         if (response.ok) {
-            console.log("ok")
+            setshowform(!showform)
         } else {
             alert(data.errors)
         }
+        
     }
     async function UserFireHandler() {
         const r = await fetch(`/users/${FetchedUser.id}`, {
@@ -57,7 +58,7 @@ function User() {
     }
 
     if (!FetchedUser) return null
-
+console.log(FetchedUser)
     return (
         <UserPage>
             <div key={FetchedUser.id} className="card">
@@ -66,11 +67,21 @@ function User() {
                 <h2> {FetchedUser.role}</h2>
                 <div className='user_facts'>
                     {FetchedUser.highest_impact_ticket ?
-                        <p> Hieghtest impact ticket number: {FetchedUser.highest_impact_ticket.urgency * FetchedUser.highest_impact_ticket.priority}</p>
-                        : null}
-                    <p>goals missed: {FetchedUser.assigned_to_goal_exceeded}</p>
-                    <p>completed_sprints_count{FetchedUser.completed_sprints_count}</p>
-                    <p>assigned_to_count: {FetchedUser.assigned_to_count}</p>
+                        <p> Highest impact ticket: {FetchedUser.highest_impact_ticket.sprint_title}</p>
+                        : <p>User has no active tickets!</p>}
+                    <p>User has missed  {FetchedUser.assigned_to_goal_exceeded} goals </p>
+          
+                    <p>User has  {FetchedUser.assigned_to_count - FetchedUser.completed_sprints_count +1 } active tickets </p>
+                    {FetchedUser.level === 0 ?
+                        <p> New user please approve or deny </p>
+                        :
+                        FetchedUser.level === 1 ?
+                            <p>Normal user</p>
+                            :
+                            <p>Admin</p>
+                    }
+
+                    {FetchedUser.boss ? <p>Boss</p> : <p>Not a boss</p>}
                 </div>
 
                 {showform ?
@@ -101,7 +112,7 @@ function User() {
                     :
                     FetchedUser.level == 0 ?
                         <>
-                            <button onClick={() => setshowform(!showform)}>approve or deny</button>
+                            <button onClick={() => setshowform(!showform)}>Approve</button>
                         </>
                         :
                         <>
@@ -131,7 +142,7 @@ const UserPage = styled.div`
   height: fit-content;
 .user_facts{
 display: grid;
-grid-template-columns:repeat(4, 1fr );
+grid-template-columns:repeat(5, 1fr );
 
 }
 .boss_area{
