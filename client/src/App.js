@@ -68,7 +68,7 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
           .then(data => setCurrentUser(data))
         else r.json().then(errors => console.log(errors))
       })
-  }, [])
+  }, [DOMUpdater])
 
 
 

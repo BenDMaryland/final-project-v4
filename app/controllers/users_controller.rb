@@ -24,7 +24,7 @@ before_action :authorize
             end
         else
 
-          render json: { errors: user.error.full_messages }, status: :unprocessable_entity
+          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

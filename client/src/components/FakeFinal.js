@@ -49,7 +49,7 @@ function FakeFinal() {
             console.log("ok")
             navigate('/');
         } else {
-            alert(data.errors)
+            alert(data.error)
         }
     }
 
@@ -104,7 +104,7 @@ function FakeFinal() {
                                 </>
                                 <>
                                     <select name="priority" onChange={NewSprintChangeHandler}>
-                                        <option value="0">please Select a Urgency</option>
+                                    <option value="0">please Select a Priority</option>
                                         <option value="1">Low</option>
                                         <option value="2">Medium</option>
                                         <option value="3">High</option>

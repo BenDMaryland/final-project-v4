@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { CurrentUserContext } from '../custom/CurrentUser'
 import styled from 'styled-components'
 function User() {
@@ -11,13 +11,13 @@ function User() {
     const [fireModalShow, setfireModalShow] = useState(false)
     const location = useLocation()
     const [sadCat, setsadCat] = useState("https://i.pinimg.com/originals/3e/84/09/3e8409dcdd012b4bcda84a710f2d1052.jpg")
-
+    let navigate = useNavigate();
 
     useEffect(() => {
         fetch(`${location.pathname}`)
             .then((r) => r.json())
             .then((data) => setFetchedUser(data))
-    }, [location.pathname, CurrentUser]);
+    }, [location.pathname, CurrentUser, showform]);
 
 
 
@@ -51,10 +51,10 @@ function User() {
         })
         const data = await r.json()
         if (r.ok) {
-            console.log("ok!")
+            navigate('/users');
         }
         else { alert(data.error) }
-
+        navigate('/users');
     }
 
     if (!FetchedUser) return null

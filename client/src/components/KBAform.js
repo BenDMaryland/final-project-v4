@@ -4,11 +4,11 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
-
+import { useNavigate } from "react-router-dom";
 
 function KBAform() {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
-
+    let navigate = useNavigate();
 
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
@@ -58,10 +58,11 @@ function KBAform() {
 
 
         if (response.ok) {
-            console.log("ok")
+            navigate('/kbas');
         } else {
             alert(data.error)
         }
+        
     }
 
 
@@ -123,6 +124,6 @@ const EditContainer = styled.form`
 }
 .demo-toolbar-custom{
 background-color: #323232;
-    /* color: black; */
+    color: black; 
 }
 `

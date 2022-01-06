@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components';
+import { CurrentUserContext } from '../custom/CurrentUser';
 import { useNavigate } from "react-router-dom";
 function Signup({ setDOMUpdater }) {
 
     let navigate = useNavigate();
     const [FetchedTeams, setFetchedTeams] = useState(null)
     const [newTeam, setnewTeam] = useState(false)
+    const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
     const [UserSignUp, setUserSignUp] = useState({
         username: "",
         password: "",
@@ -19,10 +21,6 @@ function Signup({ setDOMUpdater }) {
         description:""
     });
 
-
-
-
-
     useEffect(() => {
         {
             fetch('/teams')
@@ -30,12 +28,11 @@ function Signup({ setDOMUpdater }) {
                 .then((data) => setFetchedTeams(data));
         }
 
-    }, []);
+    }, [newTeam]);
 
     async function handleSignUpSubmit(e) {
         e.preventDefault();
 
-      console.log(UserSignUp)
         const response = await fetch("/signup", {
             method: "POST",
             headers: {
@@ -72,7 +69,7 @@ console.log(TeamSignUp)
         else { console.log(response) }
         setDOMUpdater(Math.random())
 
-
+        setnewTeam(false)
 
 
     }

@@ -32,7 +32,6 @@ function Kbas() {
     return (
         <Card>
             <h2>{KbaData.kba_title}</h2>
-            <p>category</p>
             <Editor
                 toolbarClassName="demo-toolbar-custom"
                 wrapperClassName="demo-wrapper"
