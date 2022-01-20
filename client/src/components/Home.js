@@ -68,7 +68,7 @@ console.log(CompletedComment)
     if (CurrentUser === null) return <LandingPage />
     if (CurrentUser.level === 0) return <LandingPage />
     if (!fetchedSprints) return null
-    console.log(fetchedSprints)
+
     if (fetchedSprints.length == undefined) return null
 
     else {

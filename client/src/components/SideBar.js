@@ -18,7 +18,7 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
 
     if (!FetchedProjects) return null
     if (CurrentUser === undefined) return null
-    console.log(FetchedProjects)
+
 
     return (
 

@@ -21,39 +21,61 @@ function App() {
   const [changeBackground, setchangeBackground] = useState(1)
   const [DOMUpdater, setDOMUpdater] = useState(0)
 
+  // const [Sprints, setSprints] = useState();
+  const [FilteredSprints, setFilteredSprints] = useState();
+
   // the Mian fetch to grab the needed sprints. 
   /// Currently this grabs alll sprints for a team, can be refactored to only grab sprints from one particular project. 
-  useEffect(() => {
-    /// Conditionals to only run when the pathname is correct and trhe user has permisiion. 
-    if (!CurrentUser) return
-    if (CurrentUser.level === 0) return
-    if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
-      if (currentUserFilter) {
-        fetch(`${location.pathname}`)
-          .then((r) => r.json())
-          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id)))
-        /// Here we set the fetched sprints to only be for the active project     
-        // We also filter for only sprints assigned to the current user, if the user has set it to be that way. 
-      }
-      ///  this is if we don't have the filter set to true 
-      else if (!currentUserFilter) {
-        fetch(`${location.pathname}`)
-          .then((r) => r.json())
-          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
-      }
+  // useEffect(() => {
+  //   /// Conditionals to only run when the pathname is correct and trhe user has permisiion. 
+  //   if (!CurrentUser) return
+  //   if (CurrentUser.level === 0) return
+  //   if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
+  //     if (currentUserFilter) {
+  //       fetch('/sprints')
+  //         .then((r) => r.json())
+  //         .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id)))
+  //       /// Here we set the fetched sprints to only be for the active project     
+  //       // We also filter for only sprints assigned to the current user, if the user has set it to be that way. 
+  //     }
+  //     ///  this is if we don't have the filter set to true 
+  //     else if (!currentUserFilter) {
+  //       fetch(`${location.pathname}`)
+  //         .then((r) => r.json())
+  //         .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
+  //     }
 
-    }
-    /// No idea what this is for 
-    else if (location.pathname.includes("sprints")) {
-      fetch(`${location.pathname}`)
-        .then((r) => r.json())
-        .then((data) => setFetchedSprints(data))
-    }
+  //   }
+  //   /// No idea what this is for 
+  //   else if (location.pathname.includes("sprints")) {
+  //     fetch(`${location.pathname}`)
+  //       .then((r) => r.json())
+  //       .then((data) => setFetchedSprints(data))
+  //   }
 
 
-  }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
+  // }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
 
   // Yet again it seems ineffecient to do a new fetch everytime. I think the best change to improve speed would be to set filtered to a diffrent state and not mutate fetched sprints. 
+
+
+  useEffect(() => {
+    if (!CurrentUser) return
+    if (CurrentUser.level === 0) return
+    else {
+      fetch('/sprints')
+        .then((r) => r.json())
+        .then((data) => {
+          setFetchedSprints(data)
+          setFilteredSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid))
+        }
+        )
+
+
+console.log("I ran")
+    }
+  }, [location.pathname, CurrentUser, DOMUpdater, currentUserFilter]);
+
 
 
   /// Fetch request for projects. 
@@ -92,6 +114,8 @@ function App() {
   /// This is just where we set an actyive project, so only that project runs. 
   function projectFilter(props) {
     setActiveProjectid(props)
+    setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === props))
+    console.log(props)
   }
 
   // background changer, wopuld be nice to make this dynamic, allow users to add their own background. 
@@ -106,8 +130,6 @@ function App() {
   }
 
 
-
-
   // 
 
 
@@ -120,7 +142,7 @@ function App() {
         <TopNav handleLogout={handleLogout} />
         <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <div>
-          <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
+          <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={FilteredSprints} />
         </div>
       </DndProvider >
     </FullPage >
