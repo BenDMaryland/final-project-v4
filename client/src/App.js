@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import {  Routes, useLocation,useNavigate } from 'react-router-dom'
+import { Routes, useLocation, useNavigate } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import SideBar from "./components/SideBar";
 import { CurrentUserContext } from './custom/CurrentUser';
@@ -11,34 +11,40 @@ import TopNav from './components/TopNav';
 
 function App() {
   const navigate = useNavigate()
-  const [fetchedSprints, setFetchedSprints] = useState();
-  const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const [fetchedSprints, setFetchedSprints] = useState();  // Where we keep the sprints 
+  const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext); /// Use context this is where we keep the user
   const location = useLocation()
-
-  const [showSideBar, setshowSideBar] = useState(false)
+  const [showSideBar, setshowSideBar] = useState(false)  /// Not in use, might be worth coming back to 
   const [FetchedProjects, setFetchedProjects] = useState([])
-const [ActiveProjectid, setActiveProjectid] = useState(1)
-const[currentUserFilter, setCurrentUserFilter] =useState(false)
-const [changeBackground, setchangeBackground] = useState(1)
-const [DOMUpdater, setDOMUpdater] = useState(0)
+  const [ActiveProjectid, setActiveProjectid] = useState(1)
+  const [currentUserFilter, setCurrentUserFilter] = useState(false)
+  const [changeBackground, setchangeBackground] = useState(1)
+  const [DOMUpdater, setDOMUpdater] = useState(0)
 
+  // the Mian fetch to grab the needed sprints. 
+  /// Currently this grabs alll sprints for a team, can be refactored to only grab sprints from one particular project. 
   useEffect(() => {
+    /// Conditionals to only run when the pathname is correct and trhe user has permisiion. 
     if (!CurrentUser) return
-   if(CurrentUser.level ===0) return
+    if (CurrentUser.level === 0) return
     if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
-      if (currentUserFilter){
-      fetch(`${location.pathname}`)
-        .then((r) => r.json())
-        .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id ))                           )
-        .then((console.log("active")))
-}
-      else if (!currentUserFilter){
+      if (currentUserFilter) {
         fetch(`${location.pathname}`)
           .then((r) => r.json())
-          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid))) }      
-                
+          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id)))
+        /// Here we set the fetched sprints to only be for the active project     
+        // We also filter for only sprints assigned to the current user, if the user has set it to be that way. 
+      }
+      ///  this is if we don't have the filter set to true 
+      else if (!currentUserFilter) {
+        fetch(`${location.pathname}`)
+          .then((r) => r.json())
+          .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
+      }
+
     }
-    else if (location.pathname.includes("sprints")){
+    /// No idea what this is for 
+    else if (location.pathname.includes("sprints")) {
       fetch(`${location.pathname}`)
         .then((r) => r.json())
         .then((data) => setFetchedSprints(data))
@@ -47,20 +53,22 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
 
   }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
 
+  // Yet again it seems ineffecient to do a new fetch everytime. I think the best change to improve speed would be to set filtered to a diffrent state and not mutate fetched sprints. 
 
 
+  /// Fetch request for projects. 
   useEffect(() => {
-     {
-       if(!CurrentUser) return null
+    {
+      if (!CurrentUser) return null
       fetch('/projects')
         .then((r) => r.json())
-        .then((data) => setFetchedProjects (data));
+        .then((data) => setFetchedProjects(data));
     }
 
   }, [CurrentUser, DOMUpdater]);
 
 
-
+  // fetch requests for users 
   useEffect(() => {
     fetch('/me')
       .then(r => {
@@ -81,44 +89,41 @@ const [DOMUpdater, setDOMUpdater] = useState(0)
     navigate('/')
   }
 
-function projectFilter(props){
-
-setActiveProjectid(props)
-
-}
-
-function changeBackgroundHandler(){
-  if(changeBackground ==8){
-    setchangeBackground(1)
+  /// This is just where we set an actyive project, so only that project runs. 
+  function projectFilter(props) {
+    setActiveProjectid(props)
   }
-  else{
-  setchangeBackground((changeBackground) => changeBackground = changeBackground+1)
-}
 
-}
+  // background changer, wopuld be nice to make this dynamic, allow users to add their own background. 
+  function changeBackgroundHandler() {
+    if (changeBackground == 8) {
+      setchangeBackground(1)
+    }
+    else {
+      setchangeBackground((changeBackground) => changeBackground = changeBackground + 1)
+    }
+
+  }
 
 
 
 
-// 
+  // 
 
 
   // Grabing Sprints Index 
 
   return (
 
-      <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
- 
-    <DndProvider backend={HTML5Backend}>
-        <TopNav  handleLogout={handleLogout}/>
-    
+    <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
+      <DndProvider backend={HTML5Backend}>
+        <TopNav handleLogout={handleLogout} />
         <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
-   
         <div>
-        <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
-      </div>
-   </DndProvider >
-     </FullPage >
+          <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={fetchedSprints} />
+        </div>
+      </DndProvider >
+    </FullPage >
 
 
   );

@@ -46,7 +46,7 @@ end
 #  start_of_week=  Date.today.beginning_of_week
 #  start_of_last_week =  start_of_week-7 
 
-# made_during_this_week = self.sprints.filter{|sprint|  sprint.created_at >start_of_week }
+ # made_during_this_week = self.sprints.filter{|sprint|  sprint.created_at >start_of_week }
 # completed_during_this_week =  self.sprints.filter{|sprint| sprint.completed }.filter{|sprint|  sprint.completed_at >start_of_week }
 #  made_last_week = self.sprints.filter{|sprint|  sprint.created_at <start_of_week   && sprint.created_at >start_of_last_week }
 #  completed_last_week = self.sprints.filter{|sprint| sprint.completed }.filter{|sprint|   sprint.completed_at <start_of_week   && sprint.completed_at >start_of_last_week}

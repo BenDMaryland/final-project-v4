@@ -44,8 +44,4 @@ end
         params.require(:comment).permit( :urgency, :priority, :comment_details,  :slug, :goal_date,  :created_by_id, :comment, :sprint_id, :completed, :completed_by_id)
     end
 
-
-
-
-
 end
