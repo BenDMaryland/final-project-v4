@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :kbas
   resources :teams
   
+  get"/portfolio", to: "users#me"
  post "/signup", to: "users#create"
   get "/me", to: "users#me"
  
