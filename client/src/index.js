@@ -8,7 +8,9 @@ import { BrowserRouter } from "react-router-dom";
 import {CurrentUserProvider} from "./custom/CurrentUser"
 import Home from './components/Portfolio/Home';
 import FakeFinal from './components/FakeFinal'
-ReactDOM.render(
+
+ReactDOM.render( 
+  
   <BrowserRouter>
     <CurrentUserProvider>
       <Routes>
