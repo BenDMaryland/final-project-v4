@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 import { CurrentUserContext } from '../custom/CurrentUser'
-function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, projectFilter, setCurrentUserFilter, currentUserFilter }) {
+function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, projectFilter, userOnlyFilter, currentUserFilter }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext)
     const [showSprintOptions, setshowSprintOptions] = useState(false)
     const [showFilterOptions, setshowFilterOptions] = useState(false)
@@ -55,7 +55,7 @@ function SideBar({ changeBackgroundHandler, handleLogout, FetchedProjects, proje
                                         : null
                                     }
 
-                                    <button value={currentUserFilter} onClick={() => setCurrentUserFilter(!currentUserFilter)} >Just you?</button>
+                                    <button value={currentUserFilter} onClick={() => userOnlyFilter()} >{currentUserFilter? 'Show Sprints assigned to other team members': "Only show Assigned to you "}</button>
 
                                 </div>
                                 :

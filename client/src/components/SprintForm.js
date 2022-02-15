@@ -70,7 +70,7 @@ console.log(SprintForm)
             </>
             <>
                 <select name="priority" onChange={NewSprintChangeHandler}>
-                    <option value="0">please Select a Urgency</option>
+                    <option value="0">please Select a Priority</option>
                     <option value="1">Low</option>
                     <option value="2">Medium</option>
                     <option value="3">High</option>

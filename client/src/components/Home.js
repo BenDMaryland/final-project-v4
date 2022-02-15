@@ -15,7 +15,6 @@ function Home({ fetchedSprints, setDOMUpdater }) {
 
 
     function dragHandler(e, id) {
-
         setDroppedSprintId(id)
     }
 
@@ -34,8 +33,6 @@ console.log(CompletedComment)
             completedby = CurrentUser.id
 
         }
-
-
         const r = await fetch(`/sprints/${DroppedSprintId}`, {
             method: 'PATCH',
             headers: {

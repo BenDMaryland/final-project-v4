@@ -9,12 +9,12 @@ function Signup({ setDOMUpdater }) {
     const [newTeam, setnewTeam] = useState(false)
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
     const [UserSignUp, setUserSignUp] = useState({
-        username: "",
+        username: "testUser",
         password: "",
-        email: "",
+        email: "test1@test.com",
         member_of_id: 0,
-        role: "",
-        name: ''
+        role: "To test",
+        name: 'tester guy'
     });
     const [TeamSignUp, setTeamSignUp] = useState({
         name: '',
