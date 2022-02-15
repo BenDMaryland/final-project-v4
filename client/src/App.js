@@ -17,7 +17,7 @@ function App() {
   const [showSideBar, setshowSideBar] = useState(false)  /// Not in use, might be worth coming back to 
   const [FetchedProjects, setFetchedProjects] = useState([])
   const [ActiveProjectid, setActiveProjectid] = useState(1)
-  const [currentUserFilter, setCurrentUserFilter] = useState(false)
+  const [currentUserFilter, setCurrentUserFilter] = useState(true)
   const [changeBackground, setchangeBackground] = useState(1)
   const [DOMUpdater, setDOMUpdater] = useState(0)
 
@@ -72,9 +72,9 @@ function App() {
         )
 
 
-console.log("I ran")
+      console.log("I ran")
     }
-  }, [location.pathname, CurrentUser, DOMUpdater, currentUserFilter]);
+  }, [location.pathname, CurrentUser, DOMUpdater]);
 
 
 
@@ -117,6 +117,18 @@ console.log("I ran")
     setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === props))
     console.log(props)
   }
+  function userOnlyFilter() {
+    setCurrentUserFilter(!currentUserFilter)
+    if (currentUserFilter) {
+      setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id))
+    }
+    else {
+      setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === ActiveProjectid))
+
+    }
+
+  }
+
 
   // background changer, wopuld be nice to make this dynamic, allow users to add their own background. 
   function changeBackgroundHandler() {
@@ -130,17 +142,15 @@ console.log("I ran")
   }
 
 
-  // 
 
-
-  // Grabing Sprints Index 
 
   return (
 
     <FullPage style={{ "backgroundImage": `url(../assets/images/${changeBackground}.bmp)` }}>
+    
       <DndProvider backend={HTML5Backend}>
         <TopNav handleLogout={handleLogout} />
-        <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} setCurrentUserFilter={setCurrentUserFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
+        <SideBar changeBackgroundHandler={changeBackgroundHandler} projectFilter={projectFilter} currentUserFilter={currentUserFilter} userOnlyFilter={userOnlyFilter} FetchedProjects={FetchedProjects} handleLogout={handleLogout} />
         <div>
           <MainPage FetchedProjects={FetchedProjects} setDOMUpdater={setDOMUpdater} fetchedSprints={FilteredSprints} />
         </div>

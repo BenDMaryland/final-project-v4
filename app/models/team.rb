@@ -1,9 +1,12 @@
 class Team < ApplicationRecord
 
     
-has_many :members, class_name: "User", foreign_key: "member_of_id"
- has_many :projects, class_name: "Project", foreign_key: "belongs_to_id"
-has_many :sprints, through: :projects
+has_many :members, class_name: "User", foreign_key: "member_of_id", dependent: :destroy
+
+ has_many :projects, class_name: "Project", foreign_key: "belongs_to_id", dependent: :destroy
+
+has_many :sprints, through: :projects , dependent: :destroy
+
 
 
 end
