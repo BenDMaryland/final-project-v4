@@ -14,7 +14,7 @@ ReactDOM.render(
       <Routes>
         <Route path='/fakefinal' element={<FakeFinal style={{ "height": "100%" }} />} />
         <Route path='/portfolio' element={<Home style={{ "height": "100%" }} />} />
-     <Route path='*' element={  <App style={{"height": "100%"}}/>}/>
+     <Route path='/*' element={  <App style={{"height": "100%"}}/>}/>
 
       </Routes>
     </CurrentUserProvider >
