@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useState } from 'react';
 import {  useLocation, useNavigate } from 'react-router-dom'
 import MainPage from "./components/MainPage";
@@ -10,6 +11,7 @@ import TopNav from './components/TopNav';
 
 
 function App() {
+  console.log = console.warn = console.error = () => {};
   const navigate = useNavigate()
   const [fetchedSprints, setFetchedSprints] = useState();  // Where we keep the sprints 
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext); /// Use context this is where we keep the user
@@ -21,6 +23,7 @@ function App() {
   const [DOMUpdater, setDOMUpdater] = useState(0)
 
   const [FilteredSprints, setFilteredSprints] = useState();
+
 
 
   useEffect(() => {
