@@ -12,6 +12,7 @@ import KBAform from "./KBAform"
 import AllKbas from "./AllKbas";
 import Kbas from "./Kbas";
 import TopNav from "./TopNav";
+import PortHome from "../components/Portfolio/Home"
 import ProjectForm from "./ProjectForm";
 function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects }) {
 
@@ -26,6 +27,7 @@ function MainPage({ fetchedSprints, setDOMUpdater, FetchedProjects }) {
                 <Route exact path="/projects" element={<AllProjects FetchedProjects={FetchedProjects} />} />
                 <Route exact path="/newproject" element={<ProjectForm/>} />
                 <Route exact path="/users/" element={<AllUsers />} />
+                {/* <Route path='/portfolio' element={<PortHome style={{ "height": "100vh", 'width':'100vw' }} />} /> */}
                 <Route exact path="/users/*" element={<User />} />
                 <Route exact path="/newkba/" element={<KBAform />} />
                 <Route exact path="/kbas/" element={<AllKbas />} />

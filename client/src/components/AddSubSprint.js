@@ -12,11 +12,11 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) 
 
     function NewSubSprintChangeHandler(e) {
         setNewSubSprint({ ...NewSubSprint, [e.target.name]: e.target.value, ["created_by_id"]: CurrentUser.id, ["sprint_id"]: id });
-        console.log(NewSubSprint)
+   
     }
 
     async function NewSubSprintSubmitHandler(e) {
-        console.log(NewSubSprint)
+       
         e.preventDefault()
         const response = await fetch(`/${SubSprintType}s`, {
             method: 'POST',
@@ -28,7 +28,7 @@ function AddSubSprint({ setaddNewSubSprint, SubSprintType, id, setDOMUpdater }) 
         const data = await response.json();
 
         if (response.ok) {
-            console.log("ok")
+        
         } else {
             alert(data.errors)
         }

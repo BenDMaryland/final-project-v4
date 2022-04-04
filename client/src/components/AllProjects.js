@@ -14,7 +14,7 @@ function AllProjects({ FetchedProjects }) {
     if (!FetchedProjects) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (!CurrentUser.boss) return <LandingPage />
-    console.log(FetchedProjects)
+
     return (
         <ProjectContainer>
             {FetchedProjects.map((project) =>

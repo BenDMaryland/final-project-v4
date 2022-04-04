@@ -38,6 +38,8 @@ const Portfol = styled.div`
   background-color: #eaecec;
     font-weight: bolder
  width: 100%;
+ right:0
+ position: absolute;
 
 body{
     background-image: url(../javascript/assets/images/overlay.png);
