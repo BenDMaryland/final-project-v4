@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components'
 import { CurrentUserContext } from '../custom/CurrentUser';
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ function TopNav({ handleLogout }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
 
-    console.log(CurrentUser)
+ 
     return (
         <TopBar>
             {CurrentUser ?

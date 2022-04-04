@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, {  useState, useContext } from 'react'
 import AllSprints from './AllSprints'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
@@ -28,7 +28,7 @@ function Home({ fetchedSprints, setDOMUpdater }) {
 
             CompletedComment = prompt('Please enter your completed comment')
             if (CompletedComment===null){return null}
-console.log(CompletedComment)
+
             completed = true
             completedby = CurrentUser.id
 

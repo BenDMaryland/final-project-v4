@@ -43,9 +43,9 @@ function Signup({ setDOMUpdater }) {
         const data = await response.json();
 
         if (response.ok) {
-            console.log("ok")
+
         } else {
-            console.log(data)
+
             alert(data.errors)
         }
 
@@ -54,7 +54,7 @@ function Signup({ setDOMUpdater }) {
     }
 
     async function handleNewTeamSubmit(e){
-console.log(TeamSignUp)
+
         const response = await fetch("/teams", {
             method: "POST",
             headers: {
@@ -81,9 +81,9 @@ console.log(TeamSignUp)
     function handlerNewTeamChange(e) {
         setTeamSignUp({ ...TeamSignUp, [e.target.name]: e.target.value });
     }
-    console.log("herer")
+
     if (!FetchedTeams) return null
-    console.log("not gonna run ")
+
 
     return (
         <Signer   >

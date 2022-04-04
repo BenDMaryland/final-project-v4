@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Routes, useLocation, useNavigate } from 'react-router-dom'
+import {  useLocation, useNavigate } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import SideBar from "./components/SideBar";
 import { CurrentUserContext } from './custom/CurrentUser';
@@ -14,49 +14,13 @@ function App() {
   const [fetchedSprints, setFetchedSprints] = useState();  // Where we keep the sprints 
   const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext); /// Use context this is where we keep the user
   const location = useLocation()
-  const [showSideBar, setshowSideBar] = useState(false)  /// Not in use, might be worth coming back to 
   const [FetchedProjects, setFetchedProjects] = useState([])
   const [ActiveProjectid, setActiveProjectid] = useState(1)
   const [currentUserFilter, setCurrentUserFilter] = useState(true)
   const [changeBackground, setchangeBackground] = useState(1)
   const [DOMUpdater, setDOMUpdater] = useState(0)
 
-  // const [Sprints, setSprints] = useState();
   const [FilteredSprints, setFilteredSprints] = useState();
-
-  // the Mian fetch to grab the needed sprints. 
-  /// Currently this grabs alll sprints for a team, can be refactored to only grab sprints from one particular project. 
-  // useEffect(() => {
-  //   /// Conditionals to only run when the pathname is correct and trhe user has permisiion. 
-  //   if (!CurrentUser) return
-  //   if (CurrentUser.level === 0) return
-  //   if (location.pathname === "/sprints" || location.pathname === "/sprints/") {
-  //     if (currentUserFilter) {
-  //       fetch('/sprints')
-  //         .then((r) => r.json())
-  //         .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid && sprint.assigned_to_id === CurrentUser.id)))
-  //       /// Here we set the fetched sprints to only be for the active project     
-  //       // We also filter for only sprints assigned to the current user, if the user has set it to be that way. 
-  //     }
-  //     ///  this is if we don't have the filter set to true 
-  //     else if (!currentUserFilter) {
-  //       fetch(`${location.pathname}`)
-  //         .then((r) => r.json())
-  //         .then((data) => setFetchedSprints(data.filter((sprint) => sprint.project.id === ActiveProjectid)))
-  //     }
-
-  //   }
-  //   /// No idea what this is for 
-  //   else if (location.pathname.includes("sprints")) {
-  //     fetch(`${location.pathname}`)
-  //       .then((r) => r.json())
-  //       .then((data) => setFetchedSprints(data))
-  //   }
-
-
-  // }, [location.pathname, CurrentUser, DOMUpdater, ActiveProjectid, currentUserFilter]);
-
-  // Yet again it seems ineffecient to do a new fetch everytime. I think the best change to improve speed would be to set filtered to a diffrent state and not mutate fetched sprints. 
 
 
   useEffect(() => {
@@ -72,7 +36,7 @@ function App() {
         )
 
 
-      console.log("I ran")
+     
     }
   }, [location.pathname, CurrentUser, DOMUpdater]);
 
@@ -80,12 +44,12 @@ function App() {
 
   /// Fetch request for projects. 
   useEffect(() => {
-    {
+    
       if (!CurrentUser) return null
       fetch('/projects')
         .then((r) => r.json())
         .then((data) => setFetchedProjects(data));
-    }
+    
 
   }, [CurrentUser, DOMUpdater]);
 
@@ -115,7 +79,7 @@ function App() {
   function projectFilter(props) {
     setActiveProjectid(props)
     setFilteredSprints(fetchedSprints.filter((sprint) => sprint.project.id === props))
-    console.log(props)
+ 
   }
   function userOnlyFilter() {
     setCurrentUserFilter(!currentUserFilter)

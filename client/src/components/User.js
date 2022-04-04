@@ -58,7 +58,7 @@ function User() {
     }
 
     if (!FetchedUser) return null
-console.log(FetchedUser)
+
     return (
         <UserPage>
             <div key={FetchedUser.id} className="card">

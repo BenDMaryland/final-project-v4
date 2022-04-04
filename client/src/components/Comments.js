@@ -20,8 +20,6 @@ function Comments({ comment, setDOMUpdater }) {
 
     async function commentEditHandler(e) {
 
-        console.log("old n busted", comment.completed)
-        console.log("new hotness", !comment.completed)
 
         const response = await fetch(`/comments/${comment.id}`, {
             method: 'PATCH',
@@ -36,7 +34,7 @@ function Comments({ comment, setDOMUpdater }) {
         const data = await response.json();
 
         if (response.ok) {
-            console.log("ok")
+
         } else {
             alert(data.errors)
         }

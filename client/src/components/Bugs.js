@@ -20,8 +20,7 @@ function Bugs({ bug, setDOMUpdater }) {
 
     async function bugEditHandler(e) {
 
-        console.log("old n busted", bug.completed)
-        console.log("new hotness", !bug.completed)
+    
 
         const response = await fetch(`/bugs/${bug.id}`, {
             method: 'PATCH',
@@ -36,7 +35,7 @@ function Bugs({ bug, setDOMUpdater }) {
         const data = await response.json();
 
         if (response.ok) {
-            console.log("ok")
+
         } else {
             alert(data.errors)
         }

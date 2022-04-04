@@ -25,8 +25,6 @@ function Features({ feature, setDOMUpdater }) {
 
     async function featureEditHandler(e) {
 
-        console.log("old n busted", feature.completed)
-        console.log("new hotness", !feature.completed)
 
         const response = await fetch(`/features/${feature.id}`, {
             method: 'PATCH',
@@ -41,7 +39,7 @@ function Features({ feature, setDOMUpdater }) {
         const data = await response.json();
 
         if (response.ok) {
-            console.log("ok")
+
         } else {
             alert(data.errors)
         }

@@ -52,7 +52,7 @@ function SprintForm({ FetchedProjects }) {
             alert(data.errors)
         }
     }
-console.log(SprintForm)
+
     if (!FetchedProjects) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (CurrentUser.level === 0) return <LandingPage />

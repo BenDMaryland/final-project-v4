@@ -31,9 +31,9 @@ function Sprints() {
     }, [location.pathname, CurrentUser, DOMUpdater]);
 
     function subSprintSelector(e) {
-        console.log(e.target.value)
+ 
         if (e.target.value === "0") {
-            console.log("I ran ")
+  
             setEditSprint(false)
             setaddNewSubSprint(false)   }
         else {
@@ -56,7 +56,7 @@ function Sprints() {
     if (!fetchedSprint) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (CurrentUser.level === 0) return <LandingPage />
-    console.log(fetchedSprint)
+
     return (
 
         <FullContainer >

@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext, useCallback, PureComponent } from 'react'
+import React, { useContext } from 'react'
 import styled from "styled-components";
-import Projects from './Projects';
+
 import { CurrentUserContext } from '../custom/CurrentUser'
 import LandingPage from './LandingPage';
 
-import { LineChart, Line, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Chart } from "react-google-charts";
 
 function AllProjects({ FetchedProjects }) {

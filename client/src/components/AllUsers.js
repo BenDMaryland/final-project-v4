@@ -26,7 +26,7 @@ function AllUsers() {
     if (!FetchedUsers) return null
     if (CurrentUser === undefined) return <LandingPage />
     if (!CurrentUser.boss) return <LandingPage />
-    console.log(GraphData)
+
     return (
         <UserContainer>
 

@@ -9,7 +9,7 @@ function SprintEdit({ fetchedSprint, setEditSprint, setDOMUpdater }) {
 
     function SprintEditChangeHandler(e) {
         setSprintEdit({ ...SprintEdit, [e.target.name]: e.target.value });
-console.log(SprintEdit)
+
     }
 
 

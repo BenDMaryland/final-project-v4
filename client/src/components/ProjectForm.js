@@ -24,8 +24,7 @@ const [newProject, setnewProject] = useState({
 
     async function NewProjectSubmitHandler(e) {
         e.preventDefault()
-        console.log(CurrentUser)
-        console.log(newProject)
+     
         const response = await fetch("projects", {
             method: 'POST',
             headers: {
