@@ -36,7 +36,7 @@ const TopBar = styled.div`
 position: absolute;
 top: 0;
 width: 100%;
-height: 3vh;
+height: 2rem;
 background: #323232;
 display:grid;
 grid-template-columns:repeat(3, 1fr );
