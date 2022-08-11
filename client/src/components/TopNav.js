@@ -40,9 +40,11 @@ height: 2rem;
 background: #323232;
 display:grid;
 grid-template-columns:repeat(3, 1fr );
+padding-bottom:.3rem;
+
 overflow: hidden;
 p{
-padding-bottom:2px;
+padding:2px;
 
 margin:8px;
     font-size: 18px;

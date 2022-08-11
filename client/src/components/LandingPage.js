@@ -15,20 +15,14 @@ function LandingPage({ setDOMUpdater }) {
             <h1 >Welcome to Agile Solutions!</h1>
             <div className='modal'>
                 {!CurrentUser ?
-
-
                     <>
                         {userSignIn ?
-                            <>
-                                <Login setDOMUpdater={setDOMUpdater} />
-                            
-                            </>
+                            <Login setDOMUpdater={setDOMUpdater} />
                             :
-                            <>
-                                <Signup setDOMUpdater={setDOMUpdater} />
-                     
-                            </>}
-                        <button onClick={() => setuserSignIn(userSignIn => !userSignIn)}>{userSignIn? "No account" : "Already have an account"}</button>
+                            <Signup setDOMUpdater={setDOMUpdater} />
+                        }
+
+                        <button onClick={() => setuserSignIn(userSignIn => !userSignIn)}>{userSignIn ? "No account" : "Already have an account"}</button>
                     </>
 
 
