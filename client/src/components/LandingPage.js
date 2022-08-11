@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function LandingPage({ setDOMUpdater }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
+    const [userSignIn, setuserSignIn] = useState(true)
 
 
     return (
@@ -14,7 +15,24 @@ function LandingPage({ setDOMUpdater }) {
             <h1 >Welcome to Agile Solutions!</h1>
             <div className='modal'>
                 {!CurrentUser ?
-                    <>  <Login setDOMUpdater={setDOMUpdater} /> <Signup setDOMUpdater={setDOMUpdater} />  </>
+
+
+                    <>
+                        {userSignIn ?
+                            <>
+                                <Login setDOMUpdater={setDOMUpdater} />
+                            
+                            </>
+                            :
+                            <>
+                                <Signup setDOMUpdater={setDOMUpdater} />
+                     
+                            </>}
+                        <button onClick={() => setuserSignIn(userSignIn => !userSignIn)}>{userSignIn? "No account" : "Already have an account"}</button>
+                    </>
+
+
+
                     :
                     CurrentUser.level === 0 ?
                         <>
@@ -52,7 +70,7 @@ function LandingPage({ setDOMUpdater }) {
                             <p>A User who is a boss can see data about each users progress and each projects progress</p>
                             <h3>Separation of duties</h3>
                             <p>Admin accounts can delete sprints,  Boss accounts can fire users, and see user data.</p>
-                        </>   }
+                        </>}
             </div>
         </Lander>
     )
