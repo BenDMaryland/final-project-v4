@@ -8,7 +8,7 @@ function TopNav({ handleLogout }) {
     const { CurrentUser, setCurrentUser } = useContext(CurrentUserContext);
 
 
- 
+
     return (
         <TopBar>
             {CurrentUser ?
@@ -21,7 +21,7 @@ function TopNav({ handleLogout }) {
                         <></>
                         :
                         <>
-                            {CurrentUser.highest_impact_ticket?        <p className='impactticket'>Highest impact ticket: {CurrentUser.highest_impact_ticket.sprint_title}</p> : null}
+                            {CurrentUser.highest_impact_ticket ? <p className='impactticket'>Highest impact ticket: {CurrentUser.highest_impact_ticket.sprint_title}</p> : null}
                             <p className='opentickets'>You have {CurrentUser.user_evaluation_data.assigned_tickets - CurrentUser.user_evaluation_data.completed_tickets} Open tickets </p>
                         </>}
                 </>

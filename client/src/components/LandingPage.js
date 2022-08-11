@@ -70,6 +70,7 @@ h1{
 }
 .modal{color: #e3e4e6;
    height: 70vh;
+   overflow: auto ;
       width: 600px;
     background-color: #323232;
     position: absolute;
